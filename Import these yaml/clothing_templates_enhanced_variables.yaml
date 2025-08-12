@@ -1,0 +1,77 @@
+# Enhanced Clothing Description Templates with Robust Variables
+# This demonstrates the new variable system with predefined lists for clothing and style
+#
+# Example template: "wears {garment} in {color} that {description}"
+# Variables provide lists of options that are randomly selected
+
+# === ENHANCED EVERYDAY CLOTHING ===
+- name: "Variable everyday garments"
+  tag: "everyday_wear"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["wears {garment} in {color} that {fit_description}"]
+  variables:
+    garment: ["a simple tunic and trousers", "a practical dress", "sturdy work clothes", "a comfortable robe", "layered clothing", "a vest over rolled sleeves", "weather-worn traveling gear", "loose-fitting clothes", "form-fitting attire", "traditional {ancestry} garb", "a hooded cloak", "patched but clean clothing"]
+    color: ["earth tones", "deep forest green", "rich burgundy", "faded blue", "warm brown", "charcoal grey", "cream and tan", "muted colors", "bright primary colors", "jewel tones", "black and silver", "natural linen"]
+    fit_description: ["fits perfectly and looks well-maintained", "shows signs of hard wear but good care", "appears recently tailored", "hangs loose for comfort during work", "fits snugly to show off {pronoun_possessive} physique", "has been patched and mended many times", "looks expensive despite its simplicity", "seems chosen more for function than fashion", "coordinates beautifully with {pronoun_possessive} coloring", "bears the marks of frequent washing", "appears to be {pronoun_possessive} finest outfit", "looks lived-in and comfortable"]
+
+# === ENHANCED WORK CLOTHING ===  
+- name: "Variable work-specific attire"
+  tag: "work_attire"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["smith", "cook", "journeyman", "owner"]
+  templates: ["dons {work_gear} that {condition} and {practical_feature}"]
+  variables:
+    work_gear: ["a leather apron over sturdy clothes", "heat-resistant clothing with metal studs", "an embroidered vest showing {pronoun_possessive} trade", "practical clothing with many pockets", "oil-stained but functional garments", "protective gear that's seen better days", "a craftsman's belt with specialized tools", "flame-retardant materials", "clothing designed for freedom of movement", "reinforced clothing at stress points", "traditional trade guild attire", "custom-fitted protective wear"]
+    condition: ["shows the honest stains of hard work", "gleams with recent cleaning despite daily use", "bears scorch marks from forge work", "has been reinforced at every weak point", "is meticulously maintained despite heavy use", "shows creative repairs and improvements", "has been handed down through generations", "looks like it could survive anything", "bears the patina of skilled craftsmanship", "shows pride in both work and appearance", "has been customized for maximum efficiency", "tells stories through every mark and stain"]
+    practical_feature: ["includes pockets for every conceivable tool", "has reinforced areas where {pronoun_subject} needs protection", "allows complete freedom of movement", "keeps {pronoun_object} cool in the heat of work", "protects against the hazards of {pronoun_possessive} trade", "displays {pronoun_possessive} professional status", "has been modified with ingenious improvements", "serves dual purposes for work and presentation", "shows attention to both safety and style", "includes personal touches that mark it as uniquely {pronoun_possessive}", "incorporates traditional techniques with modern needs", "demonstrates mastery through its very construction"]
+
+# === ENHANCED ACCESSORIES ===
+- name: "Variable jewelry and accessories"
+  tag: "accessories"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["adorns {pronoun_possessive}self with {jewelry} that {significance}"]
+  variables:
+    jewelry: ["a simple pendant on a leather cord", "intricate rings on several fingers", "traditional {ancestry} arm bands", "small earrings that catch the light", "a ceremonial torque around {pronoun_possessive} neck", "delicate chains layered at different lengths", "a signet ring bearing {pronoun_possessive} family crest", "carved bone ornaments", "colorful beads woven through {pronoun_possessive} hair", "a practical belt with ornate buckle", "traditional marriage jewelry", "amulets and charms for protection"]
+    significance: ["clearly holds deep personal meaning", "marks {pronoun_possessive} status within the community", "shows {pronoun_possessive} cultural heritage", "appears to be a family heirloom", "suggests {pronoun_possessive} profession or guild membership", "indicates {pronoun_possessive} romantic attachments", "serves both decorative and protective purposes", "tells the story of {pronoun_possessive} travels", "shows {pronoun_possessive} religious or spiritual beliefs", "demonstrates {pronoun_possessive} artistic taste", "reveals {pronoun_possessive} economic status", "connects {pronoun_object} to important memories"]
+
+# === ENHANCED FOOTWEAR ===
+- name: "Variable footwear descriptions"
+  tag: "footwear"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["wears {shoe_type} that {wear_pattern}"]
+  variables:
+    shoe_type: ["sturdy leather boots", "soft indoor slippers", "traditional {ancestry} footwear", "practical work shoes", "elegant dress shoes", "weather-resistant boots", "comfortable walking shoes", "reinforced protective footwear", "decorative but functional shoes", "well-traveled boots", "ceremonial footwear", "custom-fitted shoes"]
+    wear_pattern: ["show the miles {pronoun_subject} has walked", "are polished to a mirror shine", "bear the scuffs of honest work", "have been resoled multiple times", "show careful maintenance despite hard use", "are broken in to perfect comfort", "display intricate decorative patterns", "have been modified for {pronoun_possessive} specific needs", "show {pronoun_subject} takes pride in {pronoun_possessive} appearance", "tell stories of adventures and travels", "are clearly {pronoun_possessive} most prized possession", "have been crafted by master artisans"]
+
+# === ENHANCED SEASONAL CLOTHING ===
+- name: "Variable weather-appropriate clothing"
+  tag: "seasonal_wear"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["adapts to weather with {outer_layer} that {weather_adaptation}"]
+  variables:
+    outer_layer: ["a thick woolen cloak", "a light linen overshirt", "layered clothing that can be adjusted", "a weather-resistant traveling coat", "traditional {ancestry} seasonal garments", "a hooded cape for privacy", "practical rain gear", "warm furs for cold weather", "breathable clothing for hot days", "versatile layers for changing conditions", "protective clothing against the elements", "seasonal colors that match the time of year"]
+    weather_adaptation: ["keeps {pronoun_object} comfortable in any weather", "shows {pronoun_possessive} practical approach to dressing", "has been tested in harsh conditions", "allows quick adjustment to changing weather", "demonstrates {pronoun_possessive} experience with local climate", "combines traditional wisdom with personal modifications", "prioritizes function over fashion", "shows {pronoun_possessive} readiness for outdoor work", "reflects {pronoun_possessive} nomadic lifestyle", "indicates {pronoun_possessive} sensitivity to weather changes", "shows {pronoun_possessive} preparedness for travel", "reveals {pronoun_possessive} connection to seasonal cycles"]
+
+# === ENHANCED FORMAL WEAR ===
+- name: "Variable formal and ceremonial clothing"
+  tag: "formal_wear"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner", "journeyman"]
+  templates: ["dresses in {formal_attire} that {formality_level}"]
+  variables:
+    formal_attire: ["carefully pressed ceremonial robes", "traditional formal wear of {pronoun_possessive} people", "the finest clothing {pronoun_subject} owns", "elaborate garments reserved for special occasions", "formal guild attire with rank insignia", "clothing that shows {pronoun_possessive} social status", "ceremonial dress passed down through generations", "formal wear adapted to {pronoun_possessive} profession", "elegant but practical formal clothing", "traditional wedding or celebration attire", "religious or spiritual ceremonial garments", "formal wear that showcases {pronoun_possessive} success"]
+    formality_level: ["commands respect from all who see {pronoun_object}", "strikes the perfect balance between elegance and practicality", "shows {pronoun_subject} understands the importance of proper presentation", "reveals the difference between work and celebration", "demonstrates {pronoun_possessive} rise in social standing", "maintains traditional forms while expressing personal style", "serves multiple ceremonial purposes throughout the year", "indicates {pronoun_possessive} role in community leadership", "shows {pronoun_possessive} respect for important occasions", "reflects both personal taste and cultural expectations", "has been chosen to make a specific impression", "combines ancestral traditions with contemporary needs"]
+
+# === ENHANCED CULTURAL CLOTHING ===
+- name: "Variable cultural and traditional wear"
+  tag: "cultural_wear"  
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["honors {pronoun_possessive} heritage with {traditional_element} that {cultural_meaning}"]
+  variables:
+    traditional_element: ["traditional {ancestry} patterns woven into {pronoun_possessive} clothing", "colors that represent {pronoun_possessive} family lineage", "ceremonial items worn as part of daily dress", "traditional cuts and styles adapted for modern life", "ancestral symbols embroidered on {pronoun_possessive} garments", "materials and techniques passed down through generations", "clothing that tells {pronoun_possessive} family's story", "traditional accessories integrated with practical wear", "cultural markers that identify {pronoun_possessive} origins", "regional styles that show where {pronoun_subject} grew up", "traditional craftsmanship in everyday items", "cultural elements that connect {pronoun_object} to {pronoun_possessive} people"]
+    cultural_meaning: ["connects {pronoun_object} to {pronoun_possessive} ancestral roots", "shows pride in {pronoun_possessive} cultural identity", "serves as a bridge between tradition and modernity", "tells others about {pronoun_possessive} background and values", "maintains important cultural practices in daily life", "honors the craftspeople of {pronoun_possessive} heritage", "keeps ancient traditions alive in the present", "demonstrates {pronoun_possessive} role as a cultural ambassador", "shows respect for the wisdom of {pronoun_possessive} ancestors", "creates connections with others who share {pronoun_possessive} heritage", "serves both personal and community identity purposes", "maintains cultural continuity across generations"]

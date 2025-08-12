@@ -1,0 +1,440 @@
+[
+  {
+    "pro": "Low Prices",
+    "con": "Expensive",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Selection",
+    "con": "Limited Selection",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Quality",
+    "con": "Low Quality",
+    "type": "tavern"
+  },
+  {
+    "pro": "Comfortable",
+    "con": "Uncomfortable",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Atmosphere",
+    "con": "Poor Atmosphere",
+    "type": "tavern"
+  },
+  {
+    "pro": "Popular",
+    "con": "Unpopular",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Food",
+    "con": "Poor Food",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Music",
+    "con": "Lousy Music",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Storytelling",
+    "con": "Lousy Storytelling",
+    "type": "tavern"
+  },
+  {
+    "pro": "Great Rooms",
+    "con": "Dingy Rooms",
+    "type": "tavern"
+  },
+  {
+    "pro": "Convenient",
+    "con": "Exclusive Access",
+    "type": "tavern"
+  },
+ {
+    "pro": "Low Prices",
+    "con": "Expensive",
+    "type": "smith"
+  },
+  {
+    "pro": "Great Selection",
+    "con": "Limited Selection",
+    "type": "smith"
+  },
+  {
+    "pro": "Great Quality",
+    "con": "Low Quality",
+    "type": "smith"
+  },
+  {
+    "pro": "Well staffed",
+    "con": "Not well staffed",
+    "type": "smith"
+  },
+  {
+    "pro": "Loves Special Projects",
+    "con": "No Special Projects",
+    "type": "smith"
+  },
+  {
+    "pro": "Specializes in Weapons",
+    "con": "No Weapons",
+    "type": "smith"
+  },
+  {
+    "pro": "Specializes in Armor",
+    "con": "No Armors",
+    "type": "smith"
+  },
+  {
+    "pro": "Specializes in Adventuring Gear",
+    "con": "No Adventuring Gear",
+    "type": "smith"
+  },
+{
+    "pro": "Low Prices",
+    "con": "Expensive",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Great Selection",
+    "con": "Limited Selection",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Loves Special Projects",
+    "con": "No Special Projects",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Specializes in Healing",
+    "con": "No Healing Items",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Specializes in Remedies",
+    "con": "No Remedies",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Specializes in Toxins",
+    "con": "No Toxins",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Collector of Rare Herbs",
+    "con": "Nothing exotic",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Grows their own herbs",
+    "con": "Bring your own herbs",
+    "type": "herbalist"
+  },
+  {
+    "pro": "Hires adventurers to collect herbs",
+    "con": "Does not hire adventurers",
+    "type": "herbalist"
+  },
+{
+    "pro": "Low Prices",
+    "con": "Expensive",
+    "type": "clothier"
+  },
+  {
+    "pro": "Great Selection",
+    "con": "Limited Selection",
+    "type": "clothier"
+  },
+  {
+    "pro": "Loves Special Projects",
+    "con": "No Special Projects",
+    "type": "clothier"
+  },
+  {
+    "pro": "Well staffed",
+    "con": "Not well staffed",
+    "type": "clothier"
+  },
+  {
+    "pro": "Exotic Materials",
+    "con": "Basic Materials",
+    "type": "clothier"
+  },
+  {
+    "pro": "Quick Work",
+    "con": "Slow Work",
+    "type": "clothier"
+  },
+  {
+    "pro": "Make it fashion!",
+    "con": "Last year's fashion",
+    "type": "clothier"
+  },
+  {
+    "pro": "Fit for Royalty",
+    "con": "Workman quality",
+    "type": "clothier"
+  },
+  {
+    "pro": "Durable",
+    "con": "You might get to wear this once",
+    "type": "clothier"
+  },
+  {
+    "pro": "Specializes in adventuring gear",
+    "con": "No adventuring gear",
+    "type": "clothier"
+  },
+  {
+    "pro": "Specializes in Cold Weather Clothes",
+    "con": "No Cold Weather Clothes",
+    "type": "clothier"
+  },
+  {
+    "pro": "Specializes in Hot Weather Clothes",
+    "con": "No Hot Weather Clothes",
+    "type": "clothier"
+  },
+  {
+    "pro": "Uniforms for the town",
+    "con": "No Uniforms for the town",
+    "type": "clothier"
+  },
+ {
+    "pro": "Low Prices",
+    "con": "Expensive",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Great Selection",
+    "con": "Limited Selection",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Loves Special Projects",
+    "con": "No Special Projects",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Well staffed",
+    "con": "Not well staffed",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Exotic Materials",
+    "con": "Basic Materials",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Quick Work",
+    "con": "Slow Work",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Make it fashion!",
+    "con": "Last year's fashion",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Fit for Royalty",
+    "con": "Workman quality",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Has Cash to buy expensive items",
+    "con": "Won't buy expensive items",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Happy to convert coins to gems",
+    "con": "Not interested in converting coins to gems",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Stocks for spell components",
+    "con": "Does not stock gems for spell components",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Knows where to get the gem you need",
+    "con": "Doesn't know where to get the gem you need",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Hires adventurers for jobs",
+    "con": "Doesn't hire adventurers for jobs",
+    "type": "jeweler"
+  },
+  {
+    "pro": "Hires adventurers for jobs",
+    "con": "Doesn't hire adventurers for jobs",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Caters to adventurers' needs",
+    "con": "Doesn't cater to adventurers' needs",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Well stocked",
+    "con": "Not well stocked",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Inexpensive",
+    "con": "Expensive",
+    "type": "generalStore"
+  },
+  {
+    "pro": "High quality",
+    "con": "Low quality",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Rare goods",
+    "con": "Common goods only",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Great-tasting rations",
+    "con": "Rations taste awful",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Caters to adventurers' needs",
+    "con": "Doesn't cater to adventurers' needs",
+    "type": "generalStore"
+  },
+  {
+    "pro": "Well stocked",
+    "con": "Not well stocked",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Specializes in Wondrous Items",
+    "con": "No wondrous items",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Specializes in Potions",
+    "con": "No potions",
+    "type": "magic"
+  },
+  {
+    "pro": "Specializes in Scrolls",
+    "con": "No scrolls",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Specializes in expensive components",
+    "con": "No expensive components",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Has most basic components",
+    "con": "Limited selection of basic components",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Open-to-all",
+    "con": "Limited or exclusive access",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Specializes in Inks",
+    "con": "Limited selection of magic ink",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Tutors magic",
+    "con": "Will not tutor in magic",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Happy to barter",
+    "con": "Only deals in trade",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Regularly hires adventurers",
+    "con": "Adventurers are too risky to hire",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Specializes in enchantments",
+    "con": "Does not provide enchantments",
+    "type": "magic"
+  }
+  ,
+  {
+    "pro": "Specializes in adventuring gear",
+    "con": "Only provides every-day magic",
+    "type": "magic"
+  }  
+  ,
+  {
+    "pro": "Specializes in healing prayers",
+    "con": "Does not provide healing prayers",
+    "type": "temple"
+  }  
+  ,
+  {
+    "pro": "Collects divine lore",
+    "con": "Does not collect divine lore",
+    "type": "temple"
+  }  
+  ,
+  {
+    "pro": "Beautiful artwork of the divine",
+    "con": "Basic iconography of the divine",
+    "type": "temple"
+  }  
+  ,
+  {
+    "pro": "Very clean",
+    "con": "Dirty",
+    "type": "temple"
+  }  
+  ,
+  {
+    "pro": "Room to house the faithful",
+    "con": "No extra rooms",
+    "type": "temple"
+  }  ,
+  {
+    "pro": "Open to all",
+    "con": "Dedicated worshipers only",
+    "type": "temple"
+  }  ,
+  {
+    "pro": "Comfortable",
+    "con": "Uncomfortable",
+    "type": "temple"
+  }  ,
+  {
+    "pro": "Well maintained",
+    "con": "In need of repair",
+    "type": "temple"
+  }  
+  ,
+  {
+    "pro": "Good faith practice",
+    "con": "Might be a cult",
+    "type": "temple"
+  }  
+
+]

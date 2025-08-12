@@ -1,0 +1,41 @@
+# Complete Example YAML Import
+# This shows how to structure a full import with both physical and clothing templates
+# You can use this as a reference or starting point
+
+# PHYSICAL TEMPLATES
+physical_templates:
+  - template: "has striking {ancestry} eyes that seem to hold ancient wisdom"
+    ancestry_groups: ["humanoid"]
+    roles: ["owner"]
+    tags: ["eyes"]
+  
+  - template: "keeps {pronoun_possessive} silver hair in a neat bun while working"
+    ancestry_groups: ["has_hair"]
+    roles: ["cook"]
+    tags: ["hair"]
+    
+  - template: "bears the calloused hands of a master craftsperson"
+    ancestry_groups: ["humanoid"]
+    roles: ["journeyman"]
+    tags: ["hands"]
+
+# CLOTHING TEMPLATES  
+clothing_templates:
+  - template: "wears an apron embroidered with {ancestry} protective runes"
+    ancestry_groups: ["humanoid"]
+    roles: ["cook"]
+    tags: ["torso"]
+    
+  - template: "adorns {pronoun_possessive} finest robes with family insignia"
+    ancestry_groups: ["all"]
+    roles: ["owner"]
+    tags: ["torso", "jewelry"]
+    
+  - template: "has practical leather boots worn smooth by years of service"
+    ancestry_groups: ["all"]
+    roles: ["waitstaff", "journeyman"]
+    tags: ["feet"]
+
+# NOTE: When importing, you would typically separate these into the individual files
+# (physical_templates.yaml and clothing_templates.yaml) as provided, but this shows
+# the complete structure if you prefer a single file approach.

@@ -1,0 +1,53 @@
+[
+
+        {"ID": "1","Type": "Smith","Name": "Polished Tools","OwnerID": ["95d4b90e-25d3-49e4-868c-cac229109457"],"Apprentices": ["a56055f1-66b9-47d7-ba30-86b0cbce5845","2a916176-e4b7-4f7f-a55f-9a8c3dcb5e55"],"Journeymen": ["3dd8a696-ad24-4935-b24c-4bf456df6d07","e575450e-c04f-4f5e-a5ec-b9d4dae81c28"],"Pro1": "Low Prices","Pro2": "Specializes in Adventuring Gear","Con": "No Armors"}
+        
+,
+        {"ID": "2","Type": "Smith","Name": "Smoky Forge","OwnerID": ["11234c8c-9fe8-4fd5-8a0e-684e99c90831"],"Apprentices": ["498e54d3-9777-43ee-afb6-b9a28bf98cc8","9f624d4c-92c9-43af-ae18-8d92c31e9610"],"Journeymen": ["57bf461e-8306-441b-a65b-31fa5d9e91e8","222cc3bd-d4c8-4e37-a4b8-b0a37844d16f"],"Pro1": "Great Selection","Pro2": "Loves Special Projects","Con": "Expensive"}
+        
+,
+        {"ID": "3","Type": "Smith","Name": "Fine Shield","OwnerID": ["dd30f3c6-cb2e-4c65-8697-bd532be921c3"],"Apprentices": ["3ff9102f-3b82-47c7-a079-e40f8bac6deb","1ffe146b-1754-4add-a430-0eb1b4306c8b","ca8e677e-f917-4445-9d29-bc7c1a77e57a","22a82977-5c3f-42dc-8e2b-35c351691c13"],"Journeymen": ["3eda85c3-7f76-4046-bc9c-a2e94e317a02","73d49ab4-0e5a-493a-a2f9-4677a9060afb","14fb8b02-a279-4da3-b430-2179eb92e0a6","0553d555-6322-4d04-936a-d6ebca78771a"],"Pro1": "Well staffed","Pro2": "Low Prices","Con": "Limited Selection"}
+        
+,
+        {"ID": "4","Type": "Smith","Name": "Copper Rapier","OwnerID": ["4a2e858c-0739-41fd-b21c-73228a10f61b"],"Apprentices": ["3e949dfe-0325-4532-87f7-6c864cb3d7d7","725a902e-52de-4ff6-a3d4-e4671711a544"],"Journeymen": ["804ecda6-d413-45a6-854b-f972029b9252","98f4e5d0-9cce-409f-820a-4ff8087c68f7"],"Pro1": "Low Prices","Pro2": "Specializes in Adventuring Gear","Con": "Low Quality"}
+        
+,
+        {"ID": "5","Type": "Smith","Name": "Splendid Anvil","OwnerID": ["9b9e8047-e8fa-4346-806e-e667a4bfd9b2"],"Apprentices": ["b6c23d06-dbba-43ce-b335-5cb77744c9c5","a5cab003-0fb9-4233-b9c7-7963f5ceda52"],"Journeymen": ["728e3c3e-7518-4472-9c19-66de510749b2","a0545f17-a780-4e34-a3d6-5748b6736bc5"],"Pro1": "Loves Special Projects","Pro2": "Low Prices","Con": "Limited Selection"}
+        
+,
+        {"ID": "6","Type": "Jeweler","Name": "Aemorin's Gem","OwnerID": ["10f8557d-9b69-4ac7-9b83-3b4b9bf9c56f"],"Apprentices": [],"Journeymen": [],"Pro1": "Great Selection","Pro2": "Exotic Materials","Con": "Not well staffed"}
+        
+,
+        {"ID": "j6","Type": "Jeweler","Name": "Creasou's Ruby","OwnerID": ["0efbf307-e0d3-44c2-ae6b-383294bdcb7d"],"Apprentices": ["8fd82f2d-04fe-463d-8b3b-a584590688c9","1d801bb1-6854-4688-9403-c5eae0b3bfbf"],"Journeymen": ["400777b1-1245-43a0-bb3f-5fdd2e22b9ce","86fbaa07-2925-47ec-8714-7dbf79896f69"],"Pro1": "Make it fashion!","Pro2": "Happy to convert coins to gems","Con": "Expensive"}
+        
+,
+        {"ID": "7","Type": "Herbalist","Name": "Tasty Unguents","OwnerID": ["8b9596d6-ec20-4aa2-8fc8-18b0f9604ad6"],"Apprentices": ["07f56adb-e4e9-418e-b9c3-5968535a60ab","b70b979d-33fd-4737-bc97-131b78902116"],"Journeymen": ["15d2a87b-bf24-4189-8fec-263394d3426b","22283fdc-25df-4674-9df9-44653ab5c6fa"],"Pro1": "Specializes in Healing","Pro2": "Hires adventurers to collect herbs","Con": "Bring your own herbs"}
+        
+,
+        {"ID": "8","Type": "Herbalist","Name": "Iaeasairil's Tasty Bark","OwnerID": ["e5c7b206-d423-4ca8-a27e-a64ffc4ac76c"],"Apprentices": ["507ebe77-c19b-4dcf-81b5-0d6c9c930263","6e2f6294-b26e-4954-914b-eb86b334fa0f"],"Journeymen": ["b19cf7af-1aa5-4bfd-9cfd-eef1d559bff8","28dd2b68-b757-40f7-a3ae-15b0427ec76c"],"Pro1": "Specializes in Remedies","Pro2": "Loves Special Projects","Con": "Expensive"}
+        
+,
+        {"ID": "9","Type": "Herbalist","Name": "Mystical Delicacies","OwnerID": ["76b360b1-8328-47d3-af02-28f157dde9fc"],"Apprentices": ["b1a0926b-448e-4c93-ade7-f4aee54e5f6e","1d652516-a6e0-4346-96a4-1e5a65ddbd11"],"Journeymen": ["83cf1fa0-395f-40f9-99a8-7af92e2fd3ff","519fc2f7-936d-424e-a010-0eedfb5a104b"],"Pro1": "Specializes in Toxins","Pro2": "Loves Special Projects","Con": "Nothing exotic"}
+        
+,
+        {"ID": "10","Type": "Herbalist","Name": "Doctor's Panacea","OwnerID": ["e78dc8a3-7aeb-4d43-84f6-3cce30582581"],"Apprentices": ["bf16ed6e-4583-4707-bb67-79b337a5e5b8","60948684-e06c-4733-abc4-2ec27b9d2757"],"Journeymen": ["096293c2-4889-4f78-a6f9-94c197c02bf7","957e8bc8-aafc-4732-b40c-a94ae694afc9"],"Pro1": "Great Selection","Pro2": "Specializes in Remedies","Con": "No Healing Items"}
+        
+,
+        {"ID": "11","Type": "Clothier","Name": "Fine Leggings","OwnerID": ["6bc6b957-3265-4fd1-92bf-ba4eea61e817"],"Apprentices": ["c59a1d5d-606d-498d-a177-64139249d7d0","8a1d39a9-db43-4fd6-9740-ba81a040c623"],"Journeymen": ["3da9a413-6190-474d-8435-1c4e4c9139cd","765b7a25-7a5c-4d3c-9f3b-b1c24c172d50"],"Pro1": "Uniforms for the town","Pro2": "Specializes in adventuring gear","Con": "No Cold Weather Clothes"}
+        
+,
+        {"ID": "12","Type": "Clothier","Name": "Prince's Chaperon","OwnerID": ["9e2e4d52-d85e-474a-816b-0ecd0f1d47ca"],"Apprentices": ["a930e277-56cd-4507-834d-a19af10e60fe","db118d7b-4fd6-4340-bb32-a676d72ce7e9"],"Journeymen": ["af8df722-d58d-4781-bcc3-9165552891cf","185f3afc-f3f5-413c-b611-c2c247567eb7"],"Pro1": "Specializes in Cold Weather Clothes","Pro2": "Make it fashion!","Con": "Basic Materials"}
+        
+,
+        {"ID": "13","Type": "Clothier","Name": "Asmund's Jacket","OwnerID": ["a8b495cb-a71d-4bbc-9681-027265a5787b"],"Apprentices": ["b9366e36-de1e-4163-862b-cefc1b5f562b","28cc4c40-4b91-4369-a26f-5ecff4f36a90"],"Journeymen": ["5bd53746-99a8-4793-be41-5ca61604c1bf","4ac99af9-df2c-4fe3-b462-89b4d797c441"],"Pro1": "Low Prices","Pro2": "Durable","Con": "No Special Projects"}
+        
+,
+        {"ID": "14","Type": "Clothier","Name": "Leikmadur's Gold Dance","OwnerID": ["fcbf0c80-de31-4892-91e9-d57c57ec530d"],"Apprentices": [],"Journeymen": [],"Pro1": "Uniforms for the town","Pro2": "Low Prices","Con": "Not well staffed"}
+        
+,
+        {"ID": "15","Type": "Clothier","Name": "Uaelas's Hose","OwnerID": ["c20b9fc1-287d-414a-899b-44e70cfb9ad8"],"Apprentices": ["f3707e76-8706-46d6-a780-632d41f912fe","830d130d-ae7d-4093-b9ad-da565655f5e4","c6e107fe-8c2f-43c2-beed-e8ce7b727d2f","fdcb980d-4b9a-4d94-8075-c345a691a1eb"],"Journeymen": ["ad050e57-b656-40a9-9183-3fc8d7628887","121b7108-c29d-4e10-a798-e77bed2b5c6b","d128fbba-392c-4c0b-a351-fa87b591e67d","176be030-6238-4726-92bd-1a52c160bfe9"],"Pro1": "Fit for Royalty","Pro2": "Well staffed","Con": "You might get to wear this once"}
+        
+,
+        {"ID": "16","Type": "Clothier","Name": "King's Dress","OwnerID": ["a20b0ebe-6595-40f4-86a8-b574a45bfc9f"],"Apprentices": ["c9e06994-d876-4d01-941d-754a66341000","20d40422-cae1-49c6-8769-ed07a0889f38"],"Journeymen": ["a32b7806-892b-40cc-9f67-0251b9e52b98","7a3dc891-939f-4b7e-95a6-50e1843ccfad"],"Pro1": "Specializes in Cold Weather Clothes","Pro2": "Loves Special Projects","Con": "No Hot Weather Clothes"}
+        
+]

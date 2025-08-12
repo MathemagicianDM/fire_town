@@ -1,0 +1,422 @@
+[
+    {
+        "type": "nobility",
+        "printName": "Nobility",
+        "roleGeneration": {"thorp":[
+            
+        ],
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"liege", "quantityMin":1,"quantityMax":1}]}
+                    ],
+                  "village":[
+                    {"proportion":1,"list":[{"title":"liege", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"noble","quantityMin":1,"quantityMax":3}]}
+                    ],
+                  "town":[
+                    {"proportion":1,"list":[{"title":"liege", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"noble","quantityMin":2,"quantityMax":4}]},
+                    {"proportion":1,"list":[{"title":"courtier","quantityMin":4,"quantityMax":8}]}
+                    ],
+                  "city":[
+                    {"proportion":1,"list":[{"title":"liege", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"noble","quantityMin":4,"quantityMax":8}]},
+                    {"proportion":1,"list":[{"title":"courtier","quantityMin":8,"quantityMax":16}]}
+                    ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"liege", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"noble","quantityMin":8,"quantityMax":16}]},
+                    {"proportion":1,"list":[{"title":"courtier","quantityMin":16,"quantityMax":32}]}
+                    ]},    
+        "rule": {"method": "createRoles",
+                 "proportional":"false",
+                 "enforceFamily":"true",
+                 "universalType":"family"
+                }
+    }
+    ,
+    {
+        "type": "merchantCouncil",
+        "printName": "Council of Merchants",
+        "roleGeneration": {"thorp":[
+            {"proportion":1,"list":[{"title":"merchantCouncellor","role":"owner", "quantityMin":1,"quantityMax":1}]}],
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"merchantCouncellor","role":"owner", "quantityMin":1,"quantityMax":2}]}],
+                  "village":[
+                    {"proportion":1,"list":[{"title":"merchantCouncellor","role":"owner", "quantityMin":2,"quantityMax":4}]}],
+                  "town":[{"proportion":1,"list":[{"title":"merchantCouncellor","role":"owner", "quantityMin":4,"quantityMax":6}]}],
+                  "city":[{"proportion":1,"list":[{"title":"merchantCouncellor","role":"owner", "quantityMin":6,"quantityMax":12}]}],
+                  "metropolis":[{"proportion":1,"list":[{"title":"merchantCouncellor","role":"owner", "quantityMin":12,"quantityMax":24}]}]},    
+        "rule": {"method": "useExistingRoles",
+                 "proportional":"true",
+                 "enforceFamily":"false",
+                 "universalType":"owner"
+
+                }
+    }
+    ,
+    {
+        "type": "directDemocracy",
+        "printName": "Direct Democracy",
+        "roleGeneration": {"thorp":[
+                            {"proportion":1,"list":[{"title":"president", "quantityMin":1,"quantityMax":1}]}    
+                        ], 
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"president", "quantityMin":1,"quantityMax":1}]}    
+                ],
+                  "village":[
+                    {"proportion":1,"list":[{"title":"president", "quantityMin":1,"quantityMax":1}]}    
+                ],
+                  "town":[
+                    {"proportion":1,"list":[{"title":"president", "quantityMin":1,"quantityMax":1}]}    
+                ],
+                  "city":[
+                    {"proportion":1,"list":[{"title":"president", "quantityMin":1,"quantityMax":1}]}    
+                ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"president", "quantityMin":1,"quantityMax":1}]}    
+                ]},    
+        "rule": {"method": "createAndChoose",
+                 "proportional":"false",
+                 "enforceFamily":"false",
+                 "universalType":"any"
+                }
+    }
+    ,
+    {
+        "type": "mageocracy",
+        "printName": "Mageocracy",
+        "roleGeneration": {"thorp":[
+                            {"proportion":1,"list":[{"title":"luminary", "quantityMin":1,"quantityMax":1}]}
+                            ], 
+                  "hamlet":[
+                            {"proportion":1,"list":[{"title":"luminary", "quantityMin":1,"quantityMax":1}]}
+                    ],
+                  "village":[
+                            {"proportion":1,"list":[{"title":"luminary", "quantityMin":1,"quantityMax":1}]},
+                            {"proportion":0.125,"list":[
+                                {"title":"highEnchanter", "quantityMin":1,"quantityMax":1},
+                                {"title":"highEvoker", "quantityMin":1,"quantityMax":1},
+                                {"title":"highIllusionist", "quantityMin":1,"quantityMax":1},
+                                {"title":"highNecromancer", "quantityMin":1,"quantityMax":1},
+                                {"title":"highConjurer", "quantityMin":1,"quantityMax":1},
+                                {"title":"highTransmuter", "quantityMin":1,"quantityMax":1},
+                                {"title":"highAbjurer", "quantityMin":1,"quantityMax":1},
+                                {"title":"highDiviner", "quantityMin":1,"quantityMax":1}]
+                            }
+                    ],
+                  "town":[
+                    {"proportion":1,"list":[{"title":"luminary", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":0.25,"list":[
+                        {"title":"highEnchanter", "quantityMin":1,"quantityMax":1},
+                        {"title":"highEvoker", "quantityMin":1,"quantityMax":1},
+                        {"title":"highIllusionist", "quantityMin":1,"quantityMax":1},
+                        {"title":"highNecromancer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highConjurer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highTransmuter", "quantityMin":1,"quantityMax":1},
+                        {"title":"highAbjurer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highDiviner", "quantityMin":1,"quantityMax":1}]
+                    }
+            ],
+                  "city":[
+                    {"proportion":1,"list":[{"title":"luminary", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":0.5,"list":[
+                        {"title":"highEnchanter", "quantityMin":1,"quantityMax":1},
+                        {"title":"highEvoker", "quantityMin":1,"quantityMax":1},
+                        {"title":"highIllusionist", "quantityMin":1,"quantityMax":1},
+                        {"title":"highNecromancer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highConjurer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highTransmuter", "quantityMin":1,"quantityMax":1},
+                        {"title":"highAbjurer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highDiviner", "quantityMin":1,"quantityMax":1}]
+                    },
+                    {"proportion":1,"list":[{"title":"arcaneExarch", "quantityMin":1,"quantityMax":1}]}
+
+            ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"luminary", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[
+                        {"title":"highEnchanter", "quantityMin":1,"quantityMax":1},
+                        {"title":"highEvoker", "quantityMin":1,"quantityMax":1},
+                        {"title":"highIllusionist", "quantityMin":1,"quantityMax":1},
+                        {"title":"highNecromancer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highConjurer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highTransmuter", "quantityMin":1,"quantityMax":1},
+                        {"title":"highAbjurer", "quantityMin":1,"quantityMax":1},
+                        {"title":"highDiviner", "quantityMin":1,"quantityMax":1}]
+                    },
+                    {"proportion":1,"list":[{"title":"arcaneExarch", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"primarchArcane", "quantityMin":1,"quantityMax":1}]}
+
+            ]},    
+        "rule": {"method": "createRoles",
+                 "proportional":"false",
+                 "enforceFamily":"false",
+                 "universalType":"new"
+                }
+    }
+    ,
+    {
+        "type": "theocracy",
+        "printName": "Theocracy",
+        "roleGeneration": {"thorp":[
+                    {"proportion":1,"list":[{"title":"hierophantRuler","role":"hierophant", "quantityMin":1,"quantityMax":1}]}
+                    ], 
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"hierophantRuler","role":"hierophant", "quantityMin":1,"quantityMax":2}]}],
+                  "village":[
+                    {"proportion":1,"list":[{"title":"hierophantRuler","role":"hierophant", "quantityMin":1,"quantityMax":3}]}],
+                  "town":[
+                    {"proportion":1,"list":[{"title":"hierophantRuler","role":"hierophant", "quantityMin":1,"quantityMax":4}]}
+                  ],
+                  "city":[
+                    {"proportion":1,"list":[{"title":"hierophantRuler","role":"hierophant", "quantityMin":1,"quantityMax":5}]}
+                  ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"hierophantRuler","role":"hierophant", "quantityMin":1,"quantityMax":6}]}
+                  ]},     
+        "rule": {"method": "useExistingRoles",
+                 "proportional":"true",
+                 "enforceFamily":"false",
+                 "universalType":"hierophant"
+                }
+    }
+    ,
+    {
+        "type": "councilOfElders",
+        "printName": "Council of Elders",
+        "roleGeneration": {"thorp":[
+                    {"proportion":1,"list":[{"title":"Elder","role":"sage", "quantityMin":1,"quantityMax":2}]}
+                    ], 
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"Elder","role":"sage", "quantityMin":2,"quantityMax":4}]}],
+                  "village":[
+                    {"proportion":1,"list":[{"title":"Elder","role":"sage", "quantityMin":4,"quantityMax":8}]}],
+                  "town":[
+                    {"proportion":1,"list":[{"title":"Elder","role":"sage", "quantityMin":8,"quantityMax":16}]}
+                  ],
+                  "city":[
+                    {"proportion":1,"list":[{"title":"Elder","role":"sage", "quantityMin":16,"quantityMax":32}]}
+                  ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"Elder","role":"sage", "quantityMin":32,"quantityMax":64}]}
+                  ]},    
+        "rule": {"method": "useExistingRoles",
+                 "proportional":"true",
+                 "enforceFamily":"false",
+                 "universalType":"sage"
+                }
+    }
+    ,
+    {
+        "type": "tyranny",
+        "printName":"Tyranny",
+        "roleGeneration": {"thorp":[
+                    {"proportion":1,"list":[{"title":"tyrant", "quantityMin":1,"quantityMax":1}]}], 
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"tyrant", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"chancellor","quantityMin":1,"quantityMax":1}]}
+                    ],
+                  "village":[
+                    {"proportion":1,"list":[{"title":"tyrant", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"chancellor","quantityMin":1,"quantityMax":1}]}
+                    ],
+                  "town":[
+                    {"proportion":1,"list":[{"title":"tyrant", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"chancellor","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"chancellorVice","quantityMin":1,"quantityMax":1}]}
+                    ],
+                  "city":[
+                    {"proportion":1,"list":[{"title":"tyrant", "quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"chancellor","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"chancellorVice","quantityMin":1,"quantityMax":3}]}
+                    ],
+                  "metropolis":[
+                            {"proportion":1,"list":[{"title":"tyrant", "quantityMin":1,"quantityMax":1}]},
+                            {"proportion":1,"list":[{"title":"chancellor","quantityMin":1,"quantityMax":1}]},
+                            {"proportion":1,"list":[{"title":"chancellorVice","quantityMin":3,"quantityMax":6}]}
+                            ]
+                },    
+        "rule": {"method": "createRoles",
+                 "proportional":"false",
+                 "enforceFamily":"false",
+                 "universalType":"any"
+                }
+    }
+    ,
+    {
+        "type": "cityCouncil",
+        "printName": "Ruling Council",
+        "roleGeneration": {"thorp":[
+                            {"title":"mayor","quantityMin":1,"quantityMax":1},
+                            {"title":"treasurer","quantityMin":1,"quantityMax":1},
+                            {"title":"alderman","quantityMin":1,"quantityMax":1}
+                            ], 
+                  "hamlet":[
+                    {"title":"mayor","quantityMin":1,"quantityMax":1},
+                    {"title":"treasurer","quantityMin":1,"quantityMax":1},
+                    {"title":"alderman","quantityMin":2,"quantityMax":2}
+                    ],
+                  "village":[
+                    {"title":"mayor","quantityMin":1,"quantityMax":1},
+                    {"title":"treasurer","quantityMin":1,"quantityMax":1},
+                    {"title":"alderman","quantityMin":2,"quantityMax":4}
+                    ],
+                  "town":[
+                    {"title":"mayor","quantityMin":1,"quantityMax":1},
+                    {"title":"treasurer","quantityMin":1,"quantityMax":1},
+                    {"title":"alderman","quantityMin":4,"quantityMax":8}
+                    ],
+                  "city":[
+                    {"title":"mayor","quantityMin":1,"quantityMax":1},
+                    {"title":"treasurer","quantityMin":1,"quantityMax":1},
+                    {"title":"alderman","quantityMin":8,"quantityMax":16}
+                    ],
+                  "metropolis":[
+                    {"title":"mayor","quantityMin":1,"quantityMax":1},
+                    {"title":"treasurer","quantityMin":1,"quantityMax":1},
+                    {"title":"alderman","quantityMin":15,"quantityMax":30}
+                    ]},    
+        "rule": {"method": "createAndChoose",
+                 "proportional":"false",
+                 "enforceFamily":"false",
+                 "universalType":"any"
+                }
+    }
+    ,
+    {
+        "type": "universal",
+        "printName": "universal",
+        "roleGeneration": {"thorp":[            
+            {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},            
+            {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":1,"quantityMax":1}]},
+            {"proportion":1,"list":[{"title":"guardConstable","quantityMin":2,"quantityMax":4}]}
+          ], 
+                  "hamlet":[
+                    {"proportion":0,"list":[
+                        {"title":"festivalMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"guildMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"diplomatMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"infrastructureMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"justiceMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"steward","quantityMin":1,"quantityMax":1}
+                    ]}
+                    
+
+                  ],
+                  "village":[
+                    {"proportion":0.15,"list":[
+                        {"title":"festivalMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"guildMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"magicMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"infrastructureMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"justiceMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"steward","quantityMin":1,"quantityMax":1}
+                    ]}
+                  ],
+                  "town":[
+                    {"proportion":0.25,"list":[
+                        {"title":"festivalMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"spyMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"guildMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"diplomatMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"magicMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"warMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"infrastructureMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"justiceMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"mintMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"steward","quantityMin":1,"quantityMax":1}
+                    ]}
+
+                  ],
+                  "city":[
+                    {"proportion":0.5,"list":[
+                        {"title":"festivalMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"spyMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"guildMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"diplomatMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"magicMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"warMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"infrastructureMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"justiceMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"mintMinister","quantityMin":1,"quantityMax":1},
+                        {"title":"steward","quantityMin":1,"quantityMax":1}
+                    ]}
+
+                  ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"festivalMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"spyMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"guildMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"diplomatMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"magicMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"warMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"infrastructureMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"justiceMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"mintMinister","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"steward","quantityMin":1,"quantityMax":1}]}
+                    ]},    
+        "rule": {"method": "createAndChoose",
+                 "proportional":"false",
+                 "enforceFamily":"false",
+                 "universalType":"NA"
+                }
+    }
+    ,
+    {
+        "type": "guards",
+        "printName": "guards",
+        "roleGeneration": {"thorp":[            
+            {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},            
+            {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":1,"quantityMax":1}]},
+            {"proportion":1,"list":[{"title":"guardConstable","quantityMin":2,"quantityMax":4}]}
+          ], 
+                  "hamlet":[
+                    {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},
+                    
+                    {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":1,"quantityMax":4}]},
+                    {"proportion":1,"list":[{"title":"guardConstable","quantityMin":4,"quantityMax":8}]}
+
+
+                  ],
+                  "village":[
+                    
+                    {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},
+                    
+                    {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":2,"quantityMax":8}]},
+                    {"proportion":1,"list":[{"title":"guardConstable","quantityMin":8,"quantityMax":16}]}
+
+
+                  ],
+                  "town":[
+                    
+                    {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"guardViceCaptain","quantityMin":0,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":5,"quantityMax":15}]},
+                    {"proportion":1,"list":[{"title":"guardConstable","quantityMin":15,"quantityMax":30}]}
+
+
+                  ],
+                  "city":[
+
+                    
+                    {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"guardViceCaptain","quantityMin":1,"quantityMax":2}]},
+                    {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":10,"quantityMax":30}]},
+                    {"proportion":1,"list":[{"title":"guardConstable","quantityMin":30,"quantityMax":60}]}
+
+
+                  ],
+                  "metropolis":[
+                    {"proportion":1,"list":[{"title":"guardCaptain","quantityMin":1,"quantityMax":1}]},
+                    {"proportion":1,"list":[{"title":"guardViceCaptain","quantityMin":2,"quantityMax":4}]},
+                    {"proportion":1,"list":[{"title":"guardWarrant","quantityMin":20,"quantityMax":60}]},
+                    {"proportion":1,"list":[{"title":"guardConstable","quantityMin":60,"quantityMax":120}]}
+
+                    ]},    
+        "rule": {"method": "createRoles",
+                 "proportional":"false",
+                 "enforceFamily":"false",
+                 "universalType":"NA"
+                }
+    }
+]

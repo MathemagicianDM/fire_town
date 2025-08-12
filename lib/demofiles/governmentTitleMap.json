@@ -1,0 +1,284 @@
+{
+    "governmentPositions": {
+      "festivalMinister": {
+        "titles": {
+          "nobility": "Royal Celebrant",
+          "merchantCouncil": "Entertainment Director",
+          "directDemocracy": "Festival Coordinator",
+          "mageocracy": "Arcane Revelmaster",
+          "theocracy": "Divine Celebrant",
+          "councilOfElders": "Tradition Keeper",
+          "tyranny": "Morale Officer",
+          "cityCouncil": "Festival Chairperson"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.1,
+          "adult": 0.3,
+          "middleAge": 0.4,
+          "old": 0.2,
+          "quiteOld": 0.0
+        }
+      },
+      "spyMinister": {
+        "titles": {
+          "nobility": "Royal Spymaster",
+          "merchantCouncil": "Intelligence Broker",
+          "directDemocracy": "Public Safety Director",
+          "mageocracy": "Arcane Observer",
+          "theocracy": "Eye of the Divine",
+          "councilOfElders": "Whisper Keeper",
+          "tyranny": "Shadow Hand",
+          "cityCouncil": "Intelligence Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.1,
+          "adult": 0.4,
+          "middleAge": 0.4,
+          "old": 0.1,
+          "quiteOld": 0.0
+        }
+      },
+      "guildMinister": {
+        "titles": {
+          "nobility": "Royal Trade Overseer",
+          "merchantCouncil": "Guild Nexus",
+          "directDemocracy": "Commerce Secretary",
+          "mageocracy": "Craft Archmage",
+          "theocracy": "Divine Worker",
+          "councilOfElders": "Craft Elder",
+          "tyranny": "Production Enforcer",
+          "cityCouncil": "Economic Development Director"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.2,
+          "middleAge": 0.5,
+          "old": 0.2,
+          "quiteOld": 0.1
+        }
+      },
+      "diplomatMinister": {
+        "titles": {
+          "nobility": "Royal Emissary",
+          "merchantCouncil": "Foreign Relations Broker",
+          "directDemocracy": "Elected Ambassador",
+          "mageocracy": "Arcane Diplomat",
+          "theocracy": "Divine Voice",
+          "councilOfElders": "Elder Envoy",
+          "tyranny": "Sovereign Mouthpiece",
+          "cityCouncil": "Foreign Affairs Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.3,
+          "middleAge": 0.4,
+          "old": 0.2,
+          "quiteOld": 0.1
+        }
+      },
+      "magicMinister": {
+        "titles": {
+          "nobility": "Court Wizard",
+          "merchantCouncil": "Arcane Investment Director",
+          "directDemocracy": "Magical Affairs Coordinator",
+          "mageocracy": "High Arcanist",
+          "theocracy": "Divine Channeler",
+          "councilOfElders": "Wisdom Keeper",
+          "tyranny": "Arcane Enforcer",
+          "cityCouncil": "Magical Oversight Director"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.2,
+          "middleAge": 0.3,
+          "old": 0.4,
+          "quiteOld": 0.1
+        }
+      },
+      "warMinister": {
+        "titles": {
+          "nobility": "Royal Marshal",
+          "merchantCouncil": "Security Director",
+          "directDemocracy": "Defense Coordinator",
+          "mageocracy": "Battle Mage Superior",
+          "theocracy": "Holy Commander",
+          "councilOfElders": "War Elder",
+          "tyranny": "Warlord",
+          "cityCouncil": "Defense Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.3,
+          "middleAge": 0.5,
+          "old": 0.2,
+          "quiteOld": 0.0
+        }
+      },
+      "infrastructureMinister": {
+        "titles": {
+          "nobility": "Royal Builder",
+          "merchantCouncil": "Development Director",
+          "directDemocracy": "Public Works Coordinator",
+          "mageocracy": "Architectural Arcanist",
+          "theocracy": "Temple Builder",
+          "councilOfElders": "Foundation Elder",
+          "tyranny": "Works Overseer",
+          "cityCouncil": "Infrastructure Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.3,
+          "middleAge": 0.4,
+          "old": 0.2,
+          "quiteOld": 0.1
+        }
+      },
+      "justiceMinister": {
+        "titles": {
+          "nobility": "Royal Justiciar",
+          "merchantCouncil": "Contract Arbiter",
+          "directDemocracy": "People's Judge",
+          "mageocracy": "Arcane Adjudicator",
+          "theocracy": "Divine Judge",
+          "councilOfElders": "Justice Elder",
+          "tyranny": "Punishment Master",
+          "cityCouncil": "Justice Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.2,
+          "middleAge": 0.4,
+          "old": 0.3,
+          "quiteOld": 0.1
+        }
+      },
+      "mintMinister": {
+        "titles": {
+          "nobility": "Royal Treasurer",
+          "merchantCouncil": "Exchange Director",
+          "directDemocracy": "Treasury Secretary",
+          "mageocracy": "Arcane Economist",
+          "theocracy": "Divine Bursar",
+          "councilOfElders": "Wealth Elder",
+          "tyranny": "Imperial Treasurer",
+          "cityCouncil": "Finance Director"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.2,
+          "middleAge": 0.4,
+          "old": 0.3,
+          "quiteOld": 0.1
+        }
+      },
+      "steward": {
+        "titles": {
+          "nobility": "Lord Chamberlain",
+          "merchantCouncil": "Administrative Director",
+          "directDemocracy": "Chief Administrator",
+          "mageocracy": "Arcane Custodian",
+          "theocracy": "Temple Keeper",
+          "councilOfElders": "Grand Steward",
+          "tyranny": "Palace Overseer",
+          "cityCouncil": "City Manager"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.3,
+          "middleAge": 0.4,
+          "old": 0.2,
+          "quiteOld": 0.1
+        }
+      },
+      "guardCaptain": {
+        "titles": {
+          "nobility": "Captain of the Guard",
+          "merchantCouncil": "Security Chief",
+          "directDemocracy": "Militia Commander",
+          "mageocracy": "Arcane Protector",
+          "theocracy": "Sacred Shield",
+          "councilOfElders": "Protector Elder",
+          "tyranny": "Security Commander",
+          "cityCouncil": "Police Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.0,
+          "adult": 0.4,
+          "middleAge": 0.5,
+          "old": 0.1,
+          "quiteOld": 0.0
+        }
+      },
+      "guardViceCaptain": {
+        "titles": {
+          "nobility": "Lieutenant of the Guard",
+          "merchantCouncil": "Deputy Security Chief",
+          "directDemocracy": "Deputy Commander",
+          "mageocracy": "Warding Lieutenant",
+          "theocracy": "Blessed Protector",
+          "councilOfElders": "Junior Protector",
+          "tyranny": "Enforcement Lieutenant",
+          "cityCouncil": "Deputy Commissioner"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.1,
+          "adult": 0.5,
+          "middleAge": 0.3,
+          "old": 0.1,
+          "quiteOld": 0.0
+        }
+      },
+      "guardWarrant": {
+        "titles": {
+          "nobility": "Sergeant-at-Arms",
+          "merchantCouncil": "Security Supervisor",
+          "directDemocracy": "Militia Sergeant",
+          "mageocracy": "Spell Warden",
+          "theocracy": "Temple Guardian",
+          "councilOfElders": "Guardian Leader",
+          "tyranny": "Patrol Leader",
+          "cityCouncil": "Police Sergeant"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.2,
+          "adult": 0.5,
+          "middleAge": 0.2,
+          "old": 0.1,
+          "quiteOld": 0.0
+        }
+      },
+      "guardConstable": {
+        "titles": {
+          "nobility": "Royal Guard",
+          "merchantCouncil": "Security Officer",
+          "directDemocracy": "Militia Member",
+          "mageocracy": "Arcane Sentinel",
+          "theocracy": "Faith Defender",
+          "councilOfElders": "Guardian",
+          "tyranny": "Chainwarden",
+          "cityCouncil": "City Officer"
+        },
+        "ageProbabilities": {
+          "quiteYoung": 0.0,
+          "young": 0.3,
+          "adult": 0.5,
+          "middleAge": 0.2,
+          "old": 0.0,
+          "quiteOld": 0.0
+        }
+      }
+    }
+  }

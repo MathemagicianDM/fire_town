@@ -1,0 +1,1374 @@
+[{
+    "description": "Backpack",
+    "whereAvailable": ["generalStore","clothier"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","clothing","adventure"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  },
+  {
+    "description": "Barrel",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  },
+  {
+    "description": "Basket",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Bedroll",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Bell",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Belt pouch",
+    "whereAvailable": ["generalStore","clothier"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","clothing"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  },
+  {
+    "description": "Blanket, winter",
+    "whereAvailable": ["generalStore","clothier"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","clothing"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  },
+  {
+    "description": "Bottle, glass",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":2,"cp":0}
+  },
+  {
+    "description": "Bucket",
+    "whereAvailable": ["generalStore","clothier"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  },
+  {
+    "description": "Caltrops",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","weapon","adventure"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  },
+  {
+    "description": "Candle (10)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Canvas (5x5ft section)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Case, map or scroll",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  },
+  {
+    "description": "Chain (30ft)",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":30,"sp":0,"cp":0}
+  },
+  {
+    "description": "Chalk /  charcoal (10 pieces)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":1}
+  },
+  {
+    "description": "Chest",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  },
+  {
+    "description": "Compass",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "5 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  },
+  {
+    "description": "Crowbar",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "2 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  },
+  {
+    "description": "Earplugs (wax)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Firewood (per day)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 20,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":1}
+  },
+  {
+    "description": "Flask",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":3}
+  },
+  {
+    "description": "Grappling Hook",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "3 days",
+    "numberAvailable": 2,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  },
+  {
+    "description": "Hammer, utility",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  },
+  {
+    "description": "Ink (nonmagical, 1oz)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":8,"sp":0,"cp":0}
+  },
+  {
+    "description": "Inkpen",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Jug",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":3}
+  },
+  {
+    "description": "Lantern, bullseye",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "2 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  },
+  {
+    "description": "Lamp, common",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Lock, cheap",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Lock, typical",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "2 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  },
+  {
+    "description": "Lock, well made",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "5 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  },
+  {
+    "description": "Lock, high grade",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "10 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":25,"sp":0,"cp":0}
+  },
+  {
+    "description": "Marbles",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 50,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Mess kit",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":2,"cp":0}
+  }
+  ,
+  {
+    "description": "Mirror, steel",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "5 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":2,"cp":0}
+  }
+  ,
+  {
+    "description": "Mirror, glass",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "5 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  }
+  ,
+  {
+    "description": "Mug",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":2}
+  }
+  ,
+  {
+    "description": "Notebook",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Oil, 1 flask, for lamps",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Paper (10 sheets)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":1}
+  }
+  ,
+  {
+    "description": "Parchment (10 sheets)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Pick, miner's",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "10 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":3,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Pitcher",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":2}
+  }
+  ,
+  {
+    "description": "Pitons (10)",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "3 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Pole",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":2,"cp":0}
+  }
+  ,
+  {
+    "description": "Pot",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "2 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":2,"cp":0}
+  }
+  ,
+  {
+    "description": "Quiver",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":3,"cp":0}
+  }
+  ,
+  {
+    "description": "Rope, elven (50ft)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "10 days",
+    "numberAvailable": 2,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":20,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Rope, hempen (50ft)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "2 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Sack",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 days",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Scabbard",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Shovel",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Signal Whistle",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  },
+  {
+    "description": "Sledgehammer",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "3 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Soap",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 10,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":2}
+  }
+  ,
+  {
+    "description": "Spikes (10)",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "2 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Tent",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "10 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Tinderbox",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  }
+  ,
+  {
+    "description": "Torch",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 20,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":1}
+  }
+  ,
+  {
+    "description": "Trail Rations (per day)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 20,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  }
+  ,
+  {
+    "description": "Vial",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "3 days",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Waterskin",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Wedges, wooden (10)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Whetstone",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":2}
+  },
+  {
+    "description": "Radiant Essence / Holy Water (1 flask)",
+    "whereAvailable": ["temple"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Smelling Salts",
+    "whereAvailable": ["generalStore","herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Smokestick",
+    "whereAvailable": ["generalStore","herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Sunrod",
+    "whereAvailable": ["generalStore","herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Tanglefoot Bag",
+    "whereAvailable": ["generalStore","herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Thunderstone",
+    "whereAvailable": ["generalStore","herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Tindertwigs (10)",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Whetstone",
+    "whereAvailable": ["generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":2}
+  }
+  ,
+  {
+    "description": "Abacus",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Artisan's Tools",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Battering Ram (portable)",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":20,"sp":0,"cp":0}
+  },
+  {
+    "description": "Block and Tackle",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Candle, timekeeping",
+    "whereAvailable": ["generalStore","herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Climber's Kit",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Chronometer, fixed",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":25,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Chronometer, portable",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Disguise Kit",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "3 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Fishing Net",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Fishing Tackle",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Flotation Vest",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "5 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Grappling Shaft",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Healer's Kit",
+    "whereAvailable": ["herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Hunting Trap",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":3,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Incense (1 day)",
+    "whereAvailable": ["herbalist", "magic"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Ladder (10ft)",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":0,"cp":3}
+  }
+  ,
+  {
+    "description": "Manacles (cheap)",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Manacles (Typical)",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Manacles (well made)",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Manacles (high grade)",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":15,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Musical Instrument",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":15,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Oil (aromatic)",
+    "whereAvailable": ["herbalist", "generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Perfume (1 oz)",
+    "whereAvailable": ["herbalist"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Periscope",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item","adventure"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Printing Press (portable)",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":50,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Sand timer",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Scale, balance",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Sewing Kit",
+    "whereAvailable": ["clothier", "generalStore","smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":5,"cp":0}
+  }
+  ,
+  {
+    "description": "Signet ring",
+    "whereAvailable": ["jeweler"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Spell component pouch",
+    "whereAvailable": ["herbalist", "magic"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Spellbook, wizard's, blank",
+    "whereAvailable": ["magic"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Thieves' Tools",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Wax, beeswax",
+    "whereAvailable": ["herbalist","generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Wax, sealing",
+    "whereAvailable": ["herbalist","generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Abacus",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "2 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Artisan's Tools",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Brace",
+    "whereAvailable": ["herbalist","generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":2,"cp":0}
+  }
+  ,
+  {
+    "description": "Cane",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Cane, long",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "False teeth",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Fidget gadget",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Glass eye",
+    "whereAvailable": ["herbalist","generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Grabber",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Hearing aid",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":1,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Magnifying Glass",
+    "whereAvailable": ["herbalist","generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Prosthetic",
+    "whereAvailable": ["smith"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Spectacles",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Spyglass",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":50,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Walking Stck",
+    "whereAvailable": ["herbalist","generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Walking Frame",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":0,"sp":1,"cp":0}
+  }
+  ,
+  {
+    "description": "Wheelchair",
+    "whereAvailable": ["generalStore"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Level 0 Spell",
+    "whereAvailable": ["temple"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":2,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Level 1 Spell",
+    "whereAvailable": ["temple"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":5,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Level 2 Spell",
+    "whereAvailable": ["temple"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":10,"sp":0,"cp":0}
+  }
+  ,
+  {
+    "description": "Level 3 Spell",
+    "whereAvailable": ["temple"],
+    "refreshInterval": "1 day",
+    "numberAvailable": 5,
+    "core20": "true",
+    "genFan": "true",
+    "serviceType": ["item"],
+    "price": {"pp":0,"gp":20,"sp":0,"cp":0}
+  }
+
+]

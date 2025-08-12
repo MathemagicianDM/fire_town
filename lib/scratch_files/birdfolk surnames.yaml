@@ -1,0 +1,662 @@
+surnames:
+  # Icelandic + Tagalog combinations (properly blended)
+  - ancestry: 'Birdfolk'
+    name: 'Spjótinto'
+    # source: "Icelandic 'spjót' (spear) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Spjalahib'
+    # source: "Icelandic 'spjót' (spear) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bogipak'
+    # source: "Icelandic 'bogi' (bow) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Vænguka'
+    # source: "Icelandic 'vængur' (wing) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Fjöðukid'
+    # source: "Icelandic 'fjöður' (feather) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Svífuli'
+    # source: "Icelandic 'svífandi' (soaring) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Örnayaw'
+    # source: "Icelandic 'örn' (eagle) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hrafanan'
+    # source: "Icelandic 'hrafn' (raven) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Himipad'
+    # source: "Icelandic 'himinn' (sky) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Klifinto'
+    # source: "Icelandic 'klifur' (climbing) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kafalahib'
+    # source: "Icelandic 'kafandi' (diving) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Blárpak'
+    # source: "Icelandic 'blár' (blue) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Græntuka'
+    # source: "Icelandic 'grænn' (green) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grábukid'
+    # source: "Icelandic 'grár' (grey) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Rauðuli'
+    # source: "Icelandic 'rauður' (red) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kallandaw'
+    # source: "Icelandic 'kallandi' (calling) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Söngahan'
+    # source: "Icelandic 'söngur' (singing) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Göfupad'
+    # source: "Icelandic 'göfugur' (noble) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Koninto'
+    # source: "Icelandic 'konungur' (king) + Tagalog 'pinto' (flint)"
+  
+  # Tagalog + Icelandic combinations (properly blended)
+  - ancestry: 'Birdfolk'
+    name: 'Pintjót'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'spjót' (spear)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balabogi'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'bogi' (bow)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakængur'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'vængur' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukjöður'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'fjöður' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukifandi'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'svífandi' (soaring)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Huliörn'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'örn' (eagle)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayafn'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'hrafn' (raven)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahiminn'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'himinn' (sky)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipaklif'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'klifur' (climbing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pinkaf'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'kafandi' (diving)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balahiblár'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'blár' (blue)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakgrænn'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'grænn' (green)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukgrár'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'grár' (grey)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukrauð'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'rauður' (red)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hulikall'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'kallandi' (calling)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayöng'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'söngur' (singing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahangöf'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'göfugur' (noble)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipakon'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'konungur' (king)"
+  
+  # More properly blended combinations
+  - ancestry: 'Birdfolk'
+    name: 'Spjólan'
+    # source: "Icelandic 'spjót' (spear) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bogipad'
+    # source: "Icelandic 'bogi' (bow) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Vænginto'
+    # source: "Icelandic 'vængur' (wing) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Fjöðaw'
+    # source: "Icelandic 'fjöður' (feather) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Svífak'
+    # source: "Icelandic 'svífandi' (soaring) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Örnuka'
+    # source: "Icelandic 'örn' (eagle) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hrafkid'
+    # source: "Icelandic 'hrafn' (raven) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Himuli'
+    # source: "Icelandic 'himinn' (sky) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Klifaw'
+    # source: "Icelandic 'klifur' (climbing) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kafahan'
+    # source: "Icelandic 'kafandi' (diving) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bláranan'
+    # source: "Icelandic 'blár' (blue) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grænipad'
+    # source: "Icelandic 'grænn' (green) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grárinto'
+    # source: "Icelandic 'grár' (grey) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Rauðpak'
+    # source: "Icelandic 'rauður' (red) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kalluka'
+    # source: "Icelandic 'kallandi' (calling) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Söngkid'
+    # source: "Icelandic 'söngur' (singing) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Göfuli'
+    # source: "Icelandic 'göfugur' (noble) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Konayaw'
+    # source: "Icelandic 'konungur' (king) + Tagalog 'sayaw' (dance)"
+  
+  # Additional blended combinations
+  - ancestry: 'Birdfolk'
+    name: 'Spjólahib'
+    # source: "Icelandic 'spjót' (spear) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Boginan'
+    # source: "Icelandic 'bogi' (bow) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Vængipad'
+    # source: "Icelandic 'vængur' (wing) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Fjöðinto'
+    # source: "Icelandic 'fjöður' (feather) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Svífuka'
+    # source: "Icelandic 'svífandi' (soaring) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Örnkid'
+    # source: "Icelandic 'örn' (eagle) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hrafuli'
+    # source: "Icelandic 'hrafn' (raven) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Himaw'
+    # source: "Icelandic 'himinn' (sky) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Klifan'
+    # source: "Icelandic 'klifur' (climbing) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kafipad'
+    # source: "Icelandic 'kafandi' (diving) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Blárinto'
+    # source: "Icelandic 'blár' (blue) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grænpak'
+    # source: "Icelandic 'grænn' (green) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grártuka'
+    # source: "Icelandic 'grár' (grey) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Rauðkid'
+    # source: "Icelandic 'rauður' (red) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kalluli'
+    # source: "Icelandic 'kallandi' (calling) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Söngaw'
+    # source: "Icelandic 'söngur' (singing) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Göfanan'
+    # source: "Icelandic 'göfugur' (noble) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Konipad'
+    # source: "Icelandic 'konungur' (king) + Tagalog 'lipad' (flying)"
+  
+  # More Tagalog + Icelandic blended combinations
+  - ancestry: 'Birdfolk'
+    name: 'Pintöð'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'fjöður' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balabörn'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'örn' (eagle)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakrafn'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'hrafn' (raven)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukinn'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'himinn' (sky)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Buklifur'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'klifur' (climbing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hulikaf'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'kafandi' (diving)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayablár'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'blár' (blue)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahagræn'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'grænn' (green)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipagrár'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'grár' (grey)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pintauð'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'rauður' (red)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balakall'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'kallandi' (calling)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Paksöng'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'söngur' (singing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukgöf'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'göfugur' (noble)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukkon'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'konungur' (king)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hulispjót'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'spjót' (spear)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayabogi'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'bogi' (bow)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahavæng'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'vængur' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipasvíf'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'svífandi' (soaring)"
+  
+  # Additional unique blended combinations
+  - ancestry: 'Birdfolk'
+    name: 'Spjótuka'
+    # source: "Icelandic 'spjót' (spear) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Boginto'
+    # source: "Icelandic 'bogi' (bow) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Vængaw'
+    # source: "Icelandic 'vængur' (wing) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Fjöðuli'
+    # source: "Icelandic 'fjöður' (feather) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Svífan'
+    # source: "Icelandic 'svífandi' (soaring) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Örnalahib'
+    # source: "Icelandic 'örn' (eagle) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hrafipad'
+    # source: "Icelandic 'hrafn' (raven) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Himpak'
+    # source: "Icelandic 'himinn' (sky) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Klifkid'
+    # source: "Icelandic 'klifur' (climbing) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kafinto'
+    # source: "Icelandic 'kafandi' (diving) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bláruli'
+    # source: "Icelandic 'blár' (blue) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grænaw'
+    # source: "Icelandic 'grænn' (green) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Grárpak'
+    # source: "Icelandic 'grár' (grey) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Rauðahib'
+    # source: "Icelandic 'rauður' (red) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kallipad'
+    # source: "Icelandic 'kallandi' (calling) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Söngtuka'
+    # source: "Icelandic 'söngur' (singing) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Göfupak'
+    # source: "Icelandic 'göfugur' (noble) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Konahib'
+    # source: "Icelandic 'konungur' (king) + Tagalog 'balahibo' (feather)"
+  
+  # Final set of blended combinations
+  - ancestry: 'Birdfolk'
+    name: 'Pintaklif'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'klifur' (climbing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balakaf'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'kafandi' (diving)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakrauð'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'rauður' (red)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukspjót'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'spjót' (spear)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukbogi'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'bogi' (bow)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hulivæng'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'vængur' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayafjöð'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'fjöður' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahasvíf'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'svífandi' (soaring)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipadörn'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'örn' (eagle)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pintrafn'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'hrafn' (raven)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balablár'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'blár' (blue)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakgrænn'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'grænn' (green)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukgrár'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'grár' (grey)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukkall'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'kallandi' (calling)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hulisöng'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'söngur' (singing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayagöf'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'göfugur' (noble)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahakon'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'konungur' (king)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipadmin'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'himinn' (sky)"dfolk'
+  - ancestry: 'Birdfolk'
+    name: 'Grænahib'
+    # source: "Icelandic 'grænn' (green) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Gráraw'
+    # source: "Icelandic 'grár' (grey) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Rauðan'
+    # source: "Icelandic 'rauður' (red) + Tagalog 'tahanan' (home)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kallapak'
+    # source: "Icelandic 'kallandi' (calling) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sönginto'
+    # source: "Icelandic 'söngur' (singing) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Göfipad'
+    # source: "Icelandic 'göfugur' (noble) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Konuka'
+    # source: "Icelandic 'konungur' (king) + Tagalog 'tuka' (beak)"
+  
+  # More unique Tagalog + Icelandic blends
+  - ancestry: 'Birdfolk'
+    name: 'Pintsvíf'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'svífandi' (soaring)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balabiblár'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'blár' (blue)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakall'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'kallandi' (calling)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukrænn'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'grænn' (green)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukrauð'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'rauður' (red)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hulisöng'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'söngur' (singing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayagöf'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'göfugur' (noble)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahakon'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'konungur' (king)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipaspjót'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'spjót' (spear)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pintabogi'
+    # source: "Tagalog 'pinto' (flint) + Icelandic 'bogi' (bow)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Balavæng'
+    # source: "Tagalog 'balahibo' (feather) + Icelandic 'vængur' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Pakfjöð'
+    # source: "Tagalog 'pakpak' (wing) + Icelandic 'fjöður' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tukörn'
+    # source: "Tagalog 'tuka' (beak) + Icelandic 'örn' (eagle)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bukrafn'
+    # source: "Tagalog 'bukid' (field) + Icelandic 'hrafn' (raven)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Huliminn'
+    # source: "Tagalog 'huli' (hunt) + Icelandic 'himinn' (sky)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Sayaklif'
+    # source: "Tagalog 'sayaw' (dance) + Icelandic 'klifur' (climbing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Tahakaf'
+    # source: "Tagalog 'tahanan' (home) + Icelandic 'kafandi' (diving)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Lipagrár'
+    # source: "Tagalog 'lipad' (flying) + Icelandic 'grár' (grey)"
+  
+  # Additional combinations to reach 200+
+  - ancestry: 'Birdfolk'
+    name: 'Spjótahib'
+    # source: "Icelandic 'spjót' (spear) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bogipak'
+    # source: "Icelandic 'bogi' (bow) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Vængkid'
+    # source: "Icelandic 'vængur' (wing) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Fjöðipad'
+    # source: "Icelandic 'fjöður' (feather) + Tagalog 'lipad' (flying)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Svífinto'
+    # source: "Icelandic 'svífandi' (soaring) + Tagalog 'pinto' (flint)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Örnayaw'
+    # source: "Icelandic 'örn' (eagle) + Tagalog 'sayaw' (dance)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Hrafpak'
+    # source: "Icelandic 'hrafn' (raven) + Tagalog 'pakpak' (wing)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Himtuka'
+    # source: "Icelandic 'himinn' (sky) + Tagalog 'tuka' (beak)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Klifahib'
+    # source: "Icelandic 'klifur' (climbing) + Tagalog 'balahibo' (feather)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Kafkid'
+    # source: "Icelandic 'kafandi' (diving) + Tagalog 'bukid' (field)"
+  
+  - ancestry: 'Birdfolk'
+    name: 'Bláruli'
+    # source: "Icelandic 'blár' (blue) + Tagalog 'huli' (hunt)"
+  
+  - ancestry: 'Bir

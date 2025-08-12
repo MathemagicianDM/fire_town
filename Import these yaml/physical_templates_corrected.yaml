@@ -1,0 +1,243 @@
+# Physical Description Templates - CORRECTED STRUCTURE
+# These templates generate physical traits for characters
+# 
+# Template Structure (UPDATED to match actual model):
+# - name: "Template description name" 
+#   tag: "single_tag"                           # Required: prevents conflicts (only ONE tag per template)
+#   applicableAncestryGroups: ["group1"]        # Optional: which ancestry groups this applies to
+#   excludeAncestryGroups: ["group2"]           # Optional: which ancestry groups to exclude  
+#   applicableRoles: ["role1", "role2"]         # Optional: which roles this applies to
+#   templates: ["Description with {variables}"] # Required: template strings (array)
+#   variables: {}                               # Required: variable mappings (can be empty)
+#
+# Available Variables:
+# {name} - first name
+# {surname} - last name  
+# {ancestry} - ancestry name
+# {age} - age description (young, adult, elderly, etc.)
+# {pronoun_subject} - he/she/they
+# {pronoun_object} - him/her/them
+# {pronoun_possessive} - his/her/their
+#
+# Available Ancestry Groups:
+# all, has_hair, has_beard, feathered, scaled, furred, humanoid, bestial, elemental
+#
+# Available Physical Tags (ONE per template):
+# hair, facial_hair, eyes, build, hands, voice, movement, ears, scars,
+# plumage, beak, tusks, scales, fur, tail, wings, horns
+
+# === HAIR TEMPLATES ===
+- name: "Flowing ancestry hair"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: []
+  templates: ["has long, flowing {ancestry} hair that catches the light"]
+  variables: {}
+
+- name: "Braided traditional hair"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: []
+  templates: ["keeps {pronoun_possessive} dark hair neatly braided in traditional {ancestry} style"]
+  variables: {}
+
+- name: "Wild working hair"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: ["smith", "cook"]
+  templates: ["sports wild, unkempt hair that suggests a life of hard work"]
+  variables: {}
+
+# === FACIAL HAIR TEMPLATES ===
+- name: "Decorated beard with rings"
+  tag: "facial_hair"
+  applicableAncestryGroups: ["has_beard"]
+  applicableRoles: ["owner", "journeyman"]
+  templates: ["wears a magnificent braided beard decorated with {ancestry} metal rings"]
+  variables: {}
+
+- name: "Well-groomed prideful beard"
+  tag: "facial_hair"
+  applicableAncestryGroups: ["has_beard"]
+  applicableRoles: []
+  templates: ["has a well-groomed beard that speaks of {pronoun_possessive} pride in appearance"]
+  variables: {}
+
+- name: "Singed forge beard"
+  tag: "facial_hair"
+  applicableAncestryGroups: ["has_beard"]
+  applicableRoles: ["smith"]
+  templates: ["sports a scraggly beard singed from years of forge work"]
+  variables: {}
+
+# === EYE TEMPLATES ===
+- name: "Piercing deception-seeing eyes"
+  tag: "eyes"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner"]
+  templates: ["has piercing {ancestry} eyes that seem to see through deception"]
+  variables: {}
+
+- name: "Kind weathered eyes"
+  tag: "eyes"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["looks at the world through kind, weathered eyes"]
+  variables: {}
+
+- name: "Bright alert eyes"
+  tag: "eyes"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["apprentice"]
+  templates: ["has bright, alert eyes that dart about constantly"]
+  variables: {}
+
+# === BUILD TEMPLATES ===
+- name: "Muscular heavy-work build"
+  tag: "build"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["smith", "journeyman"]
+  templates: ["has the muscular build of someone who works with heavy materials"]
+  variables: {}
+
+- name: "Lean graceful build"
+  tag: "build"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["waitstaff"]
+  templates: ["carries {pronoun_possessive}self with the lean grace of {pronoun_possessive} profession"]
+  variables: {}
+
+- name: "Stocky ancestry build"
+  tag: "build"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["shows the stocky, sturdy build typical of {pronoun_possessive} {ancestry} heritage"]
+  variables: {}
+
+# === HANDS TEMPLATES ===
+- name: "Calloused craftsperson hands"
+  tag: "hands"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["journeyman", "owner"]
+  templates: ["has calloused hands marked by years of skilled craftsmanship"]
+  variables: {}
+
+- name: "Meticulously clean hands"
+  tag: "hands"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["cook"]
+  templates: ["keeps {pronoun_possessive} hands meticulously clean despite {pronoun_possessive} work"]
+  variables: {}
+
+- name: "Nimble delicate hands"
+  tag: "hands"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["apprentice"]
+  templates: ["has nimble fingers perfect for delicate work"]
+  variables: {}
+
+# === VOICE TEMPLATES ===
+- name: "Deep commanding voice"
+  tag: "voice"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner"]
+  templates: ["speaks with a deep, resonant voice that commands respect"]
+  variables: {}
+
+- name: "Melodious customer-drawing voice"
+  tag: "voice"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["waitstaff"]
+  templates: ["has a melodious voice that draws customers in"]
+  variables: {}
+
+- name: "Measured teaching voice"
+  tag: "voice"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["journeyman"]
+  templates: ["speaks with the measured tones of someone used to teaching"]
+  variables: {}
+
+# === MOVEMENT TEMPLATES ===
+- name: "Precise craftsperson movement"
+  tag: "movement"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner", "journeyman"]
+  templates: ["moves with the careful precision of a master craftsperson"]
+  variables: {}
+
+- name: "Quick efficient service movement"
+  tag: "movement"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["waitstaff", "cook"]
+  templates: ["has quick, efficient movements honed by years of service"]
+  variables: {}
+
+- name: "Youthful energetic movement"
+  tag: "movement"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["apprentice"]
+  templates: ["carries {pronoun_possessive}self with youthful energy and enthusiasm"]
+  variables: {}
+
+# === SCARS TEMPLATES ===
+- name: "Forge burn scars"
+  tag: "scars"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["smith"]
+  templates: ["bears old burn scars on {pronoun_possessive} forearms from forge accidents"]
+  variables: {}
+
+- name: "Kitchen knife scars"
+  tag: "scars"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["cook"]
+  templates: ["has small scars on {pronoun_possessive} hands from years of knife work"]
+  variables: {}
+
+# === ANCESTRY-SPECIFIC TEMPLATES ===
+
+# Dragonborn/Scaled
+- name: "Gleaming inner-fire scales"
+  tag: "scales"
+  applicableAncestryGroups: ["scaled"]
+  applicableRoles: []
+  templates: ["has gleaming scales that shimmer with an inner fire"]
+  variables: {}
+
+- name: "Proud draconic horns"
+  tag: "horns"
+  applicableAncestryGroups: ["scaled"]
+  applicableRoles: []
+  templates: ["bears proud horns that mark {pronoun_possessive} draconic heritage"]
+  variables: {}
+
+# Feathered Folk
+- name: "Colorful prideful plumage"
+  tag: "plumage"
+  applicableAncestryGroups: ["feathered"]
+  applicableRoles: []
+  templates: ["preens {pronoun_possessive} colorful plumage with obvious pride"]
+  variables: {}
+
+- name: "Sharp trade beak"
+  tag: "beak"
+  applicableAncestryGroups: ["feathered"]
+  applicableRoles: ["owner", "journeyman"]
+  templates: ["has a sharp, intelligent beak perfect for {pronoun_possessive} trade"]
+  variables: {}
+
+# Furred Ancestries
+- name: "Thick healthy fur"
+  tag: "fur"
+  applicableAncestryGroups: ["furred"]
+  applicableRoles: []
+  templates: ["has thick, luxurious fur that speaks of good health"]
+  variables: {}
+
+- name: "Expressive concentration tail"
+  tag: "tail"
+  applicableAncestryGroups: ["furred"]
+  applicableRoles: []
+  templates: ["swishes {pronoun_possessive} expressive tail when concentrating"]
+  variables: {}

@@ -1,0 +1,111 @@
+# Enhanced Physical Description Templates with Robust Variables
+# This demonstrates the new variable system with predefined lists
+#
+# Template Structure:
+# - name: "Template description name"
+# - tag: "single_tag"                           # Required: prevents conflicts
+# - applicableAncestryGroups: ["group1"]        # Optional: which ancestry groups this applies to
+# - applicableRoles: ["role1", "role2"]         # Optional: which roles this applies to  
+# - templates: ["{pronoun_possessive} eyes are {color} and {description}"]
+# - variables:                                  # Define lists of options for each variable
+#     color: ["blue", "green", "brown", "hazel", "silver", "golden", "amber"]
+#     description: ["piercing", "kind", "serious", "wise", "alert", "gentle"]
+#
+# Available Built-in Variables (always available):
+# {name} - first name
+# {surname} - last name  
+# {ancestry} - ancestry name
+# {age} - age description (young, adult, elderly, etc.)
+# {pronoun_subject} - he/she/they
+# {pronoun_object} - him/her/them
+# {pronoun_possessive} - his/her/their
+
+# === ENHANCED EYE TEMPLATES ===
+- name: "Variable eye color and expression"
+  tag: "eyes"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["{pronoun_possessive} eyes are {color} and {description}"]
+  variables:
+    color: ["deep blue", "emerald green", "warm brown", "striking hazel", "silver-grey", "golden amber", "piercing grey", "dark chocolate", "sea blue", "forest green", "honey brown", "steel grey", "violet blue", "copper brown"]
+    description: ["pierce through you with intensity", "sparkle with warmth and kindness", "reflect deep wisdom", "dart about with alert intelligence", "crinkle with smile lines", "show the weariness of experience", "gleam with mischievous humor", "hold a serious, thoughtful expression", "seem to see into your soul", "twinkle with barely contained laughter", "narrow when focusing intently", "widen with curious enthusiasm"]
+
+- name: "Distinctive eye features"  
+  tag: "eyes"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["has {feature} that {effect}"]
+  variables:
+    feature: ["thick, expressive eyebrows", "long, dark eyelashes", "crow's feet around the eyes", "a distinctive eye patch", "heterochromia - one blue, one brown eye", "deep-set eyes", "prominent brow ridge", "delicate eye makeup", "a small scar through one eyebrow", "eyes that seem too large for {pronoun_possessive} face", "perpetually squinting eyes", "wide, doe-like eyes"]
+    effect: ["give {pronoun_object} a distinguished appearance", "make {pronoun_object} appear more youthful", "hint at a life full of laughter", "adds an air of mystery", "makes {pronoun_object} utterly unforgettable", "create deep shadows in certain light", "give {pronoun_possessive} face a stern quality", "accentuates {pronoun_possessive} natural beauty", "tells a story of past adventures", "give {pronoun_object} an innocent, trusting look", "suggest constant concentration", "make {pronoun_object} appear perpetually surprised"]
+
+# === ENHANCED HAIR TEMPLATES ===
+- name: "Variable hair color and style"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: []
+  templates: ["keeps {pronoun_possessive} {color} hair {style}"]
+  variables:
+    color: ["raven-black", "chestnut brown", "golden blonde", "auburn red", "silver-white", "copper red", "ash brown", "platinum blonde", "mahogany brown", "strawberry blonde", "jet black", "honey blonde", "dark brown", "sandy brown"]
+    style: ["in intricate braids adorned with small bells", "pulled back in a practical ponytail", "flowing loose over {pronoun_possessive} shoulders", "cropped short and tidy", "in an elaborate updo with decorative pins", "wild and unkempt from hard work", "in a single long braid down {pronoun_possessive} back", "partially shaved on one side", "in tight curls that frame {pronoun_possessive} face", "swept to one side in an elegant style", "in small braids with colorful ribbons", "buzzed close to the scalp"]
+
+# === ENHANCED BUILD TEMPLATES ===
+- name: "Variable build and posture"
+  tag: "build" 
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["has a {build} build and {posture}"]
+  variables:
+    build: ["lean and wiry", "stocky and powerful", "tall and lanky", "compact and muscular", "broad-shouldered", "petite but strong", "athletic and toned", "hefty and imposing", "willowy and graceful", "barrel-chested", "slim and elegant", "robust and sturdy"]
+    posture: ["stands with perfect military bearing", "carries {pronoun_possessive}self with quiet confidence", "has a slightly hunched posture from years of detailed work", "moves with cat-like grace", "stands with arms often crossed", "leans casually against whatever's nearby", "maintains an alert, ready stance", "holds {pronoun_possessive}self with regal dignity", "shifts weight constantly, never quite still", "has a relaxed, approachable demeanor", "stands protectively, always scanning for threats", "carries {pronoun_possessive}self with scholarly precision"]
+
+# === ENHANCED VOICE TEMPLATES ===
+- name: "Variable voice qualities"
+  tag: "voice"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["speaks with a {tone} voice that {quality}"]
+  variables:
+    tone: ["deep, resonant", "light and musical", "gravelly and weathered", "smooth and cultured", "breathy and soft", "sharp and precise", "warm and honeyed", "crisp and clear", "rough and scratchy", "melodious and flowing", "stern and commanding", "gentle and soothing"]
+    quality: ["commands instant respect", "draws people in like a favorite song", "tells stories of hard-won experience", "suggests noble upbringing", "makes others lean in to listen", "cuts through noise with authority", "makes even harsh words sound kind", "leaves no room for misunderstanding", "hints at too many late nights", "could charm birds from trees", "brooks no argument", "calms even the most anxious souls"]
+
+# === ENHANCED HANDS TEMPLATES ===
+- name: "Variable hand descriptions" 
+  tag: "hands"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["has {description} hands that {feature}"]
+  variables:
+    description: ["calloused and scarred", "soft and well-manicured", "long-fingered and elegant", "thick and powerful", "small but deft", "weathered and strong", "ink-stained", "pristinely clean", "nimble and quick", "gnarled with age", "delicate and pale", "steady and sure"]
+    feature: ["speak of years of hard labor", "suggest a life of comfort", "move with artistic grace", "could crack walnuts with ease", "accomplish intricate tasks with ease", "never seem to tire", "are always marked with fresh stains", "never show a speck of dirt", "dance across surfaces like water", "hold memories of countless tasks", "seem almost fragile until put to work", "never shake or hesitate"]
+
+# === ENHANCED MOVEMENT TEMPLATES ===
+- name: "Variable movement and gestures"
+  tag: "movement"
+  applicableAncestryGroups: ["humanoid"] 
+  applicableRoles: []
+  templates: ["moves with {style} and {gesture_habit}"]
+  variables:
+    style: ["fluid, dancer-like grace", "deliberate, measured steps", "quick, efficient motions", "loose-limbed casualness", "rigid military precision", "bouncy, energetic enthusiasm", "careful, cautious movements", "smooth, predatory stealth", "hurried, always-busy pace", "languid, unhurried ease", "nervous, fidgety energy", "confident, space-claiming strides"]
+    gesture_habit: ["gestures expressively while speaking", "keeps hands clasped behind {pronoun_possessive} back", "unconsciously adjusts {pronoun_possessive} clothing", "taps fingers when thinking", "cracks knuckles before starting tasks", "touches {pronoun_possessive} neck when nervous", "uses sweeping arm movements", "points frequently to emphasize words", "keeps arms crossed most of the time", "fidgets with small objects", "runs hands through {pronoun_possessive} hair", "maintains perfect stillness when listening"]
+
+# === ENHANCED SCARS AND MARKS TEMPLATES ===
+- name: "Variable scars and distinctive marks"
+  tag: "scars"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["bears {type} on {location} that {story}"]
+  variables:
+    type: ["a long, thin scar", "several small burn marks", "a distinctive tattoo", "old puncture wounds", "crisscrossing scratches", "a birthmark shaped like a star", "ritual scarification", "faded brand marks", "surgical scars", "a missing fingertip", "intricate henna designs", "weather-beaten patches"]
+    location: ["{pronoun_possessive} left forearm", "both hands", "{pronoun_possessive} right shoulder", "the side of {pronoun_possessive} neck", "{pronoun_possessive} knuckles", "{pronoun_possessive} face near the temple", "down {pronoun_possessive} spine", "across {pronoun_possessive} palms", "{pronoun_possessive} left hand", "both arms", "{pronoun_possessive} right cheek", "the back of {pronoun_possessive} hands"]
+    story: ["tells of a dangerous encounter", "hint at {pronoun_possessive} profession's hazards", "shows {pronoun_possessive} cultural heritage", "speaks of past battles", "reveals a clumsy accident", "marks {pronoun_object} as unique", "indicates ritual significance", "suggests a darker past", "shows medical intervention", "tells of a workshop accident", "celebrates important life events", "reflects years of outdoor work"]
+
+# === ENHANCED FACIAL HAIR TEMPLATES ===
+- name: "Variable facial hair styles"
+  tag: "facial_hair"
+  applicableAncestryGroups: ["has_beard"]
+  applicableRoles: []
+  templates: ["sports {style} that {maintenance}"]
+  variables:
+    style: ["a full, bushy beard", "a neatly trimmed goatee", "elaborate braided sideburns", "a thin, precise mustache", "a wild, untamed beard", "carefully waxed whiskers", "a closely cropped beard", "flowing mustache and beard", "intricate beard braids with rings", "patchy, uneven stubble", "a magnificent handlebar mustache", "ritual beard decorations"]
+    maintenance: ["is meticulously groomed daily", "shows signs of frequent attention", "clearly hasn't seen scissors in months", "gleams with scented oils", "bears the marks of hasty morning care", "is adorned with small charms", "is kept military-short", "flows like a waterfall", "jingles softly when {pronoun_subject} moves", "suggests {pronoun_subject} can't be bothered with grooming", "is waxed to perfect points", "tells stories through its decorative elements"]

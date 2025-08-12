@@ -1,0 +1,200 @@
+# Physical Description Templates
+# These templates generate physical traits for characters
+# 
+# Template Structure:
+# - name: "Template description name" 
+#   tag: "single_tag"                           # Required: prevents conflicts (only ONE tag per template)
+#   applicableAncestryGroups: ["group1"]        # Optional: which ancestry groups this applies to
+#   excludeAncestryGroups: ["group2"]           # Optional: which ancestry groups to exclude  
+#   applicableRoles: ["role1", "role2"]         # Optional: which roles this applies to
+#   templates: ["Description with {variables}"] # Required: template strings (array)
+#   variables: {}                               # Required: variable mappings (can be empty)
+#
+# Available Variables:
+# {name} - first name
+# {surname} - last name  
+# {ancestry} - ancestry name
+# {age} - age description (young, adult, elderly, etc.)
+# {pronoun_subject} - he/she/they
+# {pronoun_object} - him/her/them
+# {pronoun_possessive} - his/her/their
+#
+# Available Ancestry Groups:
+# all, has_hair, has_beard, feathered, scaled, furred, humanoid, bestial, elemental
+#
+# Available Physical Tags (ONE per template):
+# hair, facial_hair, eyes, build, hands, voice, movement, ears, scars,
+# plumage, beak, tusks, scales, fur, tail, wings, horns
+#
+# Example Roles: owner, journeyman, apprentice, smith, cook, waitstaff, etc.
+
+# === HAIR TEMPLATES ===
+- name: "has long, flowing {ancestry} hair that catches the light"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: []
+  templates: ["has long, flowing {ancestry} hair that catches the light"]
+  variables: {}
+
+- name: "keeps {pronoun_possessive} dark hair neatly braided in traditional {ancestry} style"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: []
+  templates: ["keeps {pronoun_possessive} dark hair neatly braided in traditional {ancestry} style"]
+  variables: {}
+
+- name: "sports wild, unkempt hair that suggests a life of hard work"
+  tag: "hair"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: ["smith", "cook"]
+  templates: ["sports wild, unkempt hair that suggests a life of hard work"]
+  variables: {}
+
+# === FACIAL HAIR TEMPLATES ===
+- template: "wears a magnificent braided beard decorated with {ancestry} metal rings"
+  ancestry_groups: ["has_beard"]
+  roles: ["owner", "journeyman"]
+  tags: ["facial_hair", "jewelry"]
+
+- template: "has a well-groomed beard that speaks of {pronoun_possessive} pride in appearance"
+  ancestry_groups: ["has_beard"]
+  roles: []
+  tags: ["facial_hair"]
+
+- template: "sports a scraggly beard singed from years of forge work"
+  ancestry_groups: ["has_beard"]
+  roles: ["smith"]
+  tags: ["facial_hair"]
+
+# === EYE TEMPLATES ===
+- template: "has piercing {ancestry} eyes that seem to see through deception"
+  ancestry_groups: ["humanoid"]
+  roles: ["owner"]
+  tags: ["eyes"]
+
+- template: "looks at the world through kind, weathered eyes"
+  ancestry_groups: ["humanoid"]
+  roles: []
+  tags: ["eyes"]
+
+- template: "has bright, alert eyes that dart about constantly"
+  ancestry_groups: ["humanoid"]
+  roles: ["apprentice"]
+  tags: ["eyes"]
+
+# === BUILD TEMPLATES ===
+- template: "has the muscular build of someone who works with heavy materials"
+  ancestry_groups: ["humanoid"]
+  roles: ["smith", "journeyman"]
+  tags: ["build"]
+
+- template: "carries {pronoun_possessive}self with the lean grace of {pronoun_possessive} profession"
+  ancestry_groups: ["humanoid"]
+  roles: ["waitstaff"]
+  tags: ["build"]
+
+- template: "shows the stocky, sturdy build typical of {pronoun_possessive} {ancestry} heritage"
+  ancestry_groups: ["humanoid"]
+  roles: []
+  tags: ["build"]
+
+# === HANDS TEMPLATES ===
+- template: "has calloused hands marked by years of skilled craftsmanship"
+  ancestry_groups: ["humanoid"]
+  roles: ["journeyman", "owner"]
+  tags: ["hands"]
+
+- template: "keeps {pronoun_possessive} hands meticulously clean despite {pronoun_possessive} work"
+  ancestry_groups: ["humanoid"]
+  roles: ["cook"]
+  tags: ["hands"]
+
+- template: "has nimble fingers perfect for delicate work"
+  ancestry_groups: ["humanoid"]
+  roles: ["apprentice"]
+  tags: ["hands"]
+
+# === VOICE TEMPLATES ===
+- template: "speaks with a deep, resonant voice that commands respect"
+  ancestry_groups: ["humanoid"]
+  roles: ["owner"]
+  tags: ["voice"]
+
+- template: "has a melodious voice that draws customers in"
+  ancestry_groups: ["humanoid"]
+  roles: ["waitstaff"]
+  tags: ["voice"]
+
+- template: "speaks with the measured tones of someone used to teaching"
+  ancestry_groups: ["humanoid"]
+  roles: ["journeyman"]
+  tags: ["voice"]
+
+# === MOVEMENT TEMPLATES ===
+- template: "moves with the careful precision of a master craftsperson"
+  ancestry_groups: ["humanoid"]
+  roles: ["owner", "journeyman"]
+  tags: ["movement"]
+
+- template: "has quick, efficient movements honed by years of service"
+  ancestry_groups: ["humanoid"]
+  roles: ["waitstaff", "cook"]
+  tags: ["movement"]
+
+- template: "carries {pronoun_possessive}self with youthful energy and enthusiasm"
+  ancestry_groups: ["humanoid"]
+  roles: ["apprentice"]
+  tags: ["movement"]
+
+# === SCARS TEMPLATES ===
+- template: "bears old burn scars on {pronoun_possessive} forearms from forge accidents"
+  ancestry_groups: ["humanoid"]
+  roles: ["smith"]
+  tags: ["scars"]
+
+- template: "has small scars on {pronoun_possessive} hands from years of knife work"
+  ancestry_groups: ["humanoid"]
+  roles: ["cook"]
+  tags: ["scars"]
+
+# === ANCESTRY-SPECIFIC TEMPLATES ===
+
+# Dragonborn/Scaled
+- template: "has gleaming scales that shimmer with an inner fire"
+  ancestry_groups: ["scaled"]
+  roles: []
+  tags: ["scales"]
+
+- template: "bears proud horns that mark {pronoun_possessive} draconic heritage"
+  ancestry_groups: ["scaled"]
+  roles: []
+  tags: ["horns"]
+
+# Feathered Folk
+- template: "preens {pronoun_possessive} colorful plumage with obvious pride"
+  ancestry_groups: ["feathered"]
+  roles: []
+  tags: ["plumage"]
+
+- template: "has a sharp, intelligent beak perfect for {pronoun_possessive} trade"
+  ancestry_groups: ["feathered"]
+  roles: ["owner", "journeyman"]
+  tags: ["beak"]
+
+# Furred Ancestries
+- template: "has thick, luxurious fur that speaks of good health"
+  ancestry_groups: ["furred"]
+  roles: []
+  tags: ["fur"]
+
+- template: "swishes {pronoun_possessive} expressive tail when concentrating"
+  ancestry_groups: ["furred"]
+  roles: []
+  tags: ["tail"]
+
+# ADD YOUR OWN TEMPLATES HERE
+# Remember to:
+# 1. Use appropriate ancestry_groups for the physical traits
+# 2. Add role restrictions if the trait is profession-specific
+# 3. Include proper tags to prevent conflicts
+# 4. Use {variable} substitutions for dynamic content

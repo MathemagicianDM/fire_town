@@ -1,0 +1,247 @@
+# Shop Description Templates
+# These templates generate descriptions for different types of shops/establishments
+# 
+# Template Structure:
+# - name: "Template description name" 
+#   tag: "single_tag"                           # Required: prevents conflicts (only ONE tag per template)
+#   applicableShopTypes: ["type1", "type2"]    # Optional: which shop types this applies to
+#   templates: ["Description with {variables}"] # Required: template strings (array)
+#   variables: {}                               # Required: variable mappings (can be empty)
+#
+# Available Variables:
+# {name} - shop name
+# {type} - shop type (tavern, herbalist, etc.)
+# {pro1} - first positive quality
+# {pro2} - second positive quality
+# {con} - negative quality/drawback
+#
+# Available Shop Types:
+# tavern, herbalist, temple, smith, generalStore, jeweler, clothier, magic
+#
+# Available Tags (ONE per template):
+# atmosphere, clientele, interior, exterior, reputation, service_quality, specialty, location
+
+# === TAVERN TEMPLATES ===
+- name: "Lively tavern atmosphere with music"
+  tag: "atmosphere"
+  applicableShopTypes: ["tavern"]
+  templates: ["The air fills with hearty laughter and the cheerful strumming of a bard's lute"]
+  variables: {}
+
+- name: "Cozy tavern atmosphere with firelight"
+  tag: "atmosphere"
+  applicableShopTypes: ["tavern"]
+  templates: ["Warm firelight dances across worn wooden tables where locals gather for evening ales"]
+  variables: {}
+
+- name: "Rough tavern clientele"
+  tag: "clientele"
+  applicableShopTypes: ["tavern"]
+  templates: ["Frequented by rough-looking travelers and local workers seeking strong drink after long days"]
+  variables: {}
+
+- name: "Mixed tavern clientele"
+  tag: "clientele"
+  applicableShopTypes: ["tavern"]
+  templates: ["Draws a diverse crowd of merchants, adventurers, and townsfolk all seeking good food and company"]
+  variables: {}
+
+- name: "Rustic tavern interior"
+  tag: "interior"
+  applicableShopTypes: ["tavern"]
+  templates: ["The interior features heavy wooden beams, stone floors worn smooth by countless boots, and barrels stacked along the walls"]
+  variables: {}
+
+# === HERBALIST TEMPLATES ===
+- name: "Herb-scented atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["herbalist"]
+  templates: ["The air is thick with the mingled scents of dried herbs, exotic spices, and mysterious brewing concoctions"]
+  variables: {}
+
+- name: "Healing-focused herbalist interior"
+  tag: "interior"
+  applicableShopTypes: ["herbalist"]
+  templates: ["Shelves line the walls filled with glass jars of colorful powders, hanging bundles of dried plants, and carefully labeled remedies"]
+  variables: {}
+
+- name: "Knowledgeable herbalist clientele"
+  tag: "clientele"
+  applicableShopTypes: ["herbalist"]
+  templates: ["Serves those seeking natural remedies, from worried parents to seasoned adventurers preparing for dangerous journeys"]
+  variables: {}
+
+- name: "Mysterious herbalist reputation"
+  tag: "reputation"
+  applicableShopTypes: ["herbalist"]
+  templates: ["Known throughout the area for both miraculous cures and whispered rumors of more questionable practices"]
+  variables: {}
+
+# === TEMPLE TEMPLATES ===
+- name: "Sacred temple atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["temple"]
+  templates: ["An aura of reverence permeates the space, with soft chanting echoing from alcoves dedicated to prayer"]
+  variables: {}
+
+- name: "Divine temple interior"
+  tag: "interior"
+  applicableShopTypes: ["temple"]
+  templates: ["Ornate religious symbols adorn the walls, while candles flicker before shrines dedicated to various deities"]
+  variables: {}
+
+- name: "Faithful temple clientele"
+  tag: "clientele"
+  applicableShopTypes: ["temple"]
+  templates: ["Welcomes both devout worshippers seeking spiritual guidance and travelers in need of healing or blessing"]
+  variables: {}
+
+- name: "Charitable temple reputation"
+  tag: "reputation"
+  applicableShopTypes: ["temple"]
+  templates: ["Renowned for its charitable works and the wisdom of its clergy, though some whisper about hidden theological politics"]
+  variables: {}
+
+# === BLACKSMITH TEMPLATES ===
+- name: "Industrial blacksmith atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["smith"]
+  templates: ["The rhythmic ringing of hammer on anvil echoes through the shop, accompanied by the roar of the forge"]
+  variables: {}
+
+- name: "Hot blacksmith interior"
+  tag: "interior"
+  applicableShopTypes: ["smith"]
+  templates: ["The workspace centers around a blazing forge, with tools, raw metal, and works-in-progress scattered on heavy workbenches"]
+  variables: {}
+
+- name: "Practical blacksmith clientele"
+  tag: "clientele"
+  applicableShopTypes: ["smith"]
+  templates: ["Serves farmers needing plows repaired, guards requiring weapon maintenance, and adventurers seeking custom metalwork"]
+  variables: {}
+
+- name: "Skilled blacksmith reputation"
+  tag: "reputation"
+  applicableShopTypes: ["smith"]
+  templates: ["Has earned a reputation for producing durable, well-crafted metalwork, though prices reflect the quality"]
+  variables: {}
+
+# === INN TEMPLATES ===
+- name: "Welcoming inn atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["tavern"]
+  templates: ["Travelers find respite from the road in comfortable common areas filled with the aroma of hearty stew"]
+  variables: {}
+
+- name: "Busy inn clientele"
+  tag: "clientele"
+  applicableShopTypes: ["tavern"]
+  templates: ["Hosts weary travelers, merchant caravans, and locals attending special celebrations in the common room"]
+  variables: {}
+
+- name: "Comfortable inn interior"
+  tag: "interior"
+  applicableShopTypes: ["tavern"]
+  templates: ["Features a spacious common room with a large hearth, private dining areas, and stairs leading to guest quarters above"]
+  variables: {}
+
+# === GENERAL STORE TEMPLATES ===
+- name: "Bustling store atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["generalStore"]
+  templates: ["The constant flow of customers creates a lively atmosphere as people search for everyday necessities and occasional luxuries"]
+  variables: {}
+
+- name: "Packed store interior"
+  tag: "interior"
+  applicableShopTypes: ["generalStore"]
+  templates: ["Every inch of space is utilized, with shelves reaching the ceiling and goods hanging from rafters and walls"]
+  variables: {}
+
+- name: "Diverse store clientele"
+  tag: "clientele"
+  applicableShopTypes: ["generalStore"]
+  templates: ["Serves everyone in the community, from housewives buying daily supplies to adventurers stocking up for journeys"]
+  variables: {}
+
+# === BAKERY TEMPLATES ===
+- name: "Warm bakery atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["generalStore"]
+  templates: ["The enticing aroma of fresh bread and sweet pastries draws customers from streets away"]
+  variables: {}
+
+- name: "Early-rising bakery clientele"
+  tag: "clientele"
+  applicableShopTypes: ["generalStore"]
+  templates: ["Opens before dawn to serve early workers and fills with families throughout the day seeking daily bread"]
+  variables: {}
+
+- name: "Flour-dusted bakery interior"
+  tag: "interior"
+  applicableShopTypes: ["generalStore"]
+  templates: ["Features large stone ovens, wooden display cases filled with golden loaves, and work surfaces dusted with flour"]
+  variables: {}
+
+# === SPECIALTY SHOP TEMPLATES ===
+- name: "Refined tailor atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["clothier"]
+  templates: ["Maintains an air of quiet sophistication, with carefully displayed fabrics and the soft sound of skilled needlework"]
+  variables: {}
+
+- name: "Leather-scented leatherworker interior"
+  tag: "interior"
+  applicableShopTypes: ["clothier"]
+  templates: ["The rich scent of treated leather pervades the workspace, where hides and tools are arranged with professional precision"]
+  variables: {}
+
+- name: "Scholarly library atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["generalStore"]
+  templates: ["Hushed reverence for knowledge fills the space, where scholars and curious minds seek wisdom among towering bookshelves"]
+  variables: {}
+
+- name: "Mystical magic shop atmosphere"
+  tag: "atmosphere"
+  applicableShopTypes: ["magic"]
+  templates: ["An otherworldly aura surrounds displays of arcane components, with subtle magical energies making sensitive visitors uneasy"]
+  variables: {}
+
+# === UNIVERSAL TEMPLATES (apply to all shop types) ===
+- name: "Well-maintained establishment"
+  tag: "service_quality"
+  applicableShopTypes: []
+  templates: ["The proprietor takes obvious pride in maintaining clean, organized premises and providing attentive service"]
+  variables: {}
+
+- name: "Busy popular establishment"
+  tag: "reputation"
+  applicableShopTypes: []
+  templates: ["Word of mouth has made this a popular destination, often requiring patience during peak hours"]
+  variables: {}
+
+- name: "Family-run establishment"
+  tag: "service_quality"
+  applicableShopTypes: []
+  templates: ["Operated by a family whose generations of experience show in their personal attention to every customer"]
+  variables: {}
+
+- name: "Competitive establishment"
+  tag: "reputation"
+  applicableShopTypes: []
+  templates: ["Thrives despite nearby competitors through a combination of {pro1} and {pro2}, though {con}"]
+  variables: {}
+
+- name: "Established local institution"
+  tag: "reputation"
+  applicableShopTypes: []
+  templates: ["Has become an integral part of the community, where locals gather not just for business but for news and gossip"]
+  variables: {}
+
+- name: "Convenient location advantage"
+  tag: "location"
+  applicableShopTypes: []
+  templates: ["Benefits from a prime location that draws steady foot traffic throughout the day"]
+  variables: {}

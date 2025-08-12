@@ -1,0 +1,895 @@
+[
+    {
+      "thisRole": "sage",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["old","quiteOld"],
+"informational":"true",
+"singular": "Sage / Elder",
+"plural": "Sages / Elders"
+     },
+     {
+      "thisRole": "hunter",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Hunter" ,
+"plural": "Hunters" 
+}
+     ,
+     {
+      "thisRole": "trapper",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Trapper" ,
+"plural": "Trappers" 
+}
+     ,
+     {
+      "thisRole": "fisher",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Fisher" ,
+"plural": "Fishers" 
+}
+     ,
+     {
+      "thisRole": "gatherer",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Gatherer/Forager" ,
+"plural": "Gatherers/Foragers" 
+}
+     ,
+     {
+      "thisRole": "courier",
+      "onePerHowMany": "400",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Courier" ,
+"plural": "Couriers" 
+}
+     ,
+     {
+      "thisRole": "laborer",
+      "onePerHowMany": "10",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Laborer" ,
+"plural": "Laborers" 
+}
+     ,
+     {
+      "thisRole": "porter",
+      "onePerHowMany": "10",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Porter" ,
+"plural": "Porters" 
+}
+     ,
+     {
+      "thisRole": "servant",
+      "onePerHowMany": "10",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Servant" ,
+"plural": "Servants" 
+}
+     ,
+     {
+      "thisRole": "mason",
+      "onePerHowMany": "400",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Mason" ,
+"plural": "Masons" 
+}
+     ,
+     {
+      "thisRole": "torchBearer",
+      "onePerHowMany": "80",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Torch Bearer" ,
+"plural": "Torch Bearers" 
+}
+     ,
+     {
+      "thisRole": "mercenary",
+      "onePerHowMany": "1000",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"true"
+     ,
+"singular": "Mercenary" ,
+"plural": "Mercenaries" 
+}
+     ,
+     {
+      "thisRole": "carpenter",
+      "onePerHowMany": "400",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Carpenter" ,
+"plural": "Carpenters" 
+},
+     {
+      "thisRole": "perfumer",
+      "onePerHowMany": "1000",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Perfumer" ,
+"plural": "Perfumers" 
+}
+     ,
+     {
+      "thisRole": "accountant",
+      "onePerHowMany": "1000",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"true"
+     ,
+"singular": "Accountant" ,
+"plural": "Accountants" 
+}
+     ,
+     {
+      "thisRole": "scribe",
+      "onePerHowMany": "1000",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"true"
+     ,
+"singular": "Scribe" ,
+"plural": "Scribes" 
+}
+     ,
+     {
+      "thisRole": "locksmith",
+      "onePerHowMany": "400",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Locksmith" ,
+"plural": "Locksmiths" 
+}
+     ,
+     {
+      "thisRole": "lumberjack",
+      "onePerHowMany": "200",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Lumberjack" ,
+"plural": "Lumberjacks" 
+}
+     ,
+     {
+      "thisRole": "stonecutter",
+      "onePerHowMany": "200",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Stonecutter" ,
+"plural": "Stonecutters" 
+}
+     ,
+     {
+      "thisRole": "roofer",
+      "onePerHowMany": "200",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Roofer" ,
+"plural": "Roofers" 
+}
+     ,
+     {
+      "thisRole": "cobbler",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Cobbler" ,
+"plural": "Cobblers" 
+}
+     ,
+     {
+      "thisRole": "furrier",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Furrier" ,
+"plural": "Furriers" 
+}
+     ,
+     {
+      "thisRole": "barber",
+      "onePerHowMany": "200",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"true"
+     ,
+"singular": "Barber" ,
+"plural": "Barbers" 
+}
+     ,
+     {
+      "thisRole": "weaver",
+      "onePerHowMany": "20",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Weaver" ,
+"plural": "Weavers" 
+}
+     ,
+     {
+      "thisRole": "mercer",
+      "onePerHowMany": "1000",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Mercer" ,
+"plural": "Mercers" 
+}
+     ,
+     {
+      "thisRole": "cooper",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Cooper" ,
+"plural": "Coopers" 
+}
+     ,
+     {
+      "thisRole": "baker",
+      "onePerHowMany": "90",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Baker" ,
+"plural": "Bakers" 
+}
+     ,
+     {
+      "thisRole": "saddler",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Saddler" ,
+"plural": "Saddlers" 
+}
+     ,
+     {
+      "thisRole": "butcher",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Butcher" ,
+"plural": "Butchers" 
+}
+     ,
+     {
+      "thisRole": "fishmonger",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Fishmonger" ,
+"plural": "Fishongers" 
+}
+     ,
+     {
+      "thisRole": "spiceMerchant",
+      "onePerHowMany": "1000",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Spice Merchant" ,
+"plural": "Spice Merchants" 
+}
+     ,
+     {
+      "thisRole": "painter",
+      "onePerHowMany": "400",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["young","adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Painter" ,
+"plural": "Painters" 
+}
+     ,
+     {
+      "thisRole": "ropemaker",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Rope Maker" ,
+"plural": "RopeMakers" 
+}
+     ,
+     {
+      "thisRole": "sculptor",
+      "onePerHowMany": "400",
+      "hireling": "true",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["young","adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Sculptor" ,
+"plural": "Sculptors" 
+}
+     ,
+     {
+      "thisRole": "potter",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Potter" ,
+"plural": "Potters" 
+}
+     ,
+     {
+      "thisRole": "rugmaker",
+      "onePerHowMany": "1000",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Rug Maker" ,
+"plural": "Rug Makers" 
+}
+     ,
+     {
+      "thisRole": "candlemaker",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Candle Maker" ,
+"plural": "Candle Makers" 
+}
+     ,
+     {
+      "thisRole": "waxmaker",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge"],
+"informational":"false"
+     ,
+"singular": "Wax Maker" ,
+"plural": "Wax Makers" 
+}
+     ,
+     {
+      "thisRole": "florist",
+      "onePerHowMany": "200",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["young","adult","middleAge","young","old"],
+"informational":"false"
+     ,
+"singular": "Florist" ,
+"plural": "Florists" 
+}
+     ,
+     {
+      "thisRole": "streetFoodVendor",
+      "onePerHowMany": "1000",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"true"
+     ,
+"singular": "Street Food Vendor" ,
+"plural": "Street Food Vendors" 
+}
+     ,
+     {
+      "thisRole": "farmer",
+      "onePerHowMany": "9",
+      "hireling": "false",
+      "promoteInTaverns": "false",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Farmer" ,
+"plural": "Farmers" 
+}
+     ,
+     {
+      "thisRole": "beekeeper",
+      "onePerHowMany": "80",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Bee Keeper" ,
+"plural": "Bee Keepers" 
+}
+     ,
+     {
+      "thisRole": "soapmaker",
+      "onePerHowMany": "200",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old"],
+"informational":"false"
+     ,
+"singular": "Soap Maker" ,
+"plural": "Soap Makers" 
+}
+     ,
+     {
+      "thisRole": "streetRat",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "false",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"false"
+     ,"validAges":["quiteYoung","young"],
+"informational":"true"
+     ,
+"singular": "Street Rat" ,
+"plural": "Street Rats" 
+},
+     {
+      "thisRole": "beggar",
+      "onePerHowMany": "1000",
+      "hireling": "false",
+      "promoteInTaverns": "false",
+      "priorityInTaverns": "false",
+      "showInMarket": "true",
+      "prioritizeCustomer":"false"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"true"
+     ,
+"singular": "Beggar" ,
+"plural": "Beggars" 
+}
+     ,
+     {
+      "thisRole": "smith",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Smith" ,
+"plural": "Smiths" 
+}
+     ,
+     {
+      "thisRole": "tailor",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Clothier" ,
+"plural": "Clothiers" 
+}
+     ,
+     {
+      "thisRole": "herbalist",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Herbalist" ,
+"plural": "Herbalists" 
+}
+     ,
+     {
+      "thisRole": "jeweler",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Jeweler" ,
+"plural": "Jewelers" 
+}
+     ,
+     {
+      "thisRole": "tavernKeeper",
+      "onePerHowMany": "200",
+      "hireling": "false",
+      "promoteInTaverns": "false",
+      "priorityInTaverns": "false",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Tavern Keeper" ,
+"plural": "Tavern Keepers" 
+}
+     ,
+     {
+      "thisRole": "hierophant",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "Hierophant" ,
+"plural": "Hierophants" 
+}
+     ,
+     {
+      "thisRole": "generalStoreOwner",
+      "onePerHowMany": "400",
+      "hireling": "false",
+      "promoteInTaverns": "true",
+      "priorityInTaverns": "true",
+      "showInMarket": "false",
+      "prioritizeCustomer":"true"
+     ,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+     ,
+"singular": "General Store Owner" ,
+"plural": "General Store Owners" 
+}     ,
+{
+ "thisRole": "apprentice",
+ "onePerHowMany": "1000000000",
+ "hireling": "false",
+ "promoteInTaverns": "true",
+ "priorityInTaverns": "true",
+ "showInMarket": "false",
+ "prioritizeCustomer":"true"
+,"validAges":["quiteYoung","young"],
+"informational":"false"
+,
+"singular": "Apprentice" ,
+"plural": "Apprentices" 
+}
+,
+{
+ "thisRole": "journeyman",
+ "onePerHowMany": "1000000000",
+ "hireling": "false",
+ "promoteInTaverns": "true",
+ "priorityInTaverns": "true",
+ "showInMarket": "false",
+ "prioritizeCustomer":"true"
+,"validAges":["young","adult","middleAge"],
+"informational":"false"
+,
+"singular": "Journeyman" ,
+"plural": "Journeymen" 
+}
+,
+{
+ "thisRole": "cook",
+ "onePerHowMany": "1000000000",
+ "hireling": "false",
+ "promoteInTaverns": "false",
+ "priorityInTaverns": "false",
+ "showInMarket": "false",
+ "prioritizeCustomer":"false"
+,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+,
+"singular": "Cook" ,
+"plural": "Cooks" 
+}
+,
+{
+ "thisRole": "waitstaff",
+ "onePerHowMany": "100000000",
+ "hireling": "false",
+ "promoteInTaverns": "false",
+ "priorityInTaverns": "false",
+ "showInMarket": "false",
+ "prioritizeCustomer":"false"
+,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+,
+"singular": "Waitstaff" ,
+"plural": "Waitstaff" 
+}     ,
+{
+ "thisRole": "entertainment",
+ "onePerHowMany": "1000000000",
+ "hireling": "false",
+ "promoteInTaverns": "false",
+ "priorityInTaverns": "false",
+ "showInMarket": "false",
+ "prioritizeCustomer":"false"
+,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+,
+"singular": "Entertainer" ,
+"plural": "Entertainers" 
+}     
+,
+{
+ "thisRole": "magicShopOwner",
+ "onePerHowMany": "5000",
+ "hireling": "false",
+ "promoteInTaverns": "false",
+ "priorityInTaverns": "false",
+ "showInMarket": "false",
+ "prioritizeCustomer":"false"
+,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"true"
+,
+"singular": "Magic Shop Owner" ,
+"plural": "Magic Shop Owners" 
+}
+,
+{
+ "thisRole": "government",
+ "onePerHowMany": "1000000000000000",
+ "hireling": "false",
+ "promoteInTaverns": "false",
+ "priorityInTaverns": "false",
+ "showInMarket": "false",
+ "prioritizeCustomer":"false"
+,"validAges":["adult","middleAge","old","quiteOld"],
+"informational":"false"
+,
+"singular": "Government Official" ,
+"plural": "Government Officials" 
+}
+,
+{
+ "thisRole": "acolyte",
+ "onePerHowMany": "1000000000000000",
+ "hireling": "false",
+ "promoteInTaverns": "false",
+ "priorityInTaverns": "false",
+ "showInMarket": "false",
+ "prioritizeCustomer":"false"
+,"validAges":["young","adult","middleAge","old"],
+"informational":"false"
+,
+"singular": "Acolyte" ,
+"plural": "Acolytes" 
+}
+]     

@@ -1,0 +1,77 @@
+[
+    {
+        "appliesTo" : ["food","beverage"],
+        "description" : "Special Ingredient: moon bloom rosewater",
+        "priceMultiplier" : "2"
+    },
+    {
+        "appliesTo" : ["food"],
+        "description" : "Special Ingredient: fire beetle meat",
+        "priceMultiplier" : "1.5"
+    },
+    {
+        "appliesTo" : ["food"],
+        "description" : "Special Ingredient: axe beak meat",
+        "priceMultiplier" : "2"
+    },
+    {
+        "appliesTo" : ["food","beverage"],
+        "description" : "Special Ingredient: violet fungus slices",
+        "priceMultiplier" : "2"
+    },
+    {
+        "appliesTo" : ["beverage"],
+        "description" : "Special Ingredient: Sahuagin brandy",
+        "priceMultiplier" : "5"
+    },
+    {
+        "appliesTo" : ["beverage"],
+        "description" : "Special Technique: supernaturally chilled",
+        "priceMultiplier" : "2"
+    },
+    {
+        "appliesTo" : ["weapon"],
+        "description" : "Special material: metal with special quality",
+        "priceMultiplier" : "4"
+    },
+    {
+        "appliesTo" : ["weapon"],
+        "description" : "Special Technique: the grip has intricate inlay",
+        "priceMultiplier" : "3"
+    },
+    {
+        "appliesTo" : ["weapon"],
+        "description" : "Special material: enchanted wood",
+        "priceMultiplier" : "5"
+    },
+    {
+        "appliesTo" : ["item","weapon", "armor","jewelry","clothing"],
+        "description" : "Special Technique: intricate details",
+        "priceMultiplier" : "1"
+    },
+    {
+        "appliesTo" : ["item","weapon", "armor","clothing"],
+        "description" : "Special Technique: prominent display of crafter's symbol",
+        "priceMultiplier" : "1"
+    },
+    {
+        "appliesTo" : ["item","weapon", "armor","jewelry","clothing"],
+        "description" : "Special Material: high quality materials",
+        "priceMultiplier" : "2"
+    },
+    {
+        "appliesTo" : ["item","weapon", "armor","jewelry","clothing"],
+        "description" : "Special Technique: creative use of materials",
+        "priceMultiplier" : "1.5"
+    },
+    {
+        "appliesTo" : ["weapon","armor","jewelry"],
+        "description" : "Special material: enchanted metal",
+        "priceMultiplier" : "10"
+    },
+    {
+        "appliesTo" : ["weapon"],
+        "description" : "Special material: enchanted wood",
+        "priceMultiplier" : "5"
+    }
+]

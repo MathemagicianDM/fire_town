@@ -1,0 +1,328 @@
+# Clothing Description Templates - CORRECTED STRUCTURE
+# These templates generate clothing and accessory descriptions for characters
+#
+# Template Structure (UPDATED to match actual model):
+# - name: "Template description name"
+#   tag: "single_tag"                           # Required: prevents conflicts (only ONE tag per template)
+#   applicableAncestryGroups: ["group1"]        # Optional: which ancestry groups this applies to
+#   excludeAncestryGroups: ["group2"]           # Optional: which ancestry groups to exclude  
+#   applicableRoles: ["role1", "role2"]         # Optional: which roles this applies to
+#   templates: ["Description with {variables}"] # Required: template strings (array)
+#   variables: {}                               # Required: variable mappings (can be empty)
+#
+# Available Variables:
+# {name} - first name
+# {surname} - last name
+# {ancestry} - ancestry name
+# {age} - age description (young, adult, elderly, etc.)
+# {pronoun_subject} - he/she/they
+# {pronoun_object} - him/her/them
+# {pronoun_possessive} - his/her/their
+#
+# Available Ancestry Groups:
+# all, has_hair, has_beard, feathered, scaled, furred, humanoid, bestial, elemental
+#
+# Available Clothing Tags (ONE per template):
+# head, torso, arms, hands_clothing, waist, legs, feet, jewelry, accessories
+
+# === PROFESSIONAL ATTIRE ===
+
+# Smith Clothing
+- name: "Soot-stained leather apron"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["smith"]
+  templates: ["wears a thick leather apron stained with soot and metal shavings"]
+  variables: {}
+
+- name: "Heavy leather gloves on belt"
+  tag: "hands_clothing"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["smith"]
+  templates: ["has heavy leather gloves hanging from {pronoun_possessive} belt"]
+  variables: {}
+
+- name: "Protective forge arm guards"
+  tag: "arms"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["smith"]
+  templates: ["dons protective arm guards marked by years of forge work"]
+  variables: {}
+
+# Cook Clothing
+- name: "Flour-dusted work apron"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["cook"]
+  templates: ["wears a flour-dusted apron over practical work clothes"]
+  variables: {}
+
+- name: "Cooking implements on belt"
+  tag: "waist"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["cook"]
+  templates: ["keeps a collection of cooking implements at {pronoun_possessive} belt"]
+  variables: {}
+
+- name: "Rolled kitchen sleeves"
+  tag: "arms"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["cook"]
+  templates: ["has rolled up sleeves revealing forearms marked by kitchen work"]
+  variables: {}
+
+# Waitstaff Clothing
+- name: "Neat practical crowd-moving clothes"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["waitstaff"]
+  templates: ["wears neat, practical clothing suitable for moving quickly through crowds"]
+  variables: {}
+
+- name: "Comfortable long-hours shoes"
+  tag: "feet"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["waitstaff"]
+  templates: ["has comfortable, well-worn shoes perfect for long hours on {pronoun_possessive} feet"]
+  variables: {}
+
+- name: "Clean towel tucked in belt"
+  tag: "waist"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["waitstaff"]
+  templates: ["keeps a clean towel tucked into {pronoun_possessive} belt"]
+  variables: {}
+
+# Owner/Merchant Clothing
+- name: "Fine success-displaying clothes"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["owner"]
+  templates: ["dresses in fine clothes that display {pronoun_possessive} success and status"]
+  variables: {}
+
+- name: "Quality prosperity boots"
+  tag: "feet"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["owner"]
+  templates: ["wears quality leather boots that speak of prosperity"]
+  variables: {}
+
+- name: "Well-tailored owner coat"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["owner"]
+  templates: ["sports a well-tailored coat that marks {pronoun_object} as the establishment's owner"]
+  variables: {}
+
+# Journeyman Clothing
+- name: "Practical tradesperson garb"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["journeyman"]
+  templates: ["wears the practical garb of a skilled tradesperson"]
+  variables: {}
+
+- name: "Sturdy many-miles boots"
+  tag: "feet"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["journeyman"]
+  templates: ["has sturdy work boots that have seen many miles"]
+  variables: {}
+
+- name: "Well-maintained tool belt"
+  tag: "waist"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["journeyman"]
+  templates: ["keeps {pronoun_possessive} tools organized in a well-maintained belt pouch"]
+  variables: {}
+
+# Apprentice Clothing
+- name: "Simple learning-trade clothes"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["apprentice"]
+  templates: ["wears simple, practical clothing appropriate for learning {pronoun_possessive} trade"]
+  variables: {}
+
+- name: "Training-marked eager clothes"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["apprentice"]
+  templates: ["has eager eyes above clothes that show the marks of {pronoun_possessive} training"]
+  variables: {}
+
+# === CULTURAL/ANCESTRY-SPECIFIC CLOTHING ===
+
+# Dwarf Specific
+- name: "Traditional beard metal clasps"
+  tag: "jewelry"
+  applicableAncestryGroups: ["has_beard"]
+  applicableRoles: []
+  templates: ["adorns {pronoun_possessive} beard with traditional {ancestry} metal clasps and rings"]
+  variables: {}
+
+- name: "Finely crafted clan brooch"
+  tag: "jewelry"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner", "journeyman"]
+  templates: ["wears a finely crafted {ancestry} clan brooch on {pronoun_possessive} chest"]
+  variables: {}
+
+- name: "Intricate knotwork sleeves"
+  tag: "arms"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner"]
+  templates: ["has intricate {ancestry} knotwork embroidered on {pronoun_possessive} sleeves"]
+  variables: {}
+
+# Elf Specific
+- name: "Flowing graceful garments"
+  tag: "torso"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: []
+  templates: ["wears flowing garments that complement {pronoun_possessive} natural grace"]
+  variables: {}
+
+- name: "Delicate silver and gem jewelry"
+  tag: "jewelry"
+  applicableAncestryGroups: ["humanoid"]
+  applicableRoles: ["owner"]
+  templates: ["adorns {pronoun_possessive}self with delicate {ancestry} jewelry of silver and gems"]
+  variables: {}
+
+# Scaled Folk
+- name: "Tailored scaled-physique clothing"
+  tag: "torso"
+  applicableAncestryGroups: ["scaled"]
+  applicableRoles: []
+  templates: ["wears specially tailored clothing that accommodates {pronoun_possessive} scaled physique"]
+  variables: {}
+
+- name: "Custom unique-foot boots"
+  tag: "feet"
+  applicableAncestryGroups: ["scaled"]
+  applicableRoles: []
+  templates: ["has custom-fitted boots designed for {pronoun_possessive} unique foot structure"]
+  variables: {}
+
+# Feathered Folk
+- name: "Plumage-friendly clothing"
+  tag: "torso"
+  applicableAncestryGroups: ["feathered"]
+  applicableRoles: []
+  templates: ["chooses clothing that doesn't interfere with {pronoun_possessive} natural plumage"]
+  variables: {}
+
+- name: "Wing-structure harness"
+  tag: "torso"
+  applicableAncestryGroups: ["feathered"]
+  applicableRoles: []
+  templates: ["wears a specially designed harness that works with {pronoun_possessive} wing structure"]
+  variables: {}
+
+# Furred Ancestries
+- name: "Fur-complementing clothing"
+  tag: "torso"
+  applicableAncestryGroups: ["furred"]
+  applicableRoles: []
+  templates: ["selects clothing that complements rather than hides {pronoun_possessive} natural fur"]
+  variables: {}
+
+- name: "Tail-opening garments"
+  tag: "torso"
+  applicableAncestryGroups: ["furred"]
+  applicableRoles: []
+  templates: ["wears garments with strategic openings for {pronoun_possessive} tail"]
+  variables: {}
+
+# === GENERAL CLOTHING ITEMS ===
+
+# Headwear
+- name: "Practical hair-containing cap"
+  tag: "head"
+  applicableAncestryGroups: ["has_hair"]
+  applicableRoles: ["cook", "smith"]
+  templates: ["wears a practical cap that keeps hair out of {pronoun_possessive} work"]
+  variables: {}
+
+- name: "Fine status-displaying hat"
+  tag: "head"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["owner"]
+  templates: ["dons a fine hat that displays {pronoun_possessive} social standing"]
+  variables: {}
+
+# Footwear
+- name: "Steel-toed protection boots"
+  tag: "feet"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["smith"]
+  templates: ["has steel-toed boots for protection in {pronoun_possessive} dangerous profession"]
+  variables: {}
+
+- name: "Soft-soled quiet shoes"
+  tag: "feet"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["waitstaff"]
+  templates: ["wears soft-soled shoes for quiet movement through the establishment"]
+  variables: {}
+
+# Accessories
+- name: "Well-maintained jingling coin purse"
+  tag: "accessories"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["owner"]
+  templates: ["carries a well-maintained coin purse that jingles softly"]
+  variables: {}
+
+- name: "Simple significant pendant"
+  tag: "jewelry"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: []
+  templates: ["wears a simple pendant that holds personal significance"]
+  variables: {}
+
+- name: "Practical trade-tool belt"
+  tag: "waist"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["journeyman", "smith"]
+  templates: ["has a practical belt with loops for various trade tools"]
+  variables: {}
+
+# Weather Appropriate
+- name: "Heavy elemental-protection cloak"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: []
+  templates: ["dons a heavy cloak for protection against the elements"]
+  variables: {}
+
+- name: "Layered seasonal clothing"
+  tag: "torso"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: []
+  templates: ["wears layers of clothing suitable for the changing seasons"]
+  variables: {}
+
+# === CONDITION/WEAR DESCRIPTORS ===
+- name: "Meticulously clean maintained clothes"
+  tag: "accessories"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["owner"]
+  templates: ["keeps {pronoun_possessive} clothes meticulously clean and well-maintained"]
+  variables: {}
+
+- name: "Honest daily-labor wear"
+  tag: "accessories"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["journeyman", "apprentice"]
+  templates: ["wears clothes that show honest wear from daily labor"]
+  variables: {}
+
+- name: "Professional telltale stains"
+  tag: "accessories"
+  applicableAncestryGroups: ["all"]
+  applicableRoles: ["smith", "cook"]
+  templates: ["has clothes marked by the telltale stains of {pronoun_possessive} profession"]
+  variables: {}

@@ -1,0 +1,272 @@
+{
+  "settlementSizes": {
+    "thorp": {
+      "roles": {
+        "nobility": {
+          "liege": "1--1"
+        },
+        "merchantCouncil": {
+          "merchantCouncellor": "1--1"
+        },
+        "directDemocracy": {
+          "president": "1--1"
+        },
+        "mageocracy": {
+          "luminary": "1--1"
+        },
+        "theocracy": {
+          "hierophantRuler": "1--1"
+        },
+        "councilOfElders": {
+          "elder": "1--2"
+        },
+        "tyranny": {
+          "tyrant": "1--1"
+        },
+        "cityCouncil": {
+          "mayor": "1--1"
+
+        },
+        "guards": {
+          "guardCaptain": "1--1",
+          "guardWarrant": "1--1",
+          "guardConstable": "2--4"
+        }
+      },
+      "universalRoles": "0--0"
+    },
+    "hamlet": {
+      "roles": {
+        "nobility": {
+          "liege": "1--1"
+        },
+        "merchantCouncil": {
+          "merchantCouncellor": "1--2"
+        },
+        "directDemocracy": {
+          "president": "1--1"
+        },
+        "mageocracy": {
+          "luminary": "1--1"
+        },
+        "theocracy": {
+          "hierophantRuler": "1--2"
+        },
+        "councilOfElders": {
+          "elder": "2--4"
+        },
+        "tyranny": {
+          "tyrant": "1--1",
+          "chancellor": "1--1"
+        },
+        "cityCouncil": {
+          "mayor": "1--1",
+          "treasurer": "1--1",
+          "alderman": "2--2"
+        },
+        "guards": {
+          "guardCaptain": "1--1",
+          "guardWarrant": "1--4",
+          "guardConstable": "4--8"
+        }
+      },
+      "universalRoles": "0--0"
+    },
+    "village": {
+      "roles": {
+        "nobility": {
+          "liege": "1--1",
+          "noble": "1--3"
+        },
+        "merchantCouncil": {
+          "merchantCouncellor": "2--4"
+        },
+        "directDemocracy": {
+          "president": "1--1"
+        },
+        "mageocracy": {
+          "luminary": "1--1",
+          "highEnchanter": "0--1",
+          "highEvoker": "0--1",
+          "highIllusionist": "0--1",
+          "highNecromancer": "0--1",
+          "highConjurer": "0--1",
+          "highTransmuter": "0--1",
+          "highAbjurer": "0--1",
+          "highDiviner": "0--1"
+        },
+        "theocracy": {
+          "hierophantRuler": "1--3"
+        },
+        "councilOfElders": {
+          "elder": "4--8"
+        },
+        "tyranny": {
+          "tyrant": "1--1",
+          "chancellor": "1--1"
+        },
+        "cityCouncil": {
+          "mayor": "1--1",
+          "treasurer": "1--1",
+          "alderman": "2--4"
+        },
+        "guards": {
+          "guardCaptain": "1--1",
+          "guardWarrant": "2--8",
+          "guardConstable": "8--16"
+        }
+      },
+      "universalRoles": "0--6"
+    },
+    "town": {
+      "roles": {
+        "nobility": {
+          "liege": "1--1",
+          "noble": "2--4",
+          "courtier": "4--8"
+        },
+        "merchantCouncil": {
+          "merchantCouncellor": "4--6"
+        },
+        "directDemocracy": {
+          "president": "1--1"
+        },
+        "mageocracy": {
+          "luminary": "1--1",
+          "highEnchanter": "0--1",
+          "highEvoker": "0--1",
+          "highIllusionist": "0--1",
+          "highNecromancer": "0--1",
+          "highConjurer": "0--1",
+          "highTransmuter": "0--1",
+          "highAbjurer": "0--1",
+          "highDiviner": "0--1"
+        },
+        "theocracy": {
+          "hierophantRuler": "1--4"
+        },
+        "councilOfElders": {
+          "elder": "8--16"
+        },
+        "tyranny": {
+          "tyrant": "1--1",
+          "chancellor": "1--1",
+          "chancellorVice": "1--1"
+        },
+        "cityCouncil": {
+          "mayor": "1--1",
+          "treasurer": "1--1",
+          "alderman": "4--8"
+        },
+        "guards": {
+          "guardCaptain": "1--1",
+          "guardViceCaptain": "0--1",
+          "guardWarrant": "5--15",
+          "guardConstable": "15--30"
+        }
+      },
+      "universalRoles": "2--10"
+    },
+    "city": {
+      "roles": {
+        "nobility": {
+          "liege": "1--1",
+          "noble": "4--8",
+          "courtier": "8--16"
+        },
+        "merchantCouncil": {
+          "merchantCouncellor": "6--12"
+        },
+        "directDemocracy": {
+          "president": "1--1"
+        },
+        "mageocracy": {
+          "luminary": "1--1",
+          "highEnchanter": "0--1",
+          "highEvoker": "0--1",
+          "highIllusionist": "0--1",
+          "highNecromancer": "0--1",
+          "highConjurer": "0--1",
+          "highTransmuter": "0--1",
+          "highAbjurer": "0--1",
+          "highDiviner": "0--1",
+          "arcaneExarch": "1--1"
+        },
+        "theocracy": {
+          "hierophantRuler": "1--5"
+        },
+        "councilOfElders": {
+          "elder": "16--32"
+        },
+        "tyranny": {
+          "tyrant": "1--1",
+          "chancellor": "1--1",
+          "chancellorVice": "1--3"
+        },
+        "cityCouncil": {
+          "mayor": "1--1",
+          "treasurer": "1--1",
+          "alderman": "8--16"
+        },
+        "guards": {
+          "guardCaptain": "1--1",
+          "guardViceCaptain": "1--2",
+          "guardWarrant": "10--30",
+          "guardConstable": "30--60"
+        }
+      },
+      "universalRoles": "5--10"
+    },
+    "metropolis": {
+      "roles": {
+        "nobility": {
+          "liege": "1--1",
+          "noble": "8--16",
+          "courtier": "16--32"
+        },
+        "merchantCouncil": {
+          "merchantCouncellor": "12--24"
+        },
+        "directDemocracy": {
+          "president": "1--1"
+        },
+        "mageocracy": {
+          "luminary": "1--1",
+          "highEnchanter": "1--1",
+          "highEvoker": "1--1",
+          "highIllusionist": "1--1",
+          "highNecromancer": "1--1",
+          "highConjurer": "1--1",
+          "highTransmuter": "1--1",
+          "highAbjurer": "1--1",
+          "highDiviner": "1--1",
+          "arcaneExarch": "1--1",
+          "primarchArcane": "1--1"
+        },
+        "theocracy": {
+          "hierophantRuler": "1--6"
+        },
+        "councilOfElders": {
+          "elder": "32--64"
+        },
+        "tyranny": {
+          "tyrant": "1--1",
+          "chancellor": "1--1",
+          "chancellorVice": "3--6"
+        },
+        "cityCouncil": {
+          "mayor": "1--1",
+          "treasurer": "1--1",
+          "alderman": "15--30"
+        },
+        "guards": {
+          "guardCaptain": "1--1",
+          "guardViceCaptain": "2--4",
+          "guardWarrant": "20--60",
+          "guardConstable": "60--120"
+        }
+      },
+      "universalRoles": "10--10"
+    }
+  }
+}

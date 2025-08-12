@@ -1,0 +1,61 @@
+name: firetown
+description: "FirePod Town"
+publish_to: 'none'
+version: 0.3.0
+
+
+environment:
+  sdk: ^3.7.0
+
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  hooks_riverpod: ^2.1.1
+  flutter_hooks: ^0.21.2
+  uuid: ^4.5.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.1
+  riverpod: ^2.0.2
+  async: ^2.12.0
+  mutex: ^3.1.0
+  synchronized: ^3.0.0
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  collection: ^1.18.0
+ # firebase_analytics: ^11.4.4
+  file_saver: ^0.2.5
+  
+  # For YAML handling
+  yaml: ^3.1.1
+  yaml_writer: ^1.0.2
+  
+  # For type conversions and encoding
+  universal_html: ^2.2.2  # Provides cross-platform file saving support
+  file_picker: ^5.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+  riverpod_generator: ^2.6.5
+  
+  
+flutter:
+  uses-material-design: true
+
+  assets:
+      # Add assets from the images directory to the application.
+      #- assets/images/
+      - lib/demofiles/
+      - lib/initialization_files/
+      - assets/
