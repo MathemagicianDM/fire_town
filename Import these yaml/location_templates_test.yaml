@@ -1,0 +1,127 @@
+templates:
+  # ATMOSPHERE TRAITS - General feel and ambiance
+  - id: "loc_atm_001"
+    tag: "atmosphere"
+    templates:
+      - "The air here carries a sense of {mood}, with {atmospheric_element} that {effect_on_visitors}"
+    variables:
+      mood: ["ancient mystery", "vibrant energy", "solemn reverence", "bustling activity", "peaceful tranquility", "tense anticipation"]
+      atmospheric_element: ["lingering incense", "echoing footsteps", "whispered conversations", "distant music", "creaking timbers", "flickering torchlight"]
+      effect_on_visitors: ["draws people closer together", "makes visitors speak in hushed tones", "energizes those who enter", "creates a contemplative mood", "puts everyone on edge", "invites lingering"]
+    applicableLocationTypes: ["district", "building", "meetingPlace", "landmark", "temple"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "loc_atm_002"
+    tag: "atmosphere"
+    templates:
+      - "{weather_effect} often settles over this area, creating a {visual_atmosphere} that locals {local_reaction}"
+    variables:
+      weather_effect: ["A persistent mist", "Golden sunlight", "Dancing shadows", "A gentle breeze", "Warm air currents", "Cool drafts"]
+      visual_atmosphere: ["ethereal haze", "welcoming glow", "mysterious ambiance", "refreshing environment", "cozy atmosphere", "dramatic backdrop"]
+      local_reaction: ["have grown fond of", "use as a natural gathering signal", "consider a good omen", "take as a sign of change", "view with superstition", "celebrate during festivals"]
+    applicableLocationTypes: ["district", "meetingPlace", "street", "landmark"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # PHYSICAL TRAITS - Architecture, size, condition
+  - id: "loc_phy_001"
+    tag: "architecture"
+    templates:
+      - "The {structure_type} features {architectural_style} construction with {distinctive_element} that {architectural_impact}"
+    variables:
+      structure_type: ["main building", "central structure", "primary edifice", "dominant construction", "key building"]
+      architectural_style: ["elaborate stonework", "intricate timber framing", "elegant arched", "imposing fortress-like", "graceful flowing", "practical sturdy"]
+      distinctive_element: ["carved pillars", "stained glass windows", "ornate doorways", "decorative battlements", "flying buttresses", "painted murals"]
+      architectural_impact: ["dominates the surrounding area", "draws the eye upward", "creates interesting light patterns", "provides excellent acoustics", "offers multiple viewing angles", "frames the sky beautifully"]
+    applicableLocationTypes: ["building", "temple", "civic", "government"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "loc_phy_002"
+    tag: "size"
+    templates:
+      - "This {size_descriptor} space can {capacity_description} and features {space_organization}"
+    variables:
+      size_descriptor: ["expansive", "intimate", "sprawling", "cozy", "vast", "compact but efficient"]
+      capacity_description: ["accommodate large crowds comfortably", "host intimate gatherings", "serve multiple functions simultaneously", "provide private meeting spaces", "handle varying group sizes", "offer both public and private areas"]
+      space_organization: ["multiple levels connected by stairs", "open areas with defined sections", "interconnected chambers", "flexible seating arrangements", "dedicated spaces for different activities", "a central focal point with radiating areas"]
+    applicableLocationTypes: ["district", "building", "meetingPlace", "landmark", "temple", "civic"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "loc_phy_003"
+    tag: "condition"
+    templates:
+      - "The {maintenance_state} shows {condition_details} while {current_status}"
+    variables:
+      maintenance_state: ["well-maintained structure", "recently renovated building", "weathered but sturdy construction", "aging but dignified edifice", "constantly updated facility"]
+      condition_details: ["careful attention to detail", "signs of loving restoration", "character marks of time", "evidence of ongoing improvements", "a blend of old and new elements"]
+      current_status: ["serving its community proudly", "adapting to modern needs", "maintaining its historical character", "evolving with the times", "standing as a testament to craftsmanship"]
+    applicableLocationTypes: ["building", "temple", "civic", "landmark", "government"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # HISTORY TRAITS - Past events, legends, notable history
+  - id: "loc_his_001"
+    tag: "history"
+    templates:
+      - "{time_period}, this location {historical_event} which {lasting_impact}"
+    variables:
+      time_period: ["Long ago", "In recent memory", "During the founding years", "A generation past", "In living memory", "According to local tales"]
+      historical_event: ["served as a meeting point for important negotiations", "witnessed a significant celebration", "provided shelter during difficult times", "hosted visitors from distant lands", "became the center of community decisions", "earned recognition for its role in local events"]
+      lasting_impact: ["still influences local traditions", "is remembered in annual festivities", "created bonds that persist today", "established customs that continue", "inspired stories passed down through generations", "shaped the character of the community"]
+    applicableLocationTypes: ["district", "building", "meetingPlace", "landmark", "temple", "civic", "government"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "loc_his_002"
+    tag: "notable_events"
+    templates:
+      - "Local stories tell of {event_type} when {specific_occurrence} and {community_response}"
+    variables:
+      event_type: ["a remarkable gathering", "an unexpected discovery", "a moment of crisis", "a celebration", "a time of change", "an act of courage"]
+      specific_occurrence: ["people from all walks of life came together", "something valuable was found here", "the community faced a challenge as one", "multiple generations joined in festivities", "new opportunities emerged", "someone made a significant sacrifice"]
+      community_response: ["the bonds between neighbors grew stronger", "new traditions were born", "collective wisdom prevailed", "lasting friendships were formed", "innovative solutions emerged", "the community's character was revealed"]
+    applicableLocationTypes: ["district", "building", "meetingPlace", "landmark", "temple", "civic"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # MARKET-SPECIFIC TRAITS
+  - id: "loc_mkt_001"
+    tag: "commerce"
+    templates:
+      - "The marketplace bustles with {market_activity} where {vendors_description} offer {goods_variety}"
+    variables:
+      market_activity: ["daily trading", "seasonal exchanges", "specialized crafts sales", "regional commerce", "artisan displays", "community bartering"]
+      vendors_description: ["local craftspeople", "traveling merchants", "family businesses", "specialized artisans", "regional traders", "community cooperatives"]
+      goods_variety: ["everything from daily necessities to unique treasures", "seasonal specialties and local crafts", "practical items and decorative pieces", "fresh goods and preserved delicacies", "tools, textiles, and trinkets", "traditional items and innovative creations"]
+    applicableLocationTypes: ["market"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # GOVERNMENT-SPECIFIC TRAITS  
+  - id: "loc_gov_001"
+    tag: "administration"
+    templates:
+      - "This seat of local governance {governance_style} with {administrative_features} that {community_interaction}"
+    variables:
+      governance_style: ["operates with transparent processes", "maintains traditional protocols", "adapts to community needs", "balances formality with accessibility", "emphasizes collaborative decision-making", "upholds established procedures"]
+      administrative_features: ["public meeting spaces", "record-keeping facilities", "consultation areas", "ceremonial chambers", "document archives", "community bulletin areas"]
+      community_interaction: ["encourages citizen participation", "provides easy access to officials", "facilitates public discourse", "supports community initiatives", "maintains open communication", "fosters civic engagement"]
+    applicableLocationTypes: ["government", "civic"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # STREET-SPECIFIC TRAITS
+  - id: "loc_str_001"
+    tag: "thoroughfare"
+    templates:
+      - "This {street_type} {street_character} and serves as {street_function}"
+    variables:
+      street_type: ["winding pathway", "broad avenue", "cobbled lane", "tree-lined street", "busy thoroughfare", "quiet walkway"]
+      street_character: ["connects important areas with charm", "provides pleasant passage through the district", "offers scenic views during travel", "facilitates easy movement between destinations", "creates natural gathering spots along its length", "maintains a welcoming atmosphere for pedestrians"]
+      street_function: ["a vital link in the community", "a social space for chance encounters", "a route that showcases local character", "a pathway that brings people together", "a corridor that defines neighborhood boundaries", "a venue for impromptu community interactions"]
+    applicableLocationTypes: ["street"]
+    applicableAncestryGroups: []
+    applicableRoles: []

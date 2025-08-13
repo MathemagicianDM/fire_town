@@ -147,6 +147,7 @@ class BufferedProviderListFireStore<T extends JsonSerializable>
   // Initialize from FirestoreService
   Future<void> initialize() async {
     await baseNotifier.load();
+    if (!mounted) return;
     state = baseNotifier.state;
     _isDirty = false;
   }

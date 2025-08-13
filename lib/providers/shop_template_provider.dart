@@ -19,6 +19,9 @@ class ShopTemplateNotifier extends StateNotifier<List<ShopTemplate>> {
       
       // Listen to the document stream - get the first value
       await for (String? jsonString in firestoreService.getDocString(ListType.shopTemplate, _ref)) {
+        // Check if the provider is still mounted before updating state
+        if (!mounted) return;
+        
         if (jsonString != null && jsonString.isNotEmpty) {
           final decoded = jsonDecode(jsonString);
           List<dynamic> templatesData;
@@ -28,22 +31,24 @@ class ShopTemplateNotifier extends StateNotifier<List<ShopTemplate>> {
           } else if (decoded is List) {
             templatesData = decoded;
           } else {
-            state = [];
+            if (mounted) state = [];
             break;
           }
 
-          state = templatesData
-              .map((templateJson) => ShopTemplate.fromJson(templateJson))
-              .toList();
+          if (mounted) {
+            state = templatesData
+                .map((templateJson) => ShopTemplate.fromJson(templateJson))
+                .toList();
+          }
         } else {
-          state = [];
+          if (mounted) state = [];
         }
         break; // Get first value and exit
       }
     } catch (e) {
       // Handle error - could log or set error state
       debugPrint('Error loading shop templates: $e');
-      state = [];
+      if (mounted) state = [];
     }
   }
 
@@ -89,6 +94,8 @@ class ShopTemplateNotifier extends StateNotifier<List<ShopTemplate>> {
   }
 
   Future<void> _saveToFirestore() async {
+    if (!mounted) return;
+    
     try {
       final firestoreService = FirestoreService();
       final templatesJson = {
@@ -102,7 +109,7 @@ class ShopTemplateNotifier extends StateNotifier<List<ShopTemplate>> {
       );
     } catch (e) {
       debugPrint('Error saving shop templates to Firestore: $e');
-      throw Exception('Failed to save shop templates');
+      if (mounted) throw Exception('Failed to save shop templates');
     }
   }
 

@@ -9,6 +9,10 @@ import 'package:flutter/material.dart';
 
 import '/enums_and_maps.dart';
 import '../new_shops_models.dart';
+import '../location_trait_model.dart';
+import '../shop_trait_model.dart';
+import '../../services/description_service.dart';
+import '../../providers/shop_template_provider.dart';
 import 'package:uuid/uuid.dart';
 import '/globals.dart';
 
@@ -411,6 +415,7 @@ class Location implements JsonSerializable {
   final String blurbText;
   final String description;
   final LocationType locType;
+  final List<LocationTrait> traits;
 
   @override
   String compositeKey() {
@@ -422,9 +427,28 @@ class Location implements JsonSerializable {
       required this.locType,
       this.description = "Unknown Description",
       this.blurbText = "Unknown Blurb",
+      this.traits = const [],
       String? myID,
       List<String>? myEncounterIDs})
       : id = myID ?? _uuid.v4();
+
+  Location copyWith({
+    String? name,
+    String? id,
+    String? blurbText,
+    String? description,
+    LocationType? locType,
+    List<LocationTrait>? traits,
+  }) {
+    return Location(
+      name: name ?? this.name,
+      myID: id ?? this.id,
+      blurbText: blurbText ?? this.blurbText,
+      description: description ?? this.description,
+      locType: locType ?? this.locType,
+      traits: traits ?? this.traits,
+    );
+  }
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -433,6 +457,7 @@ class Location implements JsonSerializable {
       "blurbText": blurbText,
       "description": description,
       "locType": locType.name,
+      "traits": traits.map((t) => t.toJson()).toList(),
       "factoryType": "Location",
     };
   }
@@ -446,6 +471,12 @@ class Location implements JsonSerializable {
           name: json["name"],
           myID: json["id"],
           blurbText: json["blurbText"],
+          description: json["description"] ?? "Unknown Description",
+          traits: List<LocationTrait>.from(
+            (json["traits"] ?? [])
+                .map((t) => LocationTrait.fromJson2(t))
+                .toList(),
+          ),
           locType:
               LocationType.values.firstWhere((v) => v.name == json["locType"]),
         );
@@ -465,6 +496,12 @@ class Location implements JsonSerializable {
       name: json["name"],
       myID: json["id"],
       blurbText: json["blurbText"],
+      description: json["description"] ?? "Unknown Description",
+      traits: List<LocationTrait>.from(
+        (json["traits"] ?? [])
+            .map((t) => LocationTrait.fromJson2(t))
+            .toList(),
+      ),
       locType: LocationType.values.firstWhere((v) => v.name == json["locType"]),
     );
   }
@@ -541,6 +578,8 @@ class Shop extends Location {
   final String con;
   final ShopType type;
   final List<Service> services;
+  final List<ShopTrait> insideTraits;
+  final List<ShopTrait> outsideTraits;
 
   factory Shop.fromShop(
       {required Shop baseShop,
@@ -549,7 +588,9 @@ class Shop extends Location {
       String? con,
       List<Service>? services,
       String? name,
-      String? description}) {
+      String? description,
+      List<ShopTrait>? insideTraits,
+      List<ShopTrait>? outsideTraits}) {
     String blurbText =
         "${pro1 ?? baseShop.pro1} & ${pro2 ?? baseShop.pro2} but ${con ?? baseShop.con}";
     return Shop(
@@ -561,7 +602,10 @@ class Shop extends Location {
         myID: baseShop.id,
         myServices: services ?? baseShop.services,
         blurbText: blurbText,
-        description: description ?? baseShop.description);
+        description: description ?? baseShop.description,
+        traits: baseShop.traits,
+        insideTraits: insideTraits ?? baseShop.insideTraits,
+        outsideTraits: outsideTraits ?? baseShop.outsideTraits);
   }
   @override
   Container printSummary() {
@@ -742,12 +786,48 @@ class Shop extends Location {
       super.blurbText,
       super.description,
       super.locType = LocationType.shop,
+      super.traits,
       required this.type,
       required this.pro1,
       required this.pro2,
       required this.con,
-      List<Service>? myServices})
+      List<Service>? myServices,
+      this.insideTraits = const [],
+      this.outsideTraits = const []})
       : services = myServices ?? List.empty();
+
+  Shop copyWith({
+    String? name,
+    String? id,
+    String? blurbText,
+    String? description,
+    LocationType? locType,
+    List<LocationTrait>? traits,
+    String? pro1,
+    String? pro2,
+    String? con,
+    ShopType? type,
+    List<Service>? services,
+    List<ShopTrait>? insideTraits,
+    List<ShopTrait>? outsideTraits,
+  }) {
+    return Shop(
+      name: name ?? this.name,
+      myID: id ?? this.id,
+      blurbText: blurbText ?? this.blurbText,
+      description: description ?? this.description,
+      locType: locType ?? this.locType,
+      traits: traits ?? this.traits,
+      pro1: pro1 ?? this.pro1,
+      pro2: pro2 ?? this.pro2,
+      con: con ?? this.con,
+      type: type ?? this.type,
+      myServices: services ?? this.services,
+      insideTraits: insideTraits ?? this.insideTraits,
+      outsideTraits: outsideTraits ?? this.outsideTraits,
+    );
+  }
+
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> startingMap = super.toJson();
@@ -757,6 +837,8 @@ class Shop extends Location {
       "con": con,
       "type": type.name,
       "services": services.map((s) => s.toJson()).toList(),
+      "insideTraits": insideTraits.map((t) => t.toJson()).toList(),
+      "outsideTraits": outsideTraits.map((t) => t.toJson()).toList(),
       "factoryType": "Shop",
     });
     return startingMap;
@@ -772,10 +854,21 @@ class Shop extends Location {
         type: ShopType.values.firstWhere((v) => v.name == json["type"]),
         myServices:
             (json["services"] as List).map((s) => Service.fromJson(s)).toList(),
+        insideTraits: List<ShopTrait>.from(
+          (json["insideTraits"] ?? [])
+              .map((t) => ShopTrait.fromJson2(t))
+              .toList(),
+        ),
+        outsideTraits: List<ShopTrait>.from(
+          (json["outsideTraits"] ?? [])
+              .map((t) => ShopTrait.fromJson2(t))
+              .toList(),
+        ),
         myID: location.id,
         name: location.name,
         blurbText: location.blurbText,
-        description: location.description));
+        description: location.description,
+        traits: location.traits));
   }
 }
 
@@ -1453,6 +1546,40 @@ Future<void> addRandomShopNoCommit(
       ));
     }
 
+    // Create initial shop without traits for trait generation
+    Shop tempShop = Shop(
+        con: con,
+        pro1: pro1,
+        pro2: pro2,
+        blurbText: "$pro1 & $pro2 but $con",
+        name: newName,
+        type: myType,
+        myID: myShopID,
+        myServices: services,
+        traits: [],
+        insideTraits: [],
+        outsideTraits: []);
+
+    // Generate initial traits for the shop
+    final shopTemplates = ref.read(shopTemplateProvider);
+    final descriptionService = DescriptionService();
+    
+    // Generate outside traits (1 trait)
+    final outsideTraits = descriptionService.generateShopTraits(
+      shop: tempShop,
+      templates: shopTemplates,
+      descriptionType: 'outside',
+      maxTraits: 1,
+    );
+    
+    // Generate inside traits (1 trait)
+    final insideTraits = descriptionService.generateShopTraits(
+      shop: tempShop,
+      templates: shopTemplates,
+      descriptionType: 'inside',
+      maxTraits: 1,
+    );
+
     Shop newShop = Shop(
         con: con,
         pro1: pro1,
@@ -1461,7 +1588,10 @@ Future<void> addRandomShopNoCommit(
         name: newName,
         type: myType,
         myID: myShopID,
-        myServices: services);
+        myServices: services,
+        traits: [],
+        insideTraits: insideTraits,
+        outsideTraits: outsideTraits);
 
     // print(myShopID);
     locationsPN.add(newShop);

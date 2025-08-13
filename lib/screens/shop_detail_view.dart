@@ -7,6 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firetown/screens/navrail.dart';
 import "package:firetown/screens/service_edit.dart";
 import "../enums_and_maps.dart";
+import '../models/shop_trait_model.dart';
+import 'dart:math';
 
 // import 'bottombar.dart';
 import "../globals.dart";
@@ -127,47 +129,36 @@ class ShopDetailItem extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Shop Description',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                Row(
-                  children: [
-                    if (shop.description.isNotEmpty)
-                      IconButton(
-                        icon: const Icon(Icons.refresh),
-                        tooltip: 'Regenerate description',
-                        onPressed: () => _regenerateShopDescription(ref, shop),
-                      ),
-                    IconButton(
-                      icon: const Icon(Icons.auto_awesome),
-                      tooltip: 'Generate description',
-                      onPressed: () => _generateShopDescription(ref, shop),
-                    ),
-                  ],
-                ),
-              ],
+            Text(
+              'Shop Descriptions',
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 12),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.circular(8),
-                color: shop.description.isEmpty ? Colors.grey.shade50 : Colors.white,
-              ),
-              child: Text(
-                shop.description.isEmpty ? 'No description generated' : shop.description,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: shop.description.isEmpty ? Colors.grey.shade600 : Colors.black87,
-                  fontStyle: shop.description.isEmpty ? FontStyle.italic : FontStyle.normal,
-                ),
-              ),
+            const SizedBox(height: 16),
+            
+            // Outside Description Section
+            _buildDescriptionTypeSection(
+              context: context,
+              ref: ref,
+              shop: shop,
+              title: 'Outside Description',
+              traits: shop.outsideTraits,
+              descriptionType: 'outside',
+              color: Colors.green.shade50,
+              borderColor: Colors.green.shade300,
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Inside Description Section
+            _buildDescriptionTypeSection(
+              context: context,
+              ref: ref,
+              shop: shop,
+              title: 'Inside Description',
+              traits: shop.insideTraits,
+              descriptionType: 'inside',
+              color: Colors.blue.shade50,
+              borderColor: Colors.blue.shade300,
             ),
           ],
         ),
@@ -175,28 +166,124 @@ class ShopDetailItem extends HookConsumerWidget {
     );
   }
 
-  void _generateShopDescription(WidgetRef ref, Shop shop) async {
+  Widget _buildDescriptionTypeSection({
+    required BuildContext context,
+    required WidgetRef ref,
+    required Shop shop,
+    required String title,
+    required List<ShopTrait> traits,
+    required String descriptionType,
+    required Color color,
+    required Color borderColor,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.auto_awesome),
+                  tooltip: 'Generate $descriptionType traits',
+                  onPressed: () => _generateShopTraits(ref, shop, descriptionType),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  tooltip: 'Add more $descriptionType traits',
+                  onPressed: () => _addMoreShopTraits(ref, shop, descriptionType),
+                ),
+                if (traits.isNotEmpty)
+                  IconButton(
+                    icon: const Icon(Icons.refresh),
+                    tooltip: 'Regenerate all $descriptionType traits',
+                    onPressed: () => _regenerateShopTraits(ref, shop, descriptionType),
+                  ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(color: borderColor),
+            borderRadius: BorderRadius.circular(8),
+            color: traits.isEmpty ? Colors.grey.shade50 : color,
+          ),
+          child: traits.isEmpty
+              ? Text(
+                  'No $descriptionType traits generated',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey.shade600,
+                    fontStyle: FontStyle.italic,
+                  ),
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: traits.map((trait) => _buildTraitWidget(context, ref, shop, trait, descriptionType)).toList(),
+                ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTraitWidget(BuildContext context, WidgetRef ref, Shop shop, ShopTrait trait, String descriptionType) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              trait.description,
+              style: const TextStyle(fontSize: 14),
+            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.refresh, size: 16),
+            tooltip: 'Reroll this trait',
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(minWidth: 24, minHeight: 24),
+            onPressed: () => _rerollIndividualTrait(ref, shop, trait, descriptionType),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _generateShopTraits(WidgetRef ref, Shop shop, String descriptionType) async {
     try {
       final shopTemplates = ref.read(shopTemplateProvider);
       final descriptionService = DescriptionService();
       
-      final newDescription = descriptionService.generateFullShopDescription(
+      final newTraits = descriptionService.generateShopTraits(
         shop: shop,
-        shopTemplates: shopTemplates,
+        templates: shopTemplates,
+        descriptionType: descriptionType,
         maxTraits: 2,
       );
       
-      if (newDescription != null) {
-        // Update the shop with new description
+      if (newTraits.isNotEmpty) {
+        // Update the shop with new traits
         final locationsListPN = ref.read(locationsProvider.notifier);
-        final updatedShop = Shop.fromShop(baseShop: shop, description: newDescription);
+        final updatedShop = descriptionType == 'inside'
+            ? Shop.fromShop(baseShop: shop, insideTraits: [...shop.insideTraits, ...newTraits])
+            : Shop.fromShop(baseShop: shop, outsideTraits: [...shop.outsideTraits, ...newTraits]);
         
         locationsListPN.replace(shop, updatedShop);
         await locationsListPN.commitChanges();
         
         if (!ref.context.mounted) return;
         ScaffoldMessenger.of(ref.context).showSnackBar(
-          const SnackBar(content: Text('Shop description generated!')),
+          SnackBar(content: Text('${newTraits.length} $descriptionType trait(s) generated!')),
         );
       } else {
         if (!ref.context.mounted) return;
@@ -207,33 +294,95 @@ class ShopDetailItem extends HookConsumerWidget {
     } catch (e) {
       if (!ref.context.mounted) return;
       ScaffoldMessenger.of(ref.context).showSnackBar(
-        SnackBar(content: Text('Error generating description: $e')),
+        SnackBar(content: Text('Error generating traits: $e')),
       );
     }
   }
 
-  void _regenerateShopDescription(WidgetRef ref, Shop shop) async {
+  void _addMoreShopTraits(WidgetRef ref, Shop shop, String descriptionType) async {
     try {
       final shopTemplates = ref.read(shopTemplateProvider);
       final descriptionService = DescriptionService();
       
-      final newDescription = descriptionService.generateFullShopDescription(
+      // Get existing trait tags to avoid conflicts
+      final existingTraits = descriptionType == 'inside' ? shop.insideTraits : shop.outsideTraits;
+      final existingTags = existingTraits.map((trait) => trait.tag).toSet();
+      
+      // Filter templates to exclude already used tags
+      final availableTemplates = shopTemplates.where((template) =>
+        template.descriptionType == descriptionType &&
+        template.applicableShopTypes.contains(shop.type) &&
+        !existingTags.contains(template.tag)
+      ).toList();
+      
+      if (availableTemplates.isEmpty) {
+        if (!ref.context.mounted) return;
+        ScaffoldMessenger.of(ref.context).showSnackBar(
+          const SnackBar(content: Text('No additional trait templates available')),
+        );
+        return;
+      }
+      
+      final newTraits = descriptionService.generateShopTraits(
         shop: shop,
-        shopTemplates: shopTemplates,
-        maxTraits: 2,
+        templates: availableTemplates,
+        descriptionType: descriptionType,
+        maxTraits: 1, // Add one more trait at a time
       );
       
-      if (newDescription != null) {
-        // Update the shop with new description
+      if (newTraits.isNotEmpty) {
+        // Add to existing traits
         final locationsListPN = ref.read(locationsProvider.notifier);
-        final updatedShop = Shop.fromShop(baseShop: shop, description: newDescription);
+        final updatedShop = descriptionType == 'inside'
+            ? Shop.fromShop(baseShop: shop, insideTraits: [...shop.insideTraits, ...newTraits])
+            : Shop.fromShop(baseShop: shop, outsideTraits: [...shop.outsideTraits, ...newTraits]);
         
         locationsListPN.replace(shop, updatedShop);
         await locationsListPN.commitChanges();
         
         if (!ref.context.mounted) return;
         ScaffoldMessenger.of(ref.context).showSnackBar(
-          const SnackBar(content: Text('Shop description regenerated!')),
+          SnackBar(content: Text('Added ${newTraits.length} more $descriptionType trait(s)!')),
+        );
+      } else {
+        if (!ref.context.mounted) return;
+        ScaffoldMessenger.of(ref.context).showSnackBar(
+          const SnackBar(content: Text('No suitable templates found for new traits')),
+        );
+      }
+    } catch (e) {
+      if (!ref.context.mounted) return;
+      ScaffoldMessenger.of(ref.context).showSnackBar(
+        SnackBar(content: Text('Error adding traits: $e')),
+      );
+    }
+  }
+
+  void _regenerateShopTraits(WidgetRef ref, Shop shop, String descriptionType) async {
+    try {
+      final shopTemplates = ref.read(shopTemplateProvider);
+      final descriptionService = DescriptionService();
+      
+      final newTraits = descriptionService.generateShopTraits(
+        shop: shop,
+        templates: shopTemplates,
+        descriptionType: descriptionType,
+        maxTraits: 2,
+      );
+      
+      if (newTraits.isNotEmpty) {
+        // Replace existing traits with new ones
+        final locationsListPN = ref.read(locationsProvider.notifier);
+        final updatedShop = descriptionType == 'inside'
+            ? Shop.fromShop(baseShop: shop, insideTraits: newTraits)
+            : Shop.fromShop(baseShop: shop, outsideTraits: newTraits);
+        
+        locationsListPN.replace(shop, updatedShop);
+        await locationsListPN.commitChanges();
+        
+        if (!ref.context.mounted) return;
+        ScaffoldMessenger.of(ref.context).showSnackBar(
+          SnackBar(content: Text('$descriptionType traits regenerated!')),
         );
       } else {
         if (!ref.context.mounted) return;
@@ -244,7 +393,60 @@ class ShopDetailItem extends HookConsumerWidget {
     } catch (e) {
       if (!ref.context.mounted) return;
       ScaffoldMessenger.of(ref.context).showSnackBar(
-        SnackBar(content: Text('Error regenerating description: $e')),
+        SnackBar(content: Text('Error regenerating traits: $e')),
+      );
+    }
+  }
+
+  void _rerollIndividualTrait(WidgetRef ref, Shop shop, ShopTrait trait, String descriptionType) async {
+    try {
+      final shopTemplates = ref.read(shopTemplateProvider);
+      final descriptionService = DescriptionService();
+      
+      // Generate a new trait with the same tag using existing method
+      final newTraits = descriptionService.generateShopTraits(
+        shop: shop,
+        templates: shopTemplates.where((template) => 
+          template.tag == trait.tag && 
+          template.descriptionType == descriptionType
+        ).toList(),
+        descriptionType: descriptionType,
+        maxTraits: 1,
+      );
+      
+      if (newTraits.isNotEmpty) {
+        final newTrait = newTraits.first;
+        
+        // Update the shop with the rerolled trait
+        final locationsListPN = ref.read(locationsProvider.notifier);
+        
+        List<ShopTrait> updatedTraits;
+        if (descriptionType == 'inside') {
+          updatedTraits = shop.insideTraits.map((t) => t.id == trait.id ? newTrait : t).toList();
+          final updatedShop = Shop.fromShop(baseShop: shop, insideTraits: updatedTraits);
+          locationsListPN.replace(shop, updatedShop);
+        } else {
+          updatedTraits = shop.outsideTraits.map((t) => t.id == trait.id ? newTrait : t).toList();
+          final updatedShop = Shop.fromShop(baseShop: shop, outsideTraits: updatedTraits);
+          locationsListPN.replace(shop, updatedShop);
+        }
+        
+        await locationsListPN.commitChanges();
+        
+        if (!ref.context.mounted) return;
+        ScaffoldMessenger.of(ref.context).showSnackBar(
+          const SnackBar(content: Text('Trait rerolled!')),
+        );
+      } else {
+        if (!ref.context.mounted) return;
+        ScaffoldMessenger.of(ref.context).showSnackBar(
+          const SnackBar(content: Text('No alternative templates found for this trait')),
+        );
+      }
+    } catch (e) {
+      if (!ref.context.mounted) return;
+      ScaffoldMessenger.of(ref.context).showSnackBar(
+        SnackBar(content: Text('Error rerolling trait: $e')),
       );
     }
   }
@@ -473,7 +675,127 @@ Widget _buildOwnersSection(BuildContext context, WidgetRef ref, Shop shop) {
 }
 
 Widget descriptionView(BuildContext context, WidgetRef ref, Shop shop) {
-  return Text(shop.description);
+  return SingleChildScrollView(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Outside Description Section
+        Card(
+          margin: const EdgeInsets.only(bottom: 16),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.store_mall_directory, color: Colors.green.shade600),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Outside Description',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.green.shade700,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                if (shop.outsideTraits.isEmpty)
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Text(
+                      'No outside traits generated yet',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  )
+                else
+                  ...shop.outsideTraits.map((trait) => Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade50,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.green.shade200),
+                    ),
+                    child: Text(
+                      trait.description,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  )),
+              ],
+            ),
+          ),
+        ),
+        
+        // Inside Description Section
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.home, color: Colors.blue.shade600),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Inside Description',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.blue.shade700,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                if (shop.insideTraits.isEmpty)
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Text(
+                      'No inside traits generated yet',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  )
+                else
+                  ...shop.insideTraits.map((trait) => Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.blue.shade200),
+                    ),
+                    child: Text(
+                      trait.description,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  )),
+              ],
+            ),
+          ),
+        ),
+        
+      ],
+    ),
+  );
 }
 
 Widget peopleView(BuildContext context, WidgetRef ref, Shop shop) {

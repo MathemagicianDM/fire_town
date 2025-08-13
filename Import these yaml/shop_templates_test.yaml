@@ -1,0 +1,251 @@
+templates:
+  # OUTSIDE DESCRIPTIONS - What you see from the street
+  
+  # TAVERN OUTSIDE
+  - id: "shop_out_tavern_001"
+    tag: "exterior"
+    descriptionType: "outside"
+    templates:
+      - "The {tavern_exterior} displays a {hanging_sign} that {sign_condition}, while {exterior_activity}"
+    variables:
+      tavern_exterior: ["weathered timber facade", "stone and wood construction", "inviting entrance", "rustic building front", "charming establishment exterior"]
+      hanging_sign: ["carved wooden sign", "painted metal placard", "ornate hanging board", "simple but clear marker", "decorative entrance sign"]
+      sign_condition: ["creaks gently in the breeze", "bears the marks of weather and time", "has been recently repainted", "shows skilled craftsmanship", "catches the light beautifully"]
+      exterior_activity: ["warm light spills from frosted windows", "the sound of conversation drifts outside", "patrons gather near the entrance", "smoke rises from the chimney", "the aroma of cooking food welcomes visitors"]
+    applicableShopTypes: ["tavern"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "shop_out_tavern_002"
+    tag: "atmosphere"
+    descriptionType: "outside"
+    templates:
+      - "{exterior_ambiance} surrounds the building, with {sensory_details} that {visitor_effect}"
+    variables:
+      exterior_ambiance: ["A welcoming atmosphere", "An air of conviviality", "A sense of warmth and comfort", "An inviting energy", "A homely feeling"]
+      sensory_details: ["the gentle hum of voices and clinking glasses", "enticing aromas wafting from kitchen vents", "golden light streaming through windows", "the occasional burst of laughter", "music that seems to beckon travelers"]
+      visitor_effect: ["draws weary travelers inside", "makes passersby pause and consider entering", "creates anticipation for good food and drink", "suggests stories and companionship await", "promises respite from the road"]
+    applicableShopTypes: ["tavern"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # HERBALIST OUTSIDE
+  - id: "shop_out_herb_001"
+    tag: "exterior"
+    descriptionType: "outside"
+    templates:
+      - "The shop front features {garden_display} where {plant_arrangement}, while {shop_markers}"
+    variables:
+      garden_display: ["hanging planters with various herbs", "window boxes overflowing with greenery", "a small garden plot beside the entrance", "carefully tended herb patches", "aromatic plants in decorative containers"]
+      plant_arrangement: ["medicinal plants grow in organized clusters", "colorful flowers mix with practical herbs", "rare specimens catch the educated eye", "seasonal varieties create changing displays", "both common and exotic plants thrive"]
+      shop_markers: ["dried herb bundles hang from the eaves", "a mortar and pestle symbol marks the door", "the scent of sage and lavender perfumes the air", "hand-painted signs identify plant varieties", "wind chimes made from seed pods create gentle music"]
+    applicableShopTypes: ["herbalist"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # SMITH OUTSIDE
+  - id: "shop_out_smith_001"
+    tag: "exterior"
+    descriptionType: "outside"
+    templates:
+      - "The {forge_structure} shows {forge_activity}, with {exterior_evidence} visible from the street"
+    variables:
+      forge_structure: ["stone and iron workshop", "sturdy brick building", "reinforced timber construction", "purpose-built smithy", "traditional forge structure"]
+      forge_activity: ["smoke rising from the chimney", "the glow of hot coals through openings", "occasional showers of sparks", "the rhythmic sound of hammer on anvil", "heat waves shimmering from vents"]
+      exterior_evidence: ["finished metalwork displayed in windows", "a water barrel for quenching steaming nearby", "coal and iron stock piled under cover", "anvil sounds echoing from within", "the distinctive smell of hot metal and coal smoke"]
+    applicableShopTypes: ["smith"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # GENERAL STORE OUTSIDE
+  - id: "shop_out_general_001"
+    tag: "exterior"
+    descriptionType: "outside"
+    templates:
+      - "The store front displays {merchandise_preview} with {window_arrangement} and {entrance_details}"
+    variables:
+      merchandise_preview: ["samples of various goods in the windows", "an eclectic mix of useful items", "seasonal merchandise prominently featured", "both practical and decorative items", "a carefully curated selection of wares"]
+      window_arrangement: ["organized displays that catch the eye", "practical items mixed with curiosities", "clear pricing and product information", "rotating featured items", "inviting arrangements that draw browsers"]
+      entrance_details: ["a sturdy door with brass fittings", "a bell that chimes when opened", "posted hours and services offered", "a welcome mat worn smooth by many feet", "baskets of goods flanking the doorway"]
+    applicableShopTypes: ["generalStore"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # INSIDE DESCRIPTIONS - What you experience when you enter
+
+  # TAVERN INSIDE
+  - id: "shop_in_tavern_001"
+    tag: "atmosphere"
+    descriptionType: "inside"
+    templates:
+      - "The interior radiates {interior_warmth} with {lighting_description} creating {ambiance_effect}"
+    variables:
+      interior_warmth: ["welcoming comfort", "homey hospitality", "convivial energy", "relaxed friendliness", "genuine warmth"]
+      lighting_description: ["flickering candles on wooden tables", "oil lamps casting dancing shadows", "firelight from a stone hearth", "warm lanterns hanging from beams", "soft illumination from multiple sources"]
+      ambiance_effect: ["intimate spaces for quiet conversation", "a gathering place where strangers become friends", "an atmosphere perfect for sharing stories", "a sense that time moves more slowly here", "the feeling of being welcomed home"]
+    applicableShopTypes: ["tavern"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "shop_in_tavern_002"
+    tag: "layout"
+    descriptionType: "inside"
+    templates:
+      - "The main room features {seating_arrangement} around {central_feature}, while {additional_spaces}"
+    variables:
+      seating_arrangement: ["sturdy wooden tables and benches", "a mix of communal and private seating", "comfortable chairs arranged for conversation", "various sized tables to accommodate different groups", "booth seating along the walls"]
+      central_feature: ["a large stone fireplace", "the main bar with polished wood surface", "an open area for entertainment", "a central pillar decorated with local memorabilia", "a space that naturally draws people together"]
+      additional_spaces: ["smaller alcoves offer privacy", "a performance area hosts musicians", "the kitchen door reveals glimpses of culinary activity", "stairs lead to guest rooms above", "cozy corners perfect for intimate discussions"]
+    applicableShopTypes: ["tavern"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "shop_in_tavern_003"
+    tag: "services"
+    descriptionType: "inside"
+    templates:
+      - "The establishment offers {food_service} alongside {drink_selection} with {special_features}"
+    variables:
+      food_service: ["hearty meals prepared with local ingredients", "simple but satisfying fare", "specialties that reflect regional cuisine", "comfort food that satisfies hungry travelers", "daily specials using fresh market ingredients"]
+      drink_selection: ["local ales and imported spirits", "wines from nearby vineyards", "specialty drinks created by the proprietor", "traditional beverages and exotic imports", "both strong drinks and mild refreshments"]
+      special_features: ["rooms available for overnight guests", "stable services for travelers' mounts", "message posting for the community", "private meeting rooms for business", "entertainment on certain evenings"]
+    applicableShopTypes: ["tavern"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # HERBALIST INSIDE
+  - id: "shop_in_herb_001"
+    tag: "organization"
+    descriptionType: "inside"
+    templates:
+      - "The interior showcases {storage_system} with {plant_preservation} and {workspace_arrangement}"
+    variables:
+      storage_system: ["shelves lined with labeled jars and containers", "organized sections for different plant types", "hanging bundles of dried herbs", "climate-controlled storage areas", "carefully categorized medicinal supplies"]
+      plant_preservation: ["herbs drying in optimal conditions", "tinctures aging in dark bottles", "fresh plants maintained in living displays", "seeds stored in protective containers", "essential oils in specially sealed vessels"]
+      workspace_arrangement: ["a preparation area with mortars and pestles", "distillation equipment for extracts", "mixing stations with precise measuring tools", "consultation space for customer meetings", "reference books and plant identification guides"]
+    applicableShopTypes: ["herbalist"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "shop_in_herb_002"
+    tag: "atmosphere"
+    descriptionType: "inside"
+    templates:
+      - "The space emanates {aromatic_environment} while {sensory_experience} creates {healing_ambiance}"
+    variables:
+      aromatic_environment: ["complex layers of herbal scents", "the gentle fragrance of healing plants", "earthy aromas mixed with floral notes", "calming lavender undertones", "the distinctive smell of dried medicinal herbs"]
+      sensory_experience: ["soft rustling of hanging plant bundles", "the quiet bubbling of distillation apparatus", "sunlight filtering through plant-filled windows", "the texture of rough wooden surfaces worn smooth by use", "gentle sounds of preparation work"]
+      healing_ambiance: ["a sense of natural wellness and balance", "confidence in traditional healing wisdom", "peaceful contemplation of nature's remedies", "trust in time-tested herbal knowledge", "comfort in the connection between plants and health"]
+    applicableShopTypes: ["herbalist"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # SMITH INSIDE
+  - id: "shop_in_smith_001"
+    tag: "workspace"
+    descriptionType: "inside"
+    templates:
+      - "The forge dominates the space with {fire_management} while {tool_organization} supports {work_process}"
+    variables:
+      fire_management: ["carefully maintained coal fires burning at precise temperatures", "bellows systems controlling airflow and heat", "multiple forges for different types of work", "quenching stations with water and oil", "temperature control that requires skill and experience"]
+      tool_organization: ["anvils of various sizes positioned for different projects", "hammers and tongs arranged within easy reach", "specialized tools hanging from wall mounts", "measuring devices and forming blocks", "finishing equipment for detailed work"]
+      work_process: ["raw metal stock organized by type and size", "work in progress at various stages", "finished pieces displayed as examples", "custom orders tracked and prioritized", "a systematic approach to metalworking craftsmanship"]
+    applicableShopTypes: ["smith"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "shop_in_smith_002"
+    tag: "atmosphere"
+    descriptionType: "inside"
+    templates:
+      - "The environment pulses with {forge_energy} as {sensory_intensity} demonstrates {craftsmanship_dedication}"
+    variables:
+      forge_energy: ["the rhythmic beating of hammer on hot metal", "intense heat radiating from multiple fire sources", "the controlled power of metalworking", "focused energy of creative transformation", "the raw power of fire and iron"]
+      sensory_intensity: ["sparks fly in controlled showers", "the hiss of hot metal meeting water", "smoke and heat create a demanding environment", "the ring of metal on metal echoes through the space", "the smell of coal fire and hot iron permeates everything"]
+      craftsmanship_dedication: ["years of skill evident in every tool placement", "the precision of experienced metalworking", "attention to detail in both process and product", "pride in traditional techniques", "commitment to quality that takes time and patience"]
+    applicableShopTypes: ["smith"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # GENERAL STORE INSIDE
+  - id: "shop_in_general_001"
+    tag: "organization"
+    descriptionType: "inside"
+    templates:
+      - "The interior maximizes space with {storage_solutions} where {product_variety} serves {customer_convenience}"
+    variables:
+      storage_solutions: ["tall shelves reaching to the ceiling", "organized sections for different product categories", "efficient use of every available space", "clear pathways between well-stocked displays", "accessible storage that makes finding items easy"]
+      product_variety: ["household necessities mix with specialty items", "practical tools alongside decorative goods", "seasonal items complement year-round staples", "local products share space with imported goods", "both common needs and unique finds"]
+      customer_convenience: ["everything a person might need in one location", "logical organization that speeds shopping", "helpful product placement and clear labeling", "services that save customers time and effort", "the comfort of reliable availability"]
+    applicableShopTypes: ["generalStore"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  - id: "shop_in_general_002"
+    tag: "atmosphere"
+    descriptionType: "inside"
+    templates:
+      - "The store maintains {business_character} with {customer_interaction} that {community_role}"
+    variables:
+      business_character: ["efficient organization mixed with personal service", "practical solutions with friendly advice", "reliable availability with helpful expertise", "steady service with community knowledge", "thorough stock with personal recommendations"]
+      customer_interaction: ["proprietors who know their customers' needs", "helpful suggestions based on experience", "willingness to special order unusual requests", "patient assistance with complex purchases", "genuine interest in customer satisfaction"]
+      community_role: ["serves as an information hub for local news", "connects people with goods and services they need", "provides stability and reliability in daily life", "supports the community through consistent service", "bridges individual needs with practical solutions"]
+    applicableShopTypes: ["generalStore"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # CLOTHIER INSIDE
+  - id: "shop_in_cloth_001"
+    tag: "materials"
+    descriptionType: "inside"
+    templates:
+      - "The shop displays {fabric_selection} with {textile_organization} and {craftsmanship_tools}"
+    variables:
+      fabric_selection: ["bolts of fine cloth in various colors and textures", "specialty materials for different purposes", "both practical and luxurious textile options", "seasonal fabrics and timeless classics", "local weaves mixed with imported textiles"]
+      textile_organization: ["samples arranged to show quality and variety", "organized storage that preserves fabric condition", "display methods that highlight textile beauty", "systematic arrangement by type and use", "protective storage for delicate materials"]
+      craftsmanship_tools: ["precision cutting tools and measuring devices", "sewing equipment for detailed work", "pattern materials and design references", "fitting areas for custom work", "specialized tools for different textile techniques"]
+    applicableShopTypes: ["clothier"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # JEWELER INSIDE
+  - id: "shop_in_jewel_001"
+    tag: "security"
+    descriptionType: "inside"
+    templates:
+      - "The workspace balances {display_approach} with {protection_measures} while {craft_precision}"
+    variables:
+      display_approach: ["carefully lit showcases highlighting precious items", "selective displays that emphasize quality", "secure but accessible viewing arrangements", "presentation that honors the beauty of fine work", "organized displays that tell the story of craftsmanship"]
+      protection_measures: ["discrete but effective security arrangements", "protective storage for valuable materials", "careful access control for precious items", "insurance through quality construction and location", "trust built through reputation and skill"]
+      craft_precision: ["specialized tools for detailed metalwork", "magnification equipment for intricate tasks", "measuring devices for exact specifications", "materials storage that maintains purity", "workspace organization that supports precision work"]
+    applicableShopTypes: ["jeweler"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # TEMPLE INSIDE
+  - id: "shop_in_temple_001"
+    tag: "sacred_space"
+    descriptionType: "inside"
+    templates:
+      - "The interior creates {spiritual_atmosphere} through {design_elements} that {worship_facilitation}"
+    variables:
+      spiritual_atmosphere: ["reverent calm that encourages contemplation", "uplifting energy that inspires devotion", "peaceful sanctuary from worldly concerns", "sacred space that connects the earthly and divine", "welcoming environment for spiritual growth"]
+      design_elements: ["architecture that draws the eye and spirit upward", "symbolic decorations with deep meaning", "carefully planned acoustics for prayer and song", "lighting that creates appropriate mood for worship", "spatial arrangement that supports various religious activities"]
+      worship_facilitation: ["accommodates both individual prayer and group ceremonies", "provides space for religious education and guidance", "supports the community's spiritual needs", "offers resources for religious study and growth", "creates opportunities for spiritual fellowship"]
+    applicableShopTypes: ["temple"]
+    applicableAncestryGroups: []
+    applicableRoles: []
+
+  # MAGIC SHOP INSIDE
+  - id: "shop_in_magic_001"
+    tag: "mystical"
+    descriptionType: "inside"
+    templates:
+      - "The atmosphere hums with {magical_energy} as {arcane_elements} create {mystical_ambiance}"
+    variables:
+      magical_energy: ["subtle currents of mystical power", "the residual effects of enchanted items", "carefully controlled magical forces", "the presence of items touched by otherworldly power", "energy that speaks to those sensitive to magic"]
+      arcane_elements: ["shelves lined with spell components and reagents", "books of magical knowledge and instruction", "enchanted items glowing with inner light", "mystical symbols carved into wood and stone", "the tools and apparatus of magical practice"]
+      mystical_ambiance: ["wonder mixed with healthy respect for powerful forces", "the promise of solutions beyond mundane means", "access to knowledge and power from other realms", "the excitement of possibilities beyond normal experience", "confidence in magic as both art and science"]
+    applicableShopTypes: ["magic"]
+    applicableAncestryGroups: []
+    applicableRoles: []

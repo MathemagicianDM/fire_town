@@ -8,6 +8,7 @@ import '../models/description_constants.dart';
 import '../providers/physical_template_provider.dart';
 import '../providers/clothing_template_provider.dart';
 import '../providers/shop_template_provider.dart';
+import '../providers/location_template_provider.dart';
 import '../providers/anecestries_provider.dart';
 import '../enums_and_maps.dart';
 
@@ -26,14 +27,12 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
   final _physicalYamlController = TextEditingController();
   final _clothingYamlController = TextEditingController();
   final _shopYamlController = TextEditingController();
-  final _validationResults = <String>[];
-  final _previewResults = <String>[];
-  bool _isValidating = false;
+  final _locationYamlController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -42,6 +41,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     _physicalYamlController.dispose();
     _clothingYamlController.dispose();
     _shopYamlController.dispose();
+    _locationYamlController.dispose();
     super.dispose();
   }
 
@@ -56,6 +56,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
             Tab(text: 'Physical Templates'),
             Tab(text: 'Clothing Templates'),
             Tab(text: 'Shop Templates'),
+            Tab(text: 'Location Templates'),
             Tab(text: 'Import/Export'),
           ],
         ),
@@ -66,6 +67,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
           _buildPhysicalTemplatesTab(),
           _buildClothingTemplatesTab(),
           _buildShopTemplatesTab(),
+          _buildLocationTemplatesTab(),
           _buildImportExportTab(),
         ],
       ),
@@ -160,14 +162,14 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
           ),
           const SizedBox(height: 16),
           
-          // File Upload Buttons
+          // File Upload Buttons Row 1
           Row(
             children: [
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () => _pickYamlFile(isPhysical: true),
                   icon: const Icon(Icons.upload_file),
-                  label: const Text('Upload Physical Templates YAML'),
+                  label: const Text('Upload Physical Templates'),
                 ),
               ),
               const SizedBox(width: 16),
@@ -175,127 +177,50 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
                 child: ElevatedButton.icon(
                   onPressed: () => _pickYamlFile(isPhysical: false),
                   icon: const Icon(Icons.upload_file),
-                  label: const Text('Upload Clothing Templates YAML'),
+                  label: const Text('Upload Clothing Templates'),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
           
+          // File Upload Buttons Row 2
           Row(
             children: [
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: _pickShopYamlFile,
                   icon: const Icon(Icons.upload_file),
-                  label: const Text('Upload Shop Templates YAML'),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          
-          // Import Buttons
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: _isValidating ? null : _previewTemplates,
-                  child: _isValidating 
-                    ? const CircularProgressIndicator()
-                    : const Text('Preview'),
+                  label: const Text('Upload Shop Templates'),
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: ElevatedButton(
-                  onPressed: _isValidating ? null : _validateTemplates,
-                  child: _isValidating 
-                    ? const CircularProgressIndicator()
-                    : const Text('Validate'),
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: _isValidating ? null : _importTemplates,
-                  child: const Text('Import'),
+                child: ElevatedButton.icon(
+                  onPressed: _pickLocationYamlFile,
+                  icon: const Icon(Icons.upload_file),
+                  label: const Text('Upload Location Templates'),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          
-          // Preview Results
-          if (_previewResults.isNotEmpty) ...[
-            Text(
-              'Template Preview:',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blue),
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.blue.shade50,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _previewResults.map((result) => 
-                  Text(result, style: const TextStyle(fontSize: 12))
-                ).toList(),
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
-          
-          // Validation Results
-          if (_validationResults.isNotEmpty) ...[
-            Text(
-              'Validation Results:',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _validationResults.map((result) => 
-                  Text(result, style: const TextStyle(fontSize: 12))
-                ).toList(),
-              ),
-            ),
-          ],
-          
           const SizedBox(height: 32),
           
-          // Export Section
-          Text(
-            'Export Templates',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: _exportPhysicalTemplates,
-                  child: const Text('Export Physical Templates'),
+          // Import Button (centered)
+          Center(
+            child: SizedBox(
+              width: 200,
+              child: ElevatedButton.icon(
+                onPressed: _importTemplates,
+                icon: const Icon(Icons.file_download),
+                label: const Text('Import All Templates'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: _exportClothingTemplates,
-                  child: const Text('Export Clothing Templates'),
-                ),
-              ),
-            ],
+            ),
           ),
         ],
       ),
@@ -694,272 +619,6 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     }
   }
 
-  Future<void> _validateTemplates() async {
-    setState(() {
-      _isValidating = true;
-      _validationResults.clear();
-    });
-
-    try {
-      final ancestries = ref.read(ancestriesProvider).map((a) => a.name).toList();
-      
-      // Validate physical templates
-      if (_physicalYamlController.text.isNotEmpty) {
-        final physicalValidation = await _validateYaml(
-          _physicalYamlController.text,
-          isPhysical: true,
-          ancestries: ancestries,
-        );
-        _validationResults.addAll(physicalValidation);
-      }
-
-      // Validate clothing templates
-      if (_clothingYamlController.text.isNotEmpty) {
-        final clothingValidation = await _validateYaml(
-          _clothingYamlController.text,
-          isPhysical: false,
-          ancestries: ancestries,
-        );
-        _validationResults.addAll(clothingValidation);
-      }
-      
-      // Validate shop templates
-      if (_shopYamlController.text.isNotEmpty) {
-        final shopValidation = await _validateShopYaml(_shopYamlController.text);
-        _validationResults.addAll(shopValidation);
-      }
-
-      if (_validationResults.isEmpty) {
-        _validationResults.add('✅ All templates are valid!');
-      }
-    } catch (e) {
-      _validationResults.add('❌ Validation error: $e');
-    } finally {
-      setState(() {
-        _isValidating = false;
-      });
-    }
-  }
-
-  Future<List<String>> _validateYaml(
-    String yamlContent,
-    {required bool isPhysical, required List<String> ancestries}
-  ) async {
-    final results = <String>[];
-    
-    try {
-      final yamlDoc = loadYaml(yamlContent);
-      
-      if (yamlDoc is! List) {
-        results.add('❌ YAML must contain a list of templates');
-        return results;
-      }
-
-      for (int i = 0; i < yamlDoc.length; i++) {
-        final template = yamlDoc[i];
-        final prefix = isPhysical ? 'Physical' : 'Clothing';
-        
-        if (template is! Map) {
-          results.add('❌ $prefix template $i: must be a map/object');
-          continue;
-        }
-
-        // Validate required fields
-        if (!template.containsKey('template') || template['template'] == null) {
-          results.add('❌ $prefix template $i: missing required "template" field');
-          continue;
-        }
-
-        if (!template.containsKey('tags') || template['tags'] is! List) {
-          results.add('❌ $prefix template $i: missing or invalid "tags" field (must be a list)');
-          continue;
-        }
-
-        // Validate ancestry groups
-        if (template.containsKey('ancestry_groups') && template['ancestry_groups'] is List) {
-          final ancestryGroups = template['ancestry_groups'] as List;
-          for (final group in ancestryGroups) {
-            if (!AncestryGroups.allGroups.contains(group)) {
-              results.add('⚠️  $prefix template $i: unknown ancestry group "$group"');
-            }
-          }
-        }
-
-        // Validate roles
-        if (template.containsKey('roles') && template['roles'] is List) {
-          final roles = template['roles'] as List;
-          for (final role in roles) {
-            if (!Role.values.any((r) => r.name == role)) {
-              results.add('⚠️  $prefix template $i: unknown role "$role"');
-            }
-          }
-        }
-
-        // Validate tags
-        final validTags = isPhysical ? DescriptionTags.physicalTags : DescriptionTags.clothingTags;
-        final templateTags = template['tags'] as List;
-        for (final tag in templateTags) {
-          if (!validTags.contains(tag)) {
-            results.add('⚠️  $prefix template $i: unknown tag "$tag"');
-          }
-        }
-      }
-
-      if (results.isEmpty) {
-        results.add('✅ ${yamlDoc.length} ${isPhysical ? "Physical" : "Clothing"} templates validated successfully');
-      }
-    } catch (e) {
-      results.add('❌ ${isPhysical ? "Physical" : "Clothing"} YAML parsing error: $e');
-    }
-
-    return results;
-  }
-
-  Future<List<String>> _validateShopYaml(String yamlContent) async {
-    final results = <String>[];
-    
-    try {
-      final yamlDoc = loadYaml(yamlContent);
-      
-      if (yamlDoc is! List) {
-        results.add('❌ YAML must contain a list of templates');
-        return results;
-      }
-
-      for (int i = 0; i < yamlDoc.length; i++) {
-        final template = yamlDoc[i];
-        
-        if (template is! Map) {
-          results.add('❌ Shop template $i: must be a map/object');
-          continue;
-        }
-
-        // Validate required fields
-        if (!template.containsKey('templates') || template['templates'] is! List) {
-          results.add('❌ Shop template $i: missing or invalid "templates" field (must be a list)');
-          continue;
-        }
-
-        if (!template.containsKey('tag') || template['tag'] == null) {
-          results.add('❌ Shop template $i: missing required "tag" field');
-          continue;
-        }
-
-        // Validate shop types
-        if (template.containsKey('applicableShopTypes') && template['applicableShopTypes'] is List) {
-          final shopTypes = template['applicableShopTypes'] as List;
-          for (final type in shopTypes) {
-            if (!ShopType.values.any((t) => t.toString().split('.').last == type)) {
-              results.add('⚠️  Shop template $i: unknown shop type "$type"');
-            }
-          }
-        }
-      }
-
-      if (results.isEmpty) {
-        results.add('✅ ${yamlDoc.length} Shop templates validated successfully');
-      }
-    } catch (e) {
-      results.add('❌ Shop YAML parsing error: $e');
-    }
-
-    return results;
-  }
-
-  Future<void> _previewUploadedFile(String yamlContent, String type) async {
-    print('DEBUG: Starting preview for $type templates');
-    print('DEBUG: YAML content length: ${yamlContent.length}');
-    
-    setState(() {
-      _previewResults.clear();
-    });
-
-    try {
-      final yamlDoc = loadYaml(yamlContent);
-      print('DEBUG: YAML parsed successfully, type: ${yamlDoc.runtimeType}');
-      
-      if (yamlDoc is List) {
-        print('DEBUG: Found ${yamlDoc.length} templates in list');
-        _previewResults.add('📁 $type Templates File Preview:');
-        _previewResults.add('📊 Found ${yamlDoc.length} templates');
-        _previewResults.add('');
-        
-        for (int i = 0; i < yamlDoc.length && i < 5; i++) { // Show first 5
-          final template = yamlDoc[i];
-          if (template is Map) {
-            final name = template['name'] ?? 'Unnamed';
-            final tag = template['tag'] ?? 'No tag';
-            final templateString = template['templates']?.first ?? template['template'] ?? 'No template';
-            
-            _previewResults.add('${i + 1}. Name: $name');
-            _previewResults.add('   Tag: $tag');
-            _previewResults.add('   Template: ${templateString.length > 50 ? "${templateString.substring(0, 50)}..." : templateString}');
-            
-            if (type != 'Shop') {
-              final ancestries = template['applicableAncestryGroups'] ?? template['ancestry_groups'] ?? [];
-              final roles = template['applicableRoles'] ?? template['roles'] ?? [];
-              if (ancestries.isNotEmpty) _previewResults.add('   Ancestries: ${ancestries.join(", ")}');
-              if (roles.isNotEmpty) _previewResults.add('   Roles: ${roles.join(", ")}');
-            } else {
-              final shopTypes = template['applicableShopTypes'] ?? [];
-              if (shopTypes.isNotEmpty) _previewResults.add('   Shop Types: ${shopTypes.join(", ")}');
-            }
-            _previewResults.add('');
-          }
-        }
-        
-        if (yamlDoc.length > 5) {
-          _previewResults.add('... and ${yamlDoc.length - 5} more templates');
-        }
-      } else {
-        print('DEBUG: YAML doc is not a list, type: ${yamlDoc.runtimeType}');
-        print('DEBUG: YAML content: $yamlDoc');
-        _previewResults.add('❌ Invalid YAML format - expected a list of templates');
-        _previewResults.add('Found: ${yamlDoc.runtimeType}');
-      }
-    } catch (e) {
-      print('DEBUG: YAML parsing error: $e');
-      _previewResults.add('❌ Error parsing YAML: $e');
-    }
-
-    setState(() {
-      print('DEBUG: Preview results: ${_previewResults.length} items');
-    });
-  }
-
-  Future<void> _previewTemplates() async {
-    setState(() {
-      _isValidating = true;
-      _previewResults.clear();
-    });
-
-    try {
-      // Preview physical templates
-      if (_physicalYamlController.text.isNotEmpty) {
-        await _previewUploadedFile(_physicalYamlController.text, 'Physical');
-      }
-
-      // Preview clothing templates
-      if (_clothingYamlController.text.isNotEmpty) {
-        await _previewUploadedFile(_clothingYamlController.text, 'Clothing');
-      }
-      
-      // Preview shop templates
-      if (_shopYamlController.text.isNotEmpty) {
-        await _previewUploadedFile(_shopYamlController.text, 'Shop');
-      }
-
-      if (_previewResults.isEmpty) {
-        _previewResults.add('ℹ️ No templates loaded to preview');
-      }
-    } catch (e) {
-      _previewResults.add('❌ Preview error: $e');
-    } finally {
-      setState(() {
-        _isValidating = false;
-      });
-    }
-  }
 
   Future<void> _importTemplates() async {
     print('DEBUG: Import button clicked');
@@ -1012,6 +671,21 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
           totalImported += shopTemplates.length;
         }
       }
+
+      // Import location templates (from file upload)
+      if (_locationYamlController.text.isNotEmpty) {
+        final locationTemplates = await _parseLocationTemplates(_locationYamlController.text);
+        if (locationTemplates.isNotEmpty) {
+          print('DEBUG: Adding ${locationTemplates.length} location templates');
+          for (final template in locationTemplates) {
+            ref.read(locationTemplatesProvider.notifier).add(template);
+          }
+          print('DEBUG: Committing location templates changes');
+          await ref.read(locationTemplatesProvider.notifier).commitChanges();
+          print('DEBUG: Location templates committed successfully');
+          totalImported += locationTemplates.length;
+        }
+      }
       
       print('DEBUG: Total imported: $totalImported templates');
       
@@ -1027,6 +701,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
         _physicalYamlController.clear();
         _clothingYamlController.clear();
         _shopYamlController.clear();
+        _locationYamlController.clear();
         
         // Debug: Check provider states after import
         print('DEBUG: Physical templates in provider: ${ref.read(physicalTemplatesProvider).length}');
@@ -1048,7 +723,12 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     final yamlDoc = loadYaml(yamlContent);
     final templates = <PhysicalTemplate>[];
     
-    for (final template in yamlDoc) {
+    // Handle both direct list and templates: key structure
+    final templateList = yamlDoc is Map && yamlDoc.containsKey('templates') 
+        ? yamlDoc['templates'] as List
+        : yamlDoc as List;
+    
+    for (final template in templateList) {
       templates.add(PhysicalTemplate(
         id: const Uuid().v4(),
         name: template['name'] ?? 'Unnamed Template',
@@ -1076,7 +756,12 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     final yamlDoc = loadYaml(yamlContent);
     final templates = <ClothingTemplate>[];
     
-    for (final template in yamlDoc) {
+    // Handle both direct list and templates: key structure
+    final templateList = yamlDoc is Map && yamlDoc.containsKey('templates') 
+        ? yamlDoc['templates'] as List
+        : yamlDoc as List;
+    
+    for (final template in templateList) {
       templates.add(ClothingTemplate(
         id: const Uuid().v4(),
         name: template['name'] ?? 'Unnamed Template',
@@ -1104,7 +789,12 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     final yamlDoc = loadYaml(yamlContent);
     final templates = <ShopTemplate>[];
     
-    for (final template in yamlDoc) {
+    // Handle both direct list and templates: key structure
+    final templateList = yamlDoc is Map && yamlDoc.containsKey('templates') 
+        ? yamlDoc['templates'] as List
+        : yamlDoc as List;
+    
+    for (final template in templateList) {
       // Parse shop types from strings to enum
       final shopTypes = <ShopType>[];
       if (template['applicableShopTypes'] != null) {
@@ -1122,95 +812,61 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
         name: template['name'] ?? template['templates'].first,
         tag: template['tag'] ?? 'general',
         applicableShopTypes: shopTypes,
+        descriptionType: template['descriptionType'] ?? 'inside', // Default to inside if not specified
         templates: List<String>.from(template['templates'] ?? []),
         variables: Map<String, List<String>>.from(
           (template['variables'] ?? {}).map(
             (key, value) => MapEntry(key, List<String>.from(value)),
           ),
         ),
+        promoteIf: List<String>.from(template['promoteIf'] ?? template['promote_if'] ?? []),
+        excludeIf: List<String>.from(template['excludeIf'] ?? template['exclude_if'] ?? []),
       ));
     }
     
     return templates;
   }
 
-  void _exportPhysicalTemplates() {
-    final templates = ref.read(physicalTemplatesProvider);
-    // TODO: Implement export functionality
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Export ${templates.length} physical templates - TODO')),
-    );
-  }
-
-  void _exportClothingTemplates() {
-    final templates = ref.read(clothingTemplatesProvider);
-    // TODO: Implement export functionality
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Export ${templates.length} clothing templates - TODO')),
-    );
-  }
-
-  // Debug test method
-  Future<void> _testFilePickerDebug() async {
-    print('DEBUG: Testing FilePicker...');
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Check console/logs for debug information')),
-    );
+  Future<List<LocationTemplate>> _parseLocationTemplates(String yamlContent) async {
+    final yamlDoc = loadYaml(yamlContent);
+    final templates = <LocationTemplate>[];
     
-    try {
-      print('DEBUG: Platform: ${Theme.of(context).platform}');
-      
-      // Test with any file type first
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        allowMultiple: false,
-      );
-      
-      print('DEBUG: Any file result: ${result?.files.length ?? 0}');
-      if (result != null) {
-        print('DEBUG: File name: ${result.files.single.name}');
-        print('DEBUG: File extension: ${result.files.single.extension}');
-        print('DEBUG: File size: ${result.files.single.size}');
-        print('DEBUG: Has bytes: ${result.files.single.bytes != null}');
-        print('DEBUG: Has path: ${result.files.single.path != null}');
-        
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('File selected: ${result.files.single.name}')),
+    // Handle both direct list and templates: key structure
+    final templateList = yamlDoc is Map && yamlDoc.containsKey('templates') 
+        ? yamlDoc['templates'] as List
+        : yamlDoc as List;
+    
+    for (final template in templateList) {
+      // Parse location types from strings to enum
+      final locationTypes = <LocationType>[];
+      if (template['applicableLocationTypes'] != null) {
+        for (final typeStr in template['applicableLocationTypes']) {
+          final locationType = LocationType.values.firstWhere(
+            (t) => t.toString().split('.').last == typeStr,
+            orElse: () => LocationType.district, // Default fallback
           );
-        }
-      } else {
-        print('DEBUG: No file selected');
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No file selected')),
-          );
+          locationTypes.add(locationType);
         }
       }
-    } catch (e) {
-      print('DEBUG: FilePicker test error: $e');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('FilePicker error: $e')),
-        );
-      }
+      
+      templates.add(LocationTemplate(
+        id: const Uuid().v4(),
+        name: template['name'] ?? template['templates'].first,
+        tag: template['tag'] ?? 'general',
+        applicableLocationTypes: locationTypes,
+        templates: List<String>.from(template['templates'] ?? []),
+        variables: Map<String, List<String>>.from(
+          (template['variables'] ?? {}).map(
+            (key, value) => MapEntry(key, List<String>.from(value)),
+          ),
+        ),
+        promoteIf: List<String>.from(template['promoteIf'] ?? template['promote_if'] ?? []),
+        excludeIf: List<String>.from(template['excludeIf'] ?? template['exclude_if'] ?? []),
+      ));
     }
+    
+    return templates;
   }
-
-  static const String _physicalTemplateExample = '''# Physical Template Example
-- template: "has {ancestry} eyes with {color} irises"
-  ancestry_groups: ["humanoid"]
-  roles: []
-  tags: ["eyes"]
-
-- template: "sports a magnificent {color} beard decorated with {ancestry} jewelry"
-  ancestry_groups: ["has_beard"]
-  roles: ["owner", "journeyman"]
-  tags: ["facial_hair", "jewelry"]
-
-- template: "has {build} build and calloused hands from years of work"
-  ancestry_groups: ["humanoid"]
-  roles: ["smith", "journeyman"]
-  tags: ["build", "hands"]''';
 
   // File picker methods
   Future<void> _pickYamlFile({required bool isPhysical}) async {
@@ -1246,8 +902,6 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
               _clothingYamlController.text = yamlContent;
             }
             
-            // Auto-preview the uploaded file
-            await _previewUploadedFile(yamlContent, isPhysical ? 'Physical' : 'Clothing');
             
             if (mounted) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -1310,8 +964,6 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
             final yamlContent = String.fromCharCodes(file.bytes!);
             _shopYamlController.text = yamlContent;
             
-            // Auto-preview the uploaded file
-            await _previewUploadedFile(yamlContent, 'Shop');
             
             if (mounted) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -1351,21 +1003,6 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     }
   }
 
-  static const String _clothingTemplateExample = '''# Clothing Template Example
-- template: "wears a leather apron stained with soot and metal shavings"
-  ancestry_groups: ["all"]
-  roles: ["smith"]
-  tags: ["torso"]
-
-- template: "adorned with {ancestry} ceremonial jewelry"
-  ancestry_groups: ["humanoid"]
-  roles: ["owner", "noble"]
-  tags: ["jewelry"]
-
-- template: "wears practical {color} clothing suitable for {role} work"
-  ancestry_groups: ["all"]
-  roles: ["journeyman", "apprentice"]
-  tags: ["torso", "legs"]''';
 
   Widget _buildShopTemplatesTab() {
     return Consumer(
@@ -1747,6 +1384,461 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Deleted "${template.name}"')),
+        );
+      }
+    }
+  }
+
+  Widget _buildLocationTemplatesTab() {
+    return Consumer(
+      builder: (context, ref, child) {
+        final locationTemplates = ref.watch(locationTemplatesProvider);
+        
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Location Templates (${locationTemplates.length})',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _showAddLocationTemplateDialog(),
+                    child: const Text('Add Template'),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: locationTemplates.length,
+                itemBuilder: (context, index) {
+                  final template = locationTemplates[index];
+                  return _buildLocationTemplateCard(template);
+                },
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildLocationTemplateCard(LocationTemplate template) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    template.name,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                PopupMenuButton(
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 'edit',
+                      child: const Text('Edit'),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: const Text('Delete'),
+                    ),
+                  ],
+                  onSelected: (value) {
+                    if (value == 'edit') {
+                      _editLocationTemplate(template);
+                    } else if (value == 'delete') {
+                      _deleteLocationTemplate(template);
+                    }
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Tag: ${template.tag}',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            if (template.templates.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                template.templates.first,
+                style: Theme.of(context).textTheme.bodySmall,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                if (template.applicableLocationTypes.isNotEmpty) ...[
+                  const Text('Location Types: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  ...template.applicableLocationTypes.map((type) => 
+                    Chip(
+                      label: Text(type.toString().split('.').last),
+                      visualDensity: VisualDensity.compact,
+                    ),
+                  ),
+                ] else ...[
+                  const Chip(
+                    label: Text('All Location Types'),
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ],
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAddLocationTemplateDialog() {
+    final nameController = TextEditingController();
+    final tagController = TextEditingController();
+    final templateController = TextEditingController();
+    List<LocationType> selectedLocationTypes = [];
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text('Add Location Template'),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              width: 400,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Template Name',
+                      hintText: 'e.g., "Bustling marketplace atmosphere"',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: tagController,
+                    decoration: const InputDecoration(
+                      labelText: 'Tag',
+                      hintText: 'e.g., atmosphere, architecture, history',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: templateController,
+                    decoration: const InputDecoration(
+                      labelText: 'Template String',
+                      hintText: 'e.g., "The air fills with {activity} and {ambiance}"',
+                    ),
+                    maxLines: 3,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text('Location Types (leave empty for all):'),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: LocationType.values.map((locationType) {
+                      final typeName = locationType.toString().split('.').last;
+                      final isSelected = selectedLocationTypes.contains(locationType);
+                      
+                      return FilterChip(
+                        label: Text(typeName),
+                        selected: isSelected,
+                        onSelected: (selected) {
+                          setState(() {
+                            if (selected) {
+                              selectedLocationTypes.add(locationType);
+                            } else {
+                              selectedLocationTypes.remove(locationType);
+                            }
+                          });
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                if (nameController.text.trim().isEmpty || 
+                    tagController.text.trim().isEmpty ||
+                    templateController.text.trim().isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Name, tag, and template are required')),
+                  );
+                  return;
+                }
+
+                try {
+                  final template = LocationTemplate(
+                    id: const Uuid().v4(),
+                    name: nameController.text.trim(),
+                    tag: tagController.text.trim(),
+                    applicableLocationTypes: selectedLocationTypes,
+                    templates: [templateController.text.trim()],
+                    variables: {},
+                  );
+                  ref.read(locationTemplatesProvider.notifier).add(template);
+                  await ref.read(locationTemplatesProvider.notifier).commitChanges();
+
+                  if (mounted) {
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Location template added successfully')),
+                    );
+                  }
+                } catch (e) {
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error adding template: $e')),
+                    );
+                  }
+                }
+              },
+              child: const Text('Add'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _editLocationTemplate(LocationTemplate template) {
+    final nameController = TextEditingController(text: template.name);
+    final tagController = TextEditingController(text: template.tag);
+    final templateController = TextEditingController(text: template.templates.first);
+    List<LocationType> selectedLocationTypes = List.from(template.applicableLocationTypes);
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text('Edit Location Template'),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              width: 400,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Template Name',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: tagController,
+                    decoration: const InputDecoration(
+                      labelText: 'Tag',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: templateController,
+                    decoration: const InputDecoration(
+                      labelText: 'Template String',
+                    ),
+                    maxLines: 3,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text('Location Types (leave empty for all):'),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: LocationType.values.map((locationType) {
+                      final typeName = locationType.toString().split('.').last;
+                      final isSelected = selectedLocationTypes.contains(locationType);
+                      
+                      return FilterChip(
+                        label: Text(typeName),
+                        selected: isSelected,
+                        onSelected: (selected) {
+                          setState(() {
+                            if (selected) {
+                              selectedLocationTypes.add(locationType);
+                            } else {
+                              selectedLocationTypes.remove(locationType);
+                            }
+                          });
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                if (nameController.text.trim().isEmpty || 
+                    tagController.text.trim().isEmpty ||
+                    templateController.text.trim().isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Name, tag, and template are required')),
+                  );
+                  return;
+                }
+
+                try {
+                  final updatedTemplate = LocationTemplate(
+                    id: template.id,
+                    name: nameController.text.trim(),
+                    tag: tagController.text.trim(),
+                    applicableLocationTypes: selectedLocationTypes,
+                    templates: [templateController.text.trim()],
+                    variables: template.variables,
+                  );
+                  ref.read(locationTemplatesProvider.notifier).replace(template, updatedTemplate);
+                  await ref.read(locationTemplatesProvider.notifier).commitChanges();
+
+                  if (mounted) {
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Location template updated successfully')),
+                    );
+                  }
+                } catch (e) {
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error updating template: $e')),
+                    );
+                  }
+                }
+              },
+              child: const Text('Update'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _deleteLocationTemplate(LocationTemplate template) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Template'),
+        content: Text('Delete "${template.name}"?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Delete'),
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      try {
+        ref.read(locationTemplatesProvider.notifier).remove(template);
+        await ref.read(locationTemplatesProvider.notifier).commitChanges();
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Deleted "${template.name}"')),
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error deleting template: $e')),
+          );
+        }
+      }
+    }
+  }
+
+  Future<void> _pickLocationYamlFile() async {
+    print('DEBUG: Location file picker started');
+    
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['yaml', 'yml'],
+        allowMultiple: false,
+        withData: true,
+      );
+
+      if (result != null && result.files.isNotEmpty) {
+        final file = result.files.first;
+        print('DEBUG: Location file selected: ${file.name}');
+        
+        if (file.bytes != null) {
+          try {
+            final yamlContent = String.fromCharCodes(file.bytes!);
+            _locationYamlController.text = yamlContent;
+            
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Location templates YAML loaded from ${file.name}'),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            }
+          } catch (e) {
+            print('DEBUG: Error processing location file: $e');
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error reading location file: $e')),
+              );
+            }
+          }
+        } else {
+          print('DEBUG: No location file bytes available');
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Location file content not available. Try using manual input.'),
+                backgroundColor: Colors.orange,
+              ),
+            );
+          }
+        }
+      }
+    } catch (e) {
+      print('DEBUG: Location file picker error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Location file picker error: $e')),
         );
       }
     }

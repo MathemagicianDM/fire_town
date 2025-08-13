@@ -29,6 +29,7 @@ enum ListType {
   physicalTemplate,
   clothingTemplate,
   shopTemplate,
+  locationTemplate,
 }
 
 class FirestoreService {
@@ -98,6 +99,8 @@ class FirestoreService {
         return _clothingTemplatePath();
         case ListType.shopTemplate:
         return _shopTemplatePath();
+        case ListType.locationTemplate:
+        return _locationTemplatePath();
       // ignore: unreachable_switch_default
       default:
         return null;
@@ -238,6 +241,14 @@ class FirestoreService {
       throw ("Please log in");
     }
     return _firestore.collection('default_settings').doc('shopTemplates');
+  }
+
+  DocumentReference<Map<String, dynamic>> _locationTemplatePath() {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw ("Please log in");
+    }
+    return _firestore.collection('default_settings').doc('locationTemplates');
   }
 
   DocumentReference<Map<String, dynamic>> govPositionPath() {

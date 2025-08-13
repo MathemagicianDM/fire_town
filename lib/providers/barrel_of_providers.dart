@@ -16,6 +16,7 @@ export "random_encounters_provider.dart" show randomEncountersProvider;
 export "physical_template_provider.dart" show physicalTemplatesProvider;
 export "clothing_template_provider.dart" show clothingTemplatesProvider;
 export "shop_template_provider.dart" show shopTemplateProvider;
+export "location_template_provider.dart" show locationTemplatesProvider;
 export "../search_models_providers_listeners/search_memory.dart" show peopleSearchProvider,locationsSearchProvider;
 export 'firestore_service_provider.dart';
 export 'shop_filter_provider.dart';

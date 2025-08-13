@@ -3,6 +3,8 @@ import '../models/description_template_model.dart';
 import '../models/description_constants.dart';
 import '../models/person_model.dart';
 import '../models/character_trait_model.dart';
+import '../models/location_trait_model.dart';
+import '../models/shop_trait_model.dart';
 import '../models/town_extension/town_locations.dart';
 import '../enums_and_maps.dart';
 
@@ -246,6 +248,239 @@ class DescriptionService {
     }
     
     return traits;
+  }
+  
+  /// Generate a list of individual location traits using available templates
+  List<LocationTrait> generateLocationTraits({
+    required Location location,
+    required List<LocationTemplate> templates,
+    int maxTraits = 3,
+  }) {
+    final List<LocationTrait> traits = [];
+    final Set<String> usedTags = {};
+    
+    // Filter templates that match the location's type
+    final applicableTemplates = _filterLocationTemplates(
+      templates: templates,
+      locationType: location.locType,
+    );
+    
+    // Group templates by tag to ensure variety
+    final Map<String, List<LocationTemplate>> templatesByTag = {};
+    for (final template in applicableTemplates) {
+      if (!templatesByTag.containsKey(template.tag)) {
+        templatesByTag[template.tag] = [];
+      }
+      templatesByTag[template.tag]!.add(template);
+    }
+    
+    // Generate traits, ensuring no duplicate tags
+    final availableTags = templatesByTag.keys.toList()..shuffle(_random);
+    
+    for (final tag in availableTags) {
+      if (traits.length >= maxTraits) break;
+      if (usedTags.contains(tag)) continue;
+      
+      final tagTemplates = templatesByTag[tag]!;
+      final selectedTemplate = _selectWeightedLocationTemplate(tagTemplates, location);
+      
+      final description = _processLocationTemplateString(
+        template: selectedTemplate.templates.first,
+        location: location,
+        variables: selectedTemplate.variables,
+      );
+      
+      if (description != null) {
+        // Determine trait type based on tag
+        String traitType = 'atmosphere'; // default
+        if (['architecture', 'size', 'condition'].contains(tag)) {
+          traitType = 'physical';
+        } else if (['history', 'notable_events', 'legends'].contains(tag)) {
+          traitType = 'history';
+        }
+        
+        traits.add(LocationTrait.generate(
+          tag: tag,
+          description: description,
+          type: traitType,
+        ));
+        usedTags.add(tag);
+      }
+    }
+    
+    return traits;
+  }
+  
+  /// Generate individual location trait by rerolling a specific tag category
+  String? rerollLocationTrait({
+    required Location location,
+    required List<LocationTemplate> templates,
+    required String tag,
+  }) {
+    // Filter templates that only have the specified tag
+    final tagTemplates = templates.where((t) => 
+      t.tag == tag && 
+      _matchesLocationType(t, location.locType)
+    ).toList();
+    
+    if (tagTemplates.isEmpty) return null;
+    
+    final selectedTemplate = tagTemplates[_random.nextInt(tagTemplates.length)];
+    
+    return _processLocationTemplateString(
+      template: selectedTemplate.templates.first,
+      location: location,
+      variables: selectedTemplate.variables,
+    );
+  }
+  
+  /// Generate enhanced shop traits for inside/outside descriptions
+  List<ShopTrait> generateShopTraits({
+    required Shop shop,
+    required List<ShopTemplate> templates,
+    required String descriptionType, // "inside" or "outside"
+    int maxTraits = 2,
+  }) {
+    final List<ShopTrait> traits = [];
+    final Set<String> usedTags = {};
+    
+    // Filter templates that match the shop's type and description type
+    final applicableTemplates = templates.where((template) => 
+      _matchesShopType(template, shop.type) &&
+      template.descriptionType == descriptionType
+    ).toList();
+    
+    // Group templates by tag to ensure variety
+    final Map<String, List<ShopTemplate>> templatesByTag = {};
+    for (final template in applicableTemplates) {
+      if (!templatesByTag.containsKey(template.tag)) {
+        templatesByTag[template.tag] = [];
+      }
+      templatesByTag[template.tag]!.add(template);
+    }
+    
+    // Generate traits, ensuring no duplicate tags
+    final availableTags = templatesByTag.keys.toList()..shuffle(_random);
+    
+    for (final tag in availableTags) {
+      if (traits.length >= maxTraits) break;
+      if (usedTags.contains(tag)) continue;
+      
+      final tagTemplates = templatesByTag[tag]!;
+      final selectedTemplate = _selectWeightedShopTemplate(tagTemplates, shop);
+      
+      final description = _processShopTemplateString(
+        template: selectedTemplate.templates.first,
+        shop: shop,
+        variables: selectedTemplate.variables,
+      );
+      
+      if (description != null) {
+        traits.add(ShopTrait.generate(
+          tag: tag,
+          description: description,
+          type: descriptionType,
+        ));
+        usedTags.add(tag);
+      }
+    }
+    
+    return traits;
+  }
+  
+  /// Filter location templates based on location type constraints
+  List<LocationTemplate> _filterLocationTemplates({
+    required List<LocationTemplate> templates,
+    required LocationType locationType,
+  }) {
+    return templates.where((template) => 
+      _matchesLocationType(template, locationType)
+    ).toList();
+  }
+  
+  /// Check if a template matches the location's type
+  bool _matchesLocationType(LocationTemplate template, LocationType locationType) {
+    // If no location types specified, template applies to all
+    if (template.applicableLocationTypes.isEmpty) return true;
+    
+    // Check if location type matches any of the specified types
+    return template.applicableLocationTypes.contains(locationType);
+  }
+  
+  /// Process location template string with variable substitution
+  String _processLocationTemplateString({
+    required String template,
+    required Location location,
+    Map<String, List<String>>? variables,
+  }) {
+    String result = template;
+    
+    // Enhanced variable substitution from template variables (do this first)
+    if (variables != null && variables.isNotEmpty) {
+      for (final entry in variables.entries) {
+        final variableName = entry.key;
+        final options = entry.value;
+        
+        if (options.isNotEmpty) {
+          // Select a random option from the list
+          String selectedOption = options[_random.nextInt(options.length)];
+          
+          // Process built-in location variables within the selected option
+          selectedOption = _processBuiltInLocationVariables(selectedOption, location);
+          
+          // Replace {variableName} with the processed option
+          result = result.replaceAll('{$variableName}', selectedOption);
+        }
+      }
+    }
+    
+    // Finally, process any remaining built-in variables in the main template
+    result = _processBuiltInLocationVariables(result, location);
+    
+    return result;
+  }
+  
+  /// Process built-in location variables like name, type, etc.
+  String _processBuiltInLocationVariables(String text, Location location) {
+    String result = text;
+    
+    // Basic variable substitution for locations
+    result = result.replaceAll('{name}', location.name);
+    result = result.replaceAll('{type}', _locationTypeToString(location.locType));
+    result = result.replaceAll('{description}', location.description);
+    result = result.replaceAll('{blurb}', location.blurbText);
+    
+    return result;
+  }
+  
+  /// Convert location type enum to descriptive string
+  String _locationTypeToString(LocationType type) {
+    switch (type) {
+      case LocationType.district:
+        return 'district';
+      case LocationType.building:
+        return 'building';
+      case LocationType.meetingPlace:
+        return 'meeting place';
+      case LocationType.street:
+        return 'street';
+      case LocationType.landmark:
+        return 'landmark';
+      case LocationType.shop:
+        return 'shop';
+      case LocationType.temple:
+        return 'temple';
+      case LocationType.civic:
+        return 'civic building';
+      case LocationType.info:
+        return 'information center';
+      case LocationType.hireling:
+        return 'hireling post';
+      case LocationType.market:
+        return 'market';
+      case LocationType.government:
+        return 'government building';
+    }
   }
   
   /// Filter physical templates based on ancestry and role constraints
@@ -704,5 +939,84 @@ class DescriptionService {
     }
     
     return descriptionParts.isEmpty ? null : descriptionParts.join(' ');
+  }
+
+  /// Select a template from a list with weighted selection based on promote_if/exclude_if
+  ShopTemplate _selectWeightedShopTemplate(List<ShopTemplate> templates, Shop shop) {
+    if (templates.isEmpty) throw ArgumentError('Template list cannot be empty');
+    
+    // Get shop quirks (pro1, pro2, con)
+    final shopQuirks = [shop.pro1, shop.pro2, shop.con].where((q) => q.isNotEmpty).toList();
+    
+    // Filter out excluded templates first
+    final eligibleTemplates = templates.where((template) {
+      // Check if any shop quirk is in excludeIf list
+      return !template.excludeIf.any((exclude) => shopQuirks.contains(exclude));
+    }).toList();
+    
+    if (eligibleTemplates.isEmpty) {
+      // If all templates are excluded, use original list (failsafe)
+      return templates[_random.nextInt(templates.length)];
+    }
+    
+    // Create weighted list
+    final List<ShopTemplate> weightedTemplates = [];
+    
+    for (final template in eligibleTemplates) {
+      // Default weight is 1
+      int weight = 1;
+      
+      // Check if any shop quirk is in promoteIf list (double weight)
+      if (template.promoteIf.any((promote) => shopQuirks.contains(promote))) {
+        weight = 2;
+      }
+      
+      // Add template to weighted list based on weight
+      for (int i = 0; i < weight; i++) {
+        weightedTemplates.add(template);
+      }
+    }
+    
+    return weightedTemplates[_random.nextInt(weightedTemplates.length)];
+  }
+
+  /// Select a template from a list with weighted selection based on promote_if/exclude_if
+  LocationTemplate _selectWeightedLocationTemplate(List<LocationTemplate> templates, Location location) {
+    if (templates.isEmpty) throw ArgumentError('Template list cannot be empty');
+    
+    // For now, locations don't have quirks like shops do, so we'll use basic properties
+    // This can be extended later if locations get quirk-like properties
+    final locationQuirks = <String>[]; // Empty for now
+    
+    // Filter out excluded templates first
+    final eligibleTemplates = templates.where((template) {
+      // Check if any location quirk is in excludeIf list
+      return !template.excludeIf.any((exclude) => locationQuirks.contains(exclude));
+    }).toList();
+    
+    if (eligibleTemplates.isEmpty) {
+      // If all templates are excluded, use original list (failsafe)
+      return templates[_random.nextInt(templates.length)];
+    }
+    
+    // Create weighted list
+    final List<LocationTemplate> weightedTemplates = [];
+    
+    for (final template in eligibleTemplates) {
+      // Default weight is 1
+      int weight = 1;
+      
+      // Check if any location quirk is in promoteIf list (double weight)
+      if (template.promoteIf.any((promote) => locationQuirks.contains(promote))) {
+        weight = 2;
+      }
+      
+      // Add template to weighted list based on weight
+      for (int i = 0; i < weight; i++) {
+        weightedTemplates.add(template);
+      }
+    }
+    
+    return weightedTemplates[_random.nextInt(weightedTemplates.length)];
   }
 }
