@@ -489,31 +489,50 @@ class _FlippablePersonCardState extends ConsumerState<FlippablePersonCard>
         return;
       }
       
-      String? newDescription;
+      // Get existing tags EXCLUDING the trait we're rerolling
+      final existingTags = trait.type == 'physical'
+          ? widget.person.physicalTraits
+              .where((t) => t.id != trait.id)
+              .map((t) => t.tag)
+              .toSet()
+          : widget.person.clothingTraits
+              .where((t) => t.id != trait.id)
+              .map((t) => t.tag)
+              .toSet();
+      
+      // Generate a completely new trait (any tag, not locked to current tag)
+      List<CharacterTrait> newTraits;
       if (trait.type == 'physical') {
-        newDescription = descriptionService.rerollPhysicalTrait(
+        newTraits = descriptionService.generatePhysicalTraits(
           person: widget.person,
           templates: physicalTemplates,
           allAncestries: allAncestryNames,
-          tag: trait.tag,
+          maxTraits: 1,
         );
+        // Filter out traits with tags we already have
+        newTraits = newTraits.where((newTrait) => !existingTags.contains(newTrait.tag)).toList();
       } else {
-        newDescription = descriptionService.rerollClothingTrait(
+        newTraits = descriptionService.generateClothingTraits(
           person: widget.person,
           templates: clothingTemplates,
           allAncestries: allAncestryNames,
-          tag: trait.tag,
+          maxTraits: 1,
         );
+        // Filter out traits with tags we already have
+        newTraits = newTraits.where((newTrait) => !existingTags.contains(newTrait.tag)).toList();
       }
       
-      if (newDescription != null) {
+      if (newTraits.isNotEmpty) {
         final peopleNotifier = ref.read(peopleProvider.notifier);
+        final newTrait = newTraits.first;
+        
+        // Replace the old trait with the new one
         final updatedTraits = trait.type == 'physical'
             ? widget.person.physicalTraits.map((t) => 
-                t.id == trait.id ? t.copyWith(description: newDescription) : t
+                t.id == trait.id ? newTrait : t
               ).toList()
             : widget.person.clothingTraits.map((t) => 
-                t.id == trait.id ? t.copyWith(description: newDescription) : t
+                t.id == trait.id ? newTrait : t
               ).toList();
         
         final updatedPerson = trait.type == 'physical'
@@ -525,14 +544,14 @@ class _FlippablePersonCardState extends ConsumerState<FlippablePersonCard>
         
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${trait.tag} trait rerolled'),
+            content: Text('${trait.type} trait rerolled'),
             backgroundColor: Colors.green,
           ),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('No suitable templates found for ${trait.tag}'),
+            content: Text('No new ${trait.type} traits available for this character'),
             backgroundColor: Colors.orange,
           ),
         );

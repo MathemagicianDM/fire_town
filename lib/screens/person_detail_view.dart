@@ -11,7 +11,9 @@ import 'package:firetown/screens/person_edit.dart';
 // import 'bottombar.dart';
 import "../globals.dart";
 import "../models/relationships_model.dart";
+import "../models/character_trait_model.dart";
 import '../services/description_service.dart';
+import '../models/person_model.dart';
 // import "editHelpers.dart";
 
 class PersonDetailView extends HookConsumerWidget {
@@ -68,11 +70,29 @@ class PersonDetailView extends HookConsumerWidget {
   }
 }
 
-class PersonDetailItem extends HookConsumerWidget {
+class PersonDetailItem extends ConsumerStatefulWidget {
   const PersonDetailItem({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PersonDetailItem> createState() => _PersonDetailItemState();
+}
+
+class _PersonDetailItemState extends ConsumerState<PersonDetailItem> {
+  // Form state for manual trait creation
+  String? _selectedTraitType;
+  String? _selectedTag;
+  String _traitDescription = '';
+  final _formKey = GlobalKey<FormState>();
+  final _descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final person = ref.watch(currentPerson);
     final people = ref.watch(peopleProvider);
     final relations = ref.watch(relationshipsProvider);
@@ -150,6 +170,10 @@ class PersonDetailItem extends HookConsumerWidget {
               ],
             ),
             const SizedBox(height: 12),
+            // Manual trait creation section
+            _buildManualTraitCreator(context, ref, person),
+            const SizedBox(height: 16),
+            
             if (physicalTraits.isNotEmpty) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -923,6 +947,293 @@ class PersonDetailItem extends HookConsumerWidget {
       }
     } catch (e) {
       _showError(ref, 'Error adding clothing trait: $e');
+    }
+  }
+
+  Widget _buildManualTraitCreator(BuildContext context, WidgetRef ref, dynamic person) {
+    final physicalTemplates = ref.watch(physicalTemplatesProvider);
+    final clothingTemplates = ref.watch(clothingTemplatesProvider);
+    
+    // Get all available tags
+    final physicalTags = physicalTemplates.map((t) => t.tag).toSet().toList()..sort();
+    final clothingTags = clothingTemplates.map((t) => t.tag).toSet().toList()..sort();
+    
+    // Get already used tags to show availability
+    final usedPhysicalTags = person.physicalTraits.map((t) => t.tag).toSet();
+    final usedClothingTags = person.clothingTraits.map((t) => t.tag).toSet();
+    
+    // Get available tags based on selected type
+    List<String> availableTags = [];
+    if (_selectedTraitType == 'physical') {
+      availableTags = physicalTags;
+    } else if (_selectedTraitType == 'clothing') {
+      availableTags = clothingTags;
+    }
+    
+    return Form(
+      key: _formKey,
+      child: Card(
+        color: Colors.grey[50],
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Create Custom Trait',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              
+              Row(
+                children: [
+                  // Trait type selection
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Type:', style: TextStyle(fontWeight: FontWeight.w500)),
+                        const SizedBox(height: 4),
+                        DropdownButtonFormField<String>(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          ),
+                          hint: const Text('Select type'),
+                          value: _selectedTraitType,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select a type';
+                            }
+                            return null;
+                          },
+                          items: [
+                            const DropdownMenuItem(value: 'physical', child: Text('Physical')),
+                            const DropdownMenuItem(value: 'clothing', child: Text('Clothing')),
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedTraitType = value;
+                              _selectedTag = null; // Reset tag when type changes
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  
+                  const SizedBox(width: 12),
+                  
+                  // Tag selection
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Tag:', style: TextStyle(fontWeight: FontWeight.w500)),
+                        const SizedBox(height: 4),
+                        DropdownButtonFormField<String>(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          ),
+                          hint: const Text('Select tag'),
+                          value: _selectedTag,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select a tag';
+                            }
+                            return null;
+                          },
+                          items: availableTags.map((tag) {
+                            final isUsed = _selectedTraitType == 'physical'
+                                ? usedPhysicalTags.contains(tag)
+                                : usedClothingTags.contains(tag);
+                            
+                            return DropdownMenuItem(
+                              value: tag,
+                              child: Row(
+                                children: [
+                                  Text(tag),
+                                  if (isUsed) ...[
+                                    const SizedBox(width: 8),
+                                    Icon(Icons.warning, size: 16, color: Colors.orange),
+                                    const SizedBox(width: 4),
+                                    Text('(exists)', style: TextStyle(fontSize: 10, color: Colors.orange)),
+                                  ],
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedTag = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              
+              const SizedBox(height: 12),
+              
+              // Description input
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Description:', style: TextStyle(fontWeight: FontWeight.w500)),
+                  const SizedBox(height: 4),
+                  TextFormField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter trait description...',
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    ),
+                    maxLines: 2,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter a description';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      _traitDescription = value;
+                    },
+                  ),
+                ],
+              ),
+              
+              const SizedBox(height: 12),
+              
+              // Add button
+              Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    _addCustomTrait(ref, person);
+                  },
+                  icon: const Icon(Icons.add, size: 18),
+                  label: const Text('Add Trait'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _addCustomTrait(WidgetRef ref, dynamic person) async {
+    // Validate the form
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    
+    if (_selectedTraitType == null || _selectedTag == null || _traitDescription.trim().isEmpty) {
+      _showError(ref, 'Please fill in all fields');
+      return;
+    }
+    
+    try {
+      // Check if this tag already exists for this person
+      final existingTraits = _selectedTraitType == 'physical'
+          ? person.physicalTraits
+          : person.clothingTraits;
+      
+      final tagExists = existingTraits.any((trait) => trait.tag == _selectedTag);
+      
+      if (tagExists) {
+        // Show confirmation dialog
+        final shouldReplace = await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Tag Already Exists'),
+            content: Text(
+              'This character already has a ${_selectedTraitType} trait for "${_selectedTag}". '
+              'Do you want to replace it with the new description?'
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Replace'),
+              ),
+            ],
+          ),
+        );
+        
+        if (shouldReplace != true) return;
+      }
+      
+      // Create the new trait
+      final newTrait = CharacterTrait.generate(
+        tag: _selectedTag!,
+        description: _traitDescription.trim(),
+        type: _selectedTraitType!,
+      );
+      
+      // Update the person's traits
+      final peopleNotifier = ref.read(peopleProvider.notifier);
+      
+      List<CharacterTrait> updatedTraits;
+      Person updatedPerson;
+      
+      if (_selectedTraitType == 'physical') {
+        if (tagExists) {
+          // Replace existing trait with same tag
+          updatedTraits = person.physicalTraits
+              .where((trait) => trait.tag != _selectedTag)
+              .toList()
+            ..add(newTrait);
+        } else {
+          // Add new trait
+          updatedTraits = [...person.physicalTraits, newTrait];
+        }
+        updatedPerson = person.copyWith(physicalTraits: updatedTraits);
+      } else {
+        if (tagExists) {
+          // Replace existing trait with same tag
+          updatedTraits = person.clothingTraits
+              .where((trait) => trait.tag != _selectedTag)
+              .toList()
+            ..add(newTrait);
+        } else {
+          // Add new trait
+          updatedTraits = [...person.clothingTraits, newTrait];
+        }
+        updatedPerson = person.copyWith(clothingTraits: updatedTraits);
+      }
+      
+      // Save the changes
+      peopleNotifier.replace(person, updatedPerson);
+      await peopleNotifier.commitChanges();
+      
+      // Clear the form
+      setState(() {
+        _selectedTraitType = null;
+        _selectedTag = null;
+        _traitDescription = '';
+        _descriptionController.clear();
+      });
+      
+      // Show success message
+      final action = tagExists ? 'replaced' : 'added';
+      _showSuccess(ref, 'Custom ${_selectedTraitType} trait $action successfully!');
+      
+    } catch (e) {
+      _showError(ref, 'Error creating trait: $e');
     }
   }
 }
