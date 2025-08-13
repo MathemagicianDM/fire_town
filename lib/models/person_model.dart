@@ -59,10 +59,35 @@ class Person implements JsonSerializable {
 
   final String? clothingDescription;
 
-  final int maxSpouse = 1;
+  final int maxSpouse;
 
   bool canMarry() {
     return (countPartner() < maxSpouse) && (allowedToPartner[age]!.isNotEmpty);
+  }
+
+  bool canMarryPerson(Person other) {
+    // Both people must be able to marry in general
+    if (!canMarry() || !other.canMarry()) {
+      return false;
+    }
+    
+    // Must have compatible poly preferences
+    if (poly != other.poly) {
+      return false;
+    }
+    
+    // Must have compatible ages
+    if (!myPartnerAges.contains(other.age) || !other.myPartnerAges.contains(age)) {
+      return false;
+    }
+    
+    // Must have compatible orientations
+    if (!myPreferredPartnersPronouns.contains(other.pronouns) || 
+        !other.myPreferredPartnersPronouns.contains(pronouns)) {
+      return false;
+    }
+    
+    return true;
   }
 
   Set<AgeType> get myPartnerAges {
@@ -105,9 +130,9 @@ class Person implements JsonSerializable {
     required this.poly,
     required this.myRoles,
     required this.relationships,
+    required this.maxSpouse,
     this.physicalDescription,
     this.clothingDescription,
-    maxSpouse,
   });
 
   Person copyWith({
@@ -154,8 +179,6 @@ class Person implements JsonSerializable {
     poly: poly ?? this.poly,
     physicalDescription: physicalDescription ?? this.physicalDescription,
     clothingDescription: clothingDescription ?? this.clothingDescription,
-    // If maxSpouse is a constant with a default value, you might want to handle it differently
-    // This will use the provided value or fall back to the default
     maxSpouse: maxSpouse ?? this.maxSpouse,
   );
 }
@@ -398,7 +421,6 @@ class Person implements JsonSerializable {
       physicalDescription: data["physicalDescription"],
       clothingDescription: data["clothingDescription"],
       maxSpouse: int.parse(data["maxSpouse"]),
-
       relationships: List<Relationship>.from(
         (data["relationships"] ?? [])
             .map((r) => Relationship.fromJson((jsonEncode(r))))
@@ -441,7 +463,6 @@ class Person implements JsonSerializable {
       physicalDescription: data["physicalDescription"],
       clothingDescription: data["clothingDescription"],
       maxSpouse: int.parse(data["maxSpouse"]),
-
       relationships: List<Relationship>.from(
         (data["relationships"] ?? [])
             .map((r) => Relationship.fromJson((jsonEncode(r))))

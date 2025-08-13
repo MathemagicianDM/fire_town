@@ -92,7 +92,7 @@ String doNotCreateString = "_Nobody_Left_";
 //       roleList.add(locRole);
 //       locRolePN.add(locRole);
       
-//       relationshipPN.add(Node(id: id, relPairs: {}));
+//       relationshipsPN.add(Node(id: id, relPairs: {}));
 //     }
 
 //     Informational newGov = Informational(
@@ -148,7 +148,7 @@ String doNotCreateString = "_Nobody_Left_";
 //           roleList.add(locRoleID);
 //           locRolePN.add(locRoleID);
     
-//           relationshipPN.add(Node(id: id, relPairs: {}));
+//           relationshipsPN.add(Node(id: id, relPairs: {}));
           
 //           govIDs.add(id);
 //           break;
@@ -231,7 +231,7 @@ String doNotCreateString = "_Nobody_Left_";
 //             roleList.add(locRoleID);
 //             locRolePN.add(locRoleID);
             
-//             relationshipPN.add(Node(id: id, relPairs: {}));
+//             relationshipsPN.add(Node(id: id, relPairs: {}));
             
 //             govIDs.add(id);
 //             break;
@@ -244,7 +244,7 @@ String doNotCreateString = "_Nobody_Left_";
 //       await update();
 //     }
 //     await peoplePN.commitChanges();
-//     await relationshipPN.commitChanges();
+//     await relationshipsPN.commitChanges();
 //     await locRolePN.commitChanges();
 //     await pendingRolesPN.commitChanges();
 //   }
@@ -1521,9 +1521,9 @@ String doNotCreateString = "_Nobody_Left_";
 //     void addRelationship(String p1, String p2, RelationshipType relType) {
 //       int index = relationships.indexWhere((n) => n.id == p1);
 //       if (index == -1) {
-//         relationshipPN.add(Node(id: p1, relPairs: {Edge(you: p2, iAmYour: relType)}));
+//         relationshipsPN.add(Node(id: p1, relPairs: {Edge(you: p2, iAmYour: relType)}));
 //       } else {        
-//           relationshipPN.addRelationship(p1, p2, relType);
+//           relationshipsPN.addRelationship(p1, p2, relType);
 //       }
 //     }
 
@@ -1537,7 +1537,7 @@ String doNotCreateString = "_Nobody_Left_";
 //       Ancestry a = ancestries.firstWhere((an) => an.name == p1.ancestry);
 //       int index = relationships.indexWhere((n) => n.id == p1.id);
 //       if (index == -1) {
-//         relationshipPN.add(Node(id: p1.id, relPairs: {}));
+//         relationshipsPN.add(Node(id: p1.id, relPairs: {}));
 //       }
 //       Node myNode = index != -1 
 //   ? relationships[index] 
@@ -1654,7 +1654,7 @@ String doNotCreateString = "_Nobody_Left_";
 
 //           updateLocRoleQueue(id, childRole);
 //           final n = Node(id: id, relPairs: {});
-//           relationshipPN.add(n);
+//           relationshipsPN.add(n);
 //         }
 
 //         newPeople.add(c);
@@ -1734,7 +1734,7 @@ String doNotCreateString = "_Nobody_Left_";
 
 //               updateLocRoleQueue(id, childRole);
 //               final n = Node(id: id, relPairs: {});
-//               relationshipPN.add(n);
+//               relationshipsPN.add(n);
     
 //             }
 
@@ -1776,7 +1776,7 @@ String doNotCreateString = "_Nobody_Left_";
 //     }
 
 //     for (final p in [...whichPeople, ...newPeople]) {
-//        relationshipPN.findAndMakeSiblings(p.id);
+//        relationshipsPN.findAndMakeSiblings(p.id);
 //     }
 
 //     // updateBuffer.add(
@@ -1791,7 +1791,7 @@ String doNotCreateString = "_Nobody_Left_";
 
 //     await pendingRolePN.commitChanges();
 //     await peoplePN.commitChanges();
-//     await relationshipPN.commitChanges();
+//     await relationshipsPN.commitChanges();
 //     await locRolePN.commitChanges();
 
 //     for (final b in updateBuffer) {
@@ -2043,7 +2043,7 @@ String doNotCreateString = "_Nobody_Left_";
 //       locRoleAddQueue.add(locRole);
 //       locrolePN.add(locRole);
 //       final n = Node(id: id, relPairs: {});
-//       relationshipPN.add(n);
+//       relationshipsPN.add(n);
 //     }
 
 //     int indy = pendingRoles.indexWhere((pr) => pr.role == myRole);
@@ -2113,7 +2113,7 @@ String doNotCreateString = "_Nobody_Left_";
 //       locRoleAddQueue.add(locRole);
       
 //       final n = Node(id: id, relPairs: {});
-//       relationshipPN.add(n);
+//       relationshipsPN.add(n);
 
 //       newCreations.add(p);
 
@@ -2145,7 +2145,7 @@ String doNotCreateString = "_Nobody_Left_";
 //     await locrolePN.commitChanges();
 //     await peoplePN.commitChanges();
 //     await pendingRolesPN.commitChanges();
-//     await relationshipPN.commitChanges();
+//     await relationshipsPN.commitChanges();
 
 //     for (final update in updateBuffer) {
 //       await update();
@@ -2667,18 +2667,9 @@ extension TownOnFirePeople on TownOnFire {
     // List<Person> newPeople=[];
 
     List<Function> updateBuffer = [];
-    int countPartner(String p1) {
-      int myIndex = relationships.indexWhere((v) => v.id == p1);
-      if (myIndex == -1) {
-        return 0;
-      }
-      return relationships[myIndex].relPairs
-          .where((v) => v.iAmYour == RelationshipType.partner)
-          .length;
-    }
 
     void addRelationship(String p1, String p2, RelationshipType relType) {
-      int index = relationships.indexWhere((n) => n.id == p1);
+      int index = relationshipsPN.items.indexWhere((n) => n.id == p1);
       if (index == -1) {
         relationshipsPN.add(Node(id: p1, relPairs: {Edge(you: p2, iAmYour: relType)}));
       } else {
@@ -2686,28 +2677,23 @@ extension TownOnFirePeople on TownOnFire {
       }
     }
 
-    void addSymmetricRelationship(
-      String p1,
-      String p2,
-      RelationshipType relType,
-    ) {
-      addRelationship(p1, p2, relType);
-      addRelationship(p2, p1, relType);
-    }
-
     for (Person p in people) {
       bool canMarry =
           (allowedToPartner[p.age]!.isNotEmpty) &&
-          (countPartner(p.id) < p.maxSpouse);
+          (relationshipsPN.countPartners(p.id) < p.maxSpouse);
       bool doItAgain = true;
       int maxIter = 1;
       if (p.poly == PolyType.poly) {
         maxIter = maxIter + random.nextInt(p.maxSpouse) + 1;
+        print('🔍 POLY DEBUG (FS): ${p.firstName} ${p.surname} - maxSpouse: ${p.maxSpouse}, maxIter: $maxIter, canMarry: $canMarry');
       }
       if (canMarry) {
         for (int i = 0; i < maxIter; i++) {
+          if (p.poly == PolyType.poly) {
+            print('🔍 POLY DEBUG (FS): ${p.firstName} - Starting iteration $i of $maxIter, current partners: ${relationshipsPN.countPartners(p.id)}');
+          }
           while (doItAgain) {
-            if (countPartner(p.id) < p.maxSpouse) {
+            if (relationshipsPN.countPartners(p.id) < p.maxSpouse) {
               PartnerType myPartnerType = randomPartnerType(ref, p.ancestry);
               Set<String> myPreferredAncestry;
               switch (myPartnerType) {
@@ -2726,12 +2712,12 @@ extension TownOnFirePeople on TownOnFire {
                   doItAgain = false;
               }
               if (myPreferredAncestry.isNotEmpty) {
-                int myIndex = relationships.indexWhere((n) => n.id == p.id);
+                int myIndex = relationshipsPN.items.indexWhere((n) => n.id == p.id);
                 Set<String> doNotMarry = {};
                 if (myIndex != -1) {
-                  doNotMarry = relationships[myIndex].doNotMarry;
+                  doNotMarry = relationshipsPN.items[myIndex].doNotMarry;
                 }
-                int numPart = countPartner(p.id);
+                int numPart = relationshipsPN.countPartners(p.id);
 
                 List<Person> preCandidates =
                     people
@@ -2751,8 +2737,9 @@ extension TownOnFirePeople on TownOnFire {
                         .toList();
                 List<Person> candidates = [];
                 for (final c in preCandidates) {
-                  int cPartner = countPartner(c.id);
-                  if (numPart + cPartner < min(p.maxSpouse, c.maxSpouse)) {
+                  int cPartner = relationshipsPN.countPartners(c.id);
+                  // Both people must have space for more partners
+                  if (numPart < p.maxSpouse && cPartner < c.maxSpouse) {
                     candidates.add(c);
                   }
                 }
@@ -2760,6 +2747,19 @@ extension TownOnFirePeople on TownOnFire {
                 if (candidates.isNotEmpty) {
                   luckyOne = candidates[random.nextInt(candidates.length)];
                 } else {
+                  // No existing candidates found
+                  if (p.poly == PolyType.poly) {
+                    print('🔍 POLY DEBUG (FS): ${p.firstName} - No existing candidates, creating multiple poly partners');
+                    // For poly people: create multiple partners to fill remaining capacity
+                    List<Person> newPartners = createMultiplePolyPartners(ref, p, myPreferredAncestry);
+                    print('🔍 POLY DEBUG (FS): ${p.firstName} - Created ${newPartners.length} new partners');
+                    if (newPartners.isNotEmpty) {
+                      doItAgain = false; // Successfully created multiple partners, exit retry loop
+                      continue; // Skip to next iteration of main loop
+                    }
+                  }
+                  
+                  // Create single partner (for non-poly or if bulk creation failed)
                   String newID = _uuid.v4();
 
                   luckyOne = createRandomPerson(ref,
@@ -2789,23 +2789,23 @@ extension TownOnFirePeople on TownOnFire {
                 Node nobody = Node(id: "", relPairs: {});
                 if (randomBreakUp(ref, p.ancestry)) {
                   Set<String> pPartners =
-                      relationships
+                      relationshipsPN.items
                           .firstWhere((n) => n.id == p.id, orElse: () => nobody)
                           .allPartners;
                   Set<String> luckyOnePartners =
-                      relationships
+                      relationshipsPN.items
                           .firstWhere(
                             (n) => n.id == luckyOne.id,
                             orElse: () => nobody,
                           )
                           .allPartners;
-                  addSymmetricRelationship(
+                  relationshipsPN.addSymmetricRelationship(
                     luckyOne.id,
                     p.id,
                     RelationshipType.ex,
                   );
                   for (String q in pPartners) {
-                    addSymmetricRelationship(
+                    relationshipsPN.addSymmetricRelationship(
                       luckyOne.id,
                       q,
                       RelationshipType.ex,
@@ -2813,23 +2813,23 @@ extension TownOnFirePeople on TownOnFire {
                   }
 
                   for (String q in luckyOnePartners) {
-                    addSymmetricRelationship(p.id, q, RelationshipType.ex);
+                    relationshipsPN.addSymmetricRelationship(p.id, q, RelationshipType.ex);
                   }
                   doItAgain = true;
                 } else {
-                  int index = relationships.indexWhere((n) => n.id == p.id);
+                  int index = relationshipsPN.items.indexWhere((n) => n.id == p.id);
                   Set<String> luckyOneToMarrySet = {};
                   if (index != -1) {
-                    luckyOneToMarrySet = relationships[index].allPartners;
+                    luckyOneToMarrySet = relationshipsPN.items[index].allPartners;
                   }
 
                   luckyOneToMarrySet.add(p.id);
 
-                  int index2 = relationships.indexWhere((n) => n.id == luckyOne.id);
+                  int index2 = relationshipsPN.items.indexWhere((n) => n.id == luckyOne.id);
                   Set<String> pToMarrySet = {};
                   if (index2 != -1) {
                     pToMarrySet =
-                        relationships
+                        relationshipsPN.items
                             .firstWhere((n) => n.id == luckyOne.id)
                             .allPartners;
                   }
@@ -2837,7 +2837,7 @@ extension TownOnFirePeople on TownOnFire {
                   pToMarrySet.add(luckyOne.id);
 
                   for (String q in luckyOneToMarrySet) {
-                    addSymmetricRelationship(
+                    relationshipsPN.addSymmetricRelationship(
                       q,
                       luckyOne.id,
                       RelationshipType.partner,
@@ -2866,7 +2866,7 @@ extension TownOnFirePeople on TownOnFire {
                     }
                   }
                   for (String q in pToMarrySet) {
-                    addSymmetricRelationship(q, p.id, RelationshipType.partner);
+                    relationshipsPN.addSymmetricRelationship(q, p.id, RelationshipType.partner);
 
                     if ((locRoles
                         .where(
@@ -3004,7 +3004,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
     }
 
     void addRelationship(String p1, String p2, RelationshipType relType) {
-      int index = relationships.indexWhere((n) => n.id == p1);
+      int index = relationshipPN.items.indexWhere((n) => n.id == p1);
       if (index == -1) {
         relationshipPN.add(Node(id: p1, relPairs: {Edge(you: p2, iAmYour: relType)}));
       } else {        
@@ -3020,12 +3020,12 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       if (!childBearingAges.contains(p1.age)) return [];
       final ancestries = ref.read(ancestriesProvider);
       Ancestry a = ancestries.firstWhere((an) => an.name == p1.ancestry);
-      int index = relationships.indexWhere((n) => n.id == p1.id);
+      int index = relationshipPN.items.indexWhere((n) => n.id == p1.id);
       if (index == -1) {
         relationshipPN.add(Node(id: p1.id, relPairs: {}));
       }
       Node myNode = index != -1 
-  ? relationships[index] 
+  ? relationshipPN.items[index] 
   : Node(id: p1.id, relPairs: {});
   
       Set<RelationshipType> parentTypes = {
@@ -3045,42 +3045,48 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
               .length;
 
       if (random.nextDouble() < a.childrenProb) {
-        bool funToMakeFunToEat = preExistingChildren < a.maxChildren;
-        while (funToMakeFunToEat) {
-          double r = random.nextDouble();
-          AdoptionType myType = AdoptionType.noAdoption;
-          if (r < a.adoptionWithinProb) {
-            myType = AdoptionType.sameAncestry;
+        // Determine how many children to create (1 to remaining max, but typically 1-2)
+        int maxNewChildren = a.maxChildren - preExistingChildren;
+        if (maxNewChildren > 0) {
+          // Most people have 1-2 children, rarely more
+          int numChildrenToCreate = 1;
+          if (maxNewChildren > 1 && random.nextDouble() < 0.3) {
+            numChildrenToCreate = min(2, maxNewChildren);
           }
-          r -= a.adoptionWithinProb;
-          if (r < a.adoptionOutsideProb) {
-            myType = AdoptionType.differentAncestry;
-          }
-          Person parent = p1;
+          
+          for (int i = 0; i < numChildrenToCreate; i++) {
+            double r = random.nextDouble();
+            AdoptionType myType = AdoptionType.noAdoption;
+            if (r < a.adoptionWithinProb) {
+              myType = AdoptionType.sameAncestry;
+            }
+            r -= a.adoptionWithinProb;
+            if (r < a.adoptionOutsideProb) {
+              myType = AdoptionType.differentAncestry;
+            }
+            Person parent = p1;
 
-          if (possibleParents.isNotEmpty) {
-            String parentID =
-                possibleParents[random.nextInt(possibleParents.length)];
-            parent = [
-              ...allPeople,
-              ...newPeople,
-            ].firstWhere((p) => p.id == parentID);
+            if (possibleParents.isNotEmpty) {
+              String parentID =
+                  possibleParents[random.nextInt(possibleParents.length)];
+              parent = [
+                ...allPeople,
+                ...newPeople,
+              ].firstWhere((p) => p.id == parentID);
+            }
+            output.add({"parent": parent, "childType": myType});
           }
-          output.add({"parent": parent, "childType": myType});
-          funToMakeFunToEat =
-              (random.nextDouble() < a.childrenProb) &&
-              (output.length + preExistingChildren < a.maxChildren);
         }
       }
       return output;
     }
 
     bool hasNoParent(String c) {
-      int index = relationships.indexWhere((n) => n.id == c);
+      int index = relationshipPN.items.indexWhere((n) => n.id == c);
       if (index == -1) {
         return true;
       } else {
-        return relationships[index].relPairs
+        return relationshipPN.items[index].relPairs
             .where((rp) => rp.iAmYour == RelationshipType.parent)
             .isEmpty;
       }
@@ -3323,6 +3329,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
     newQuirk1 = newQuirk1 ?? randomQuirks(ref,newQuirk2);
     newQuirk2 = newQuirk2 ?? randomQuirks(ref,newQuirk1);
     newPronouns = newPronouns ?? randomPronouns(ref,newAncestry);
+    newPoly = newPoly ?? randomPoly(ref,newAncestry);
     if (newPoly == PolyType.poly) {
       newMaxSpouse =
           newMaxSpouse ??
@@ -3347,7 +3354,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       childrenID: newChildrenID ?? [],
       parents: newParentID ?? [],
       exIDs: newExID ?? [],
-      poly: newPoly ?? randomPoly(ref,newAncestry),
+      poly: newPoly,
       maxSpouse: newMaxSpouse,
       myRoles: newRoles ?? [],
       relationships: newRelationships ?? [],
@@ -3677,7 +3684,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
     final locRolePN = ref.read(locationRolesProvider.notifier);
     
     final peoplePN = ref.read(peopleProvider.notifier);
-    // final people = ref.watch(peopleProvider);
+    final people = ref.watch(peopleProvider);
 
     final List<Function> updateBuffer = [];
     
@@ -3694,32 +3701,8 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
 
     // final locRoleProvider = ref.read(locationRoleListProvider.notifier);
 
-    int countPartner(String p1) {
-      int myIndex = relationships.indexWhere((v) => v.id == p1);
-      if (myIndex == -1) return 0;
-      return relationships[myIndex].relPairs
-          .where((v) => v.iAmYour == RelationshipType.partner)
-          .length;
-    }
-
     void addRelationship(String p1, String p2, RelationshipType relType) {
-      int index = relationships.indexWhere((n) => n.id == p1);
-      if (index == -1) {
-        relationships.add(Node(id: p1, relPairs: {Edge(you: p2, iAmYour: relType)}));
-        relationshipsPN.addRelationship(p1, p2, relType);
-      } else {
-        relationships[index] = relationships[index].addRelationship(p2, relType);
-        relationshipsPN.addRelationship(p1, p2, relType);
-      }
-    }
-
-    void addSymmetricRelationship(
-      String p1,
-      String p2,
-      RelationshipType relType,
-    ) {
-      addRelationship(p1, p2, relType);
-      addRelationship(p2, p1, relType);
+      relationshipsPN.addRelationship(p1, p2, relType);
     }
 
     Person? createPartnerFromPendingRole(
@@ -3828,70 +3811,150 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       return partner;
     }
 
+
     for (Person p in newPeople) {
       bool canMarry =
           (allowedToPartner[p.age]!.isNotEmpty) &&
-          (countPartner(p.id) < p.maxSpouse);
-
+          (relationshipsPN.countPartners(p.id) < p.maxSpouse);
+      bool doItAgain = true;
+      int maxIter = 1;
+      if (p.poly == PolyType.poly) {
+        maxIter = maxIter + random.nextInt(p.maxSpouse) + 1;
+        print('🔍 POLY DEBUG (LAZY): ${p.firstName} ${p.surname} - maxSpouse: ${p.maxSpouse}, maxIter: $maxIter, canMarry: $canMarry');
+      }
       if (canMarry) {
-        PartnerType myPartnerType = randomPartnerType(ref,p.ancestry);
-        Set<String> myPreferredAncestry;
+        for (int i = 0; i < maxIter; i++) {
+          if (p.poly == PolyType.poly) {
+            print('🔍 POLY DEBUG (LAZY): ${p.firstName} - Starting iteration $i of $maxIter, current partners: ${relationshipsPN.countPartners(p.id)}');
+          }
+          int retryCount = 0;
+          const int maxRetries = 10; // Prevent infinite loops
+          while (doItAgain && retryCount < maxRetries) {
+            retryCount++;
+            if (relationshipsPN.countPartners(p.id) < p.maxSpouse) {
+              PartnerType myPartnerType = randomPartnerType(ref, p.ancestry);
+              if (p.poly == PolyType.poly) {
+                print('🔍 POLY DEBUG (LAZY): ${p.firstName} - Retry $retryCount, got partnerType: $myPartnerType');
+              }
+              Set<String> myPreferredAncestry;
+              switch (myPartnerType) {
+                case (PartnerType.sameAncestry):
+                  myPreferredAncestry = {p.ancestry};
+                  break;
+                case (PartnerType.differentAncestry):
+                  myPreferredAncestry = {
+                    randomAncestry(
+                      restrictedAncestries: getOtherAncestries(ref,p.ancestry),
+                    ),
+                  };
+                  break;
+                case (PartnerType.noPartner):
+                  // If poly person has room for more partners, retry instead of stopping
+                  if (p.poly == PolyType.poly && relationshipsPN.countPartners(p.id) < p.maxSpouse) {
+                    myPreferredAncestry = {};
+                    // Don't set doItAgain = false, let it retry with a different partner type
+                  } else {
+                    myPreferredAncestry = {};
+                    doItAgain = false;
+                  }
+                  break;
+              }
+              if (myPreferredAncestry.isNotEmpty) {
+                int myIndex = relationshipsPN.items.indexWhere((n) => n.id == p.id);
+                Set<String> doNotMarry = {p.id};
+                if (myIndex != -1) {
+                  doNotMarry.addAll(relationshipsPN.items[myIndex].doNotMarry);
+                }
+                // Look for existing suitable partner in entire town population
+                List<Person> candidates =
+                    people
+                        .where(
+                          (f) =>
+                              (myPreferredAncestry.contains(f.ancestry)) &&
+                              (p.myPreferredPartnersPronouns.contains(f.pronouns)) &&
+                              (f.myPreferredPartnersPronouns.contains(p.pronouns)) &&
+                              (p.myPartnerAges.contains(f.age)) &&
+                              (p.poly == f.poly) &&
+                              (relationshipsPN.countPartners(f.id) < f.maxSpouse) &&
+                              (!doNotMarry.contains(f.id)),
+                        )
+                        .toList();
 
-        switch (myPartnerType) {
-          case PartnerType.sameAncestry:
-            myPreferredAncestry = {p.ancestry};
-            break;
-          case PartnerType.differentAncestry:
-            myPreferredAncestry = {
-              randomAncestry(
-                restrictedAncestries: getOtherAncestries(ref,p.ancestry),
-              ),
-            };
-            break;
-          case PartnerType.noPartner:
-            continue;
-        }
+                if (p.poly == PolyType.poly) {
+                  print('🔍 POLY DEBUG: ${p.firstName} - Found ${candidates.length} candidates in town population');
+                }
 
-        int myIndex = relationships.indexWhere((n) => n.id == p.id);
-        Set<String> doNotMarry = {p.id};
-        if (myIndex != -1) {
-          doNotMarry.addAll(relationships[myIndex].doNotMarry);
-        }
-        // Look for existing suitable partner
-        List<Person> candidates =
-            newPeople
-                .where(
-                  (f) =>
-                      (myPreferredAncestry.contains(f.ancestry)) &&
-                      (p.myPreferredPartnersPronouns.contains(f.pronouns)) &&
-                      (f.myPreferredPartnersPronouns.contains(p.pronouns)) &&
-                      (p.myPartnerAges.contains(f.age)) &&
-                      (p.poly == f.poly) &&
-                      (countPartner(f.id) < f.maxSpouse) &&
-                      (!doNotMarry.contains(f.id)),
-                )
-                .toList();
-
-        Person? partner;
-        if (candidates.isNotEmpty) {
-          partner = candidates[random.nextInt(candidates.length)];
-        } else {
-          // Create partner from pending role
-          partner = createPartnerFromPendingRole(p, myPreferredAncestry);
-        }
-        if (partner != null) {
-          if (partner.id != doNotCreateString) {
-            if (randomBreakUp(ref,p.ancestry)) {
-              addSymmetricRelationship(partner.id, p.id, RelationshipType.ex);
+                Person? partner;
+                if (candidates.isNotEmpty) {
+                  partner = candidates[random.nextInt(candidates.length)];
+                  if (p.poly == PolyType.poly) {
+                    print('🔍 POLY DEBUG: ${p.firstName} - Selected existing partner: ${partner?.firstName}');
+                  }
+                  // Handle single partner from existing population
+                  if (partner != null) {
+                    if (partner.id != doNotCreateString) {
+                      if (randomBreakUp(ref,p.ancestry)) {
+                        relationshipsPN.addSymmetricRelationship(partner.id, p.id, RelationshipType.ex);
+                      } else {
+                        relationshipsPN.addSymmetricRelationship(
+                          partner.id,
+                          p.id,
+                          RelationshipType.partner,
+                        );
+                      }
+                    }
+                    doItAgain = false; // Partner found, exit retry loop
+                  }
+                } else {
+                  // No existing candidates found - create new partners
+                  if (p.poly == PolyType.poly) {
+                    print('🔍 POLY DEBUG: ${p.firstName} - No existing candidates, creating multiple poly partners');
+                    // For poly people: create multiple partners to fill remaining capacity
+                    List<Person> newPartners = createMultiplePolyPartners(ref, p, myPreferredAncestry);
+                    print('🔍 POLY DEBUG: ${p.firstName} - Created ${newPartners.length} new partners');
+                    if (newPartners.isNotEmpty) {
+                      doItAgain = false; // Successfully created multiple partners, exit retry loop
+                    } else {
+                      // Failed to create partners, retry or give up
+                      if (retryCount >= maxRetries) {
+                        doItAgain = false; // Give up after max retries
+                      }
+                    }
+                  } else {
+                    // For non-poly people: create single partner as before
+                    partner = createPartnerFromPendingRole(p, myPreferredAncestry);
+                    if (partner != null) {
+                      if (partner.id != doNotCreateString) {
+                        if (randomBreakUp(ref,p.ancestry)) {
+                          relationshipsPN.addSymmetricRelationship(partner.id, p.id, RelationshipType.ex);
+                        } else {
+                          relationshipsPN.addSymmetricRelationship(
+                            partner.id,
+                            p.id,
+                            RelationshipType.partner,
+                          );
+                        }
+                      }
+                      doItAgain = false; // Partner found, exit retry loop
+                    } else {
+                      // No partner found, retry or give up
+                      if (retryCount >= maxRetries) {
+                        doItAgain = false; // Give up after max retries
+                      }
+                    }
+                  }
+                }
+              }
             } else {
-              addSymmetricRelationship(
-                partner.id,
-                p.id,
-                RelationshipType.partner,
-              );
+              doItAgain = false;
             }
           }
+          doItAgain = true;
         }
+      }
+      
+      if (p.poly == PolyType.poly) {
+        print('🔍 POLY DEBUG: FINAL - ${p.firstName} ended with ${relationshipsPN.countPartners(p.id)} partners');
       }
     }
     // updateBuffer.add(() async => );
@@ -3917,5 +3980,64 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
     for (final update in updateBuffer) {
       await update();
     }
+  }
+
+  List<Person> createMultiplePolyPartners(
+    WidgetRef ref,
+    Person originalPerson,
+    Set<String> myPreferredAncestry,
+  ) {
+    final relationshipsPN = ref.read(relationshipsProvider.notifier);
+    final peoplePN = ref.read(peopleProvider.notifier);
+    
+    List<Person> partners = [];
+    
+    // Calculate how many more partners this poly person needs
+    int currentPartners = relationshipsPN.countPartners(originalPerson.id);
+    int remainingCapacity = originalPerson.maxSpouse - currentPartners;
+    
+    print('🔍 POLY DEBUG: createMultiplePolyPartners for ${originalPerson.firstName} - current: $currentPartners, maxSpouse: ${originalPerson.maxSpouse}, remaining: $remainingCapacity');
+    
+    if (remainingCapacity <= 0) return partners;
+    
+    // Create 2-4 partners or up to remaining capacity, whichever is smaller
+    int partnersToCreate = min(remainingCapacity, random.nextInt(3) + 2); // 2-4 partners
+    print('🔍 POLY DEBUG: Will attempt to create $partnersToCreate partners');
+    
+    for (int i = 0; i < partnersToCreate; i++) {
+      print('🔍 POLY DEBUG: Creating partner ${i + 1} of $partnersToCreate');
+      String newID = _uuid.v4();
+
+      Person partner = createRandomPerson(ref,
+        newID: newID,
+        newAncestry: myPreferredAncestry.elementAt(
+          random.nextInt(myPreferredAncestry.length),
+        ),
+        newPoly: originalPerson.poly,
+        newAge: originalPerson.age,
+        newPronouns: originalPerson.myPreferredPartnersPronouns.elementAt(
+          random.nextInt(originalPerson.myPreferredPartnersPronouns.length),
+        ),
+        newOrientation: originalPerson.orientation,
+      );
+      
+      partners.add(partner);
+      print('🔍 POLY DEBUG: Successfully created partner: ${partner.firstName}');
+      
+      // Add this partner to the system
+      peoplePN.add(partner);
+      relationshipsPN.add(Node(id: partner.id, relPairs: {}));
+      
+      // Create relationship
+      if (randomBreakUp(ref, originalPerson.ancestry)) {
+        relationshipsPN.addSymmetricRelationship(partner.id, originalPerson.id, RelationshipType.ex);
+        print('🔍 POLY DEBUG: Made ${partner.firstName} an EX of ${originalPerson.firstName}');
+      } else {
+        relationshipsPN.addSymmetricRelationship(partner.id, originalPerson.id, RelationshipType.partner);
+        print('🔍 POLY DEBUG: Made ${partner.firstName} a PARTNER of ${originalPerson.firstName}');
+      }
+    }
+    
+    return partners;
   }
 }
