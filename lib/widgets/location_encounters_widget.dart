@@ -397,8 +397,8 @@ class _LocationEncountersWidgetState extends ConsumerState<LocationEncountersWid
           
           // Add the clickable person name with optional role and proper spacing
           final displayText = _showRoles 
-              ? ' ${selectedPerson.firstName} ${selectedPerson.surname} (${part.role!.name}) '
-              : ' ${selectedPerson.firstName} ${selectedPerson.surname} ';
+              ? ' ${selectedPerson.firstName} (${part.role!.name}) '
+              : ' ${selectedPerson.firstName} ';
               
           textSpans.add(
             TextSpan(

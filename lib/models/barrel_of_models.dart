@@ -9,6 +9,7 @@ export 'names_models.dart';
 // export 'new_shops_models.dart';
 export 'location_role_model.dart';
 export 'person_model.dart';
+export 'character_trait_model.dart';
 export 'quirk_model.dart';
 export 'resonant_argument_model.dart';
 export 'roles_models.dart';

@@ -102,7 +102,7 @@ final locations = locationList
                                       for (var person in nPeople)
                                         Align(
                                           alignment: Alignment.centerLeft,
-                                          child: person.printPersonSummaryTappable(context),
+                                          child: person.printFlippableCard(),
                                         ),
                                       if (peopleResults.length > peopleLimit.value)
                                         TextButton(

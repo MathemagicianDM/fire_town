@@ -72,24 +72,6 @@ class PersonItem extends HookConsumerWidget {
     // final textEditingController = useTextEditingController();
     // final textFieldFocusNode = useFocusNode();
 
-    return Material(
-      color: Colors.white,
-      elevation: 6,
-        child: GestureDetector(
-          onTap: () {
-            // ignore: avoid_print
-            print(person.firstName);
-            navigatorKey.currentState!.restorablePushNamed(
-                  PersonDetailView.routeName,
-                  arguments: {
-                    'myID': person.id,
-                  }
-                );
-          },
-          child: person.printPersonSummary(),
-            
-          ),
-         
-          );
+    return person.printFlippableCard();
   }
 }

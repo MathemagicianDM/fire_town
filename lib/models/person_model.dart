@@ -15,6 +15,7 @@ import "../screens/person_detail_view.dart";
 
 import "../enums_and_maps.dart";
 import '../../models/barrel_of_models.dart';
+import '../widgets/flippable_person_card.dart';
 
 
 @immutable
@@ -55,9 +56,9 @@ class Person implements JsonSerializable {
 
   final PolyType poly;
 
-  final String? physicalDescription;
-
-  final String? clothingDescription;
+  final List<CharacterTrait> physicalTraits;
+  
+  final List<CharacterTrait> clothingTraits;
 
   final int maxSpouse;
 
@@ -131,8 +132,8 @@ class Person implements JsonSerializable {
     required this.myRoles,
     required this.relationships,
     required this.maxSpouse,
-    this.physicalDescription,
-    this.clothingDescription,
+    this.physicalTraits = const [],
+    this.clothingTraits = const [],
   });
 
   Person copyWith({
@@ -154,8 +155,8 @@ class Person implements JsonSerializable {
   List<Relationship>? relationships,
   List<LocationRole>? myRoles,
   PolyType? poly,
-  String? physicalDescription,
-  String? clothingDescription,
+  List<CharacterTrait>? physicalTraits,
+  List<CharacterTrait>? clothingTraits,
   int? maxSpouse,
 }) {
   return Person(
@@ -177,8 +178,8 @@ class Person implements JsonSerializable {
     relationships: relationships ?? this.relationships,
     myRoles: myRoles ?? this.myRoles,
     poly: poly ?? this.poly,
-    physicalDescription: physicalDescription ?? this.physicalDescription,
-    clothingDescription: clothingDescription ?? this.clothingDescription,
+    physicalTraits: physicalTraits ?? this.physicalTraits,
+    clothingTraits: clothingTraits ?? this.clothingTraits,
     maxSpouse: maxSpouse ?? this.maxSpouse,
   );
 }
@@ -291,6 +292,13 @@ class Person implements JsonSerializable {
     );
   }
 
+  Widget printFlippableCard({List<String>? additionalInfo}) {
+    return FlippablePersonCard(
+      person: this,
+      additionalInfo: additionalInfo,
+    );
+  }
+
   String roleString(LocationRole myRole) {
     return "${myRole.myRole} @ ${myRole.locationID}";
   }
@@ -381,8 +389,8 @@ class Person implements JsonSerializable {
       'exIDs': exIDs,
       'myRoles': myRoles.map((r) => r.toJson()).toList(),
       'poly': poly.name,
-      'physicalDescription': physicalDescription,
-      'clothingDescription': clothingDescription,
+      'physicalTraits': physicalTraits.map((t) => t.toJson()).toList(),
+      'clothingTraits': clothingTraits.map((t) => t.toJson()).toList(),
       'maxSpouse': maxSpouse.toString(),
       'relationships': relationships.map((r) => r.toJson()).toList(),
     };
@@ -418,8 +426,16 @@ class Person implements JsonSerializable {
             .toList(),
       ),
       poly: PolyType.values.firstWhere((v) => v.name == data["poly"]),
-      physicalDescription: data["physicalDescription"],
-      clothingDescription: data["clothingDescription"],
+      physicalTraits: List<CharacterTrait>.from(
+        (data["physicalTraits"] ?? [])
+            .map((t) => CharacterTrait.fromJson2(t))
+            .toList(),
+      ),
+      clothingTraits: List<CharacterTrait>.from(
+        (data["clothingTraits"] ?? [])
+            .map((t) => CharacterTrait.fromJson2(t))
+            .toList(),
+      ),
       maxSpouse: int.parse(data["maxSpouse"]),
       relationships: List<Relationship>.from(
         (data["relationships"] ?? [])
@@ -460,8 +476,16 @@ class Person implements JsonSerializable {
             .toList(),
       ),
       poly: PolyType.values.firstWhere((v) => v.name == data["poly"]),
-      physicalDescription: data["physicalDescription"],
-      clothingDescription: data["clothingDescription"],
+      physicalTraits: List<CharacterTrait>.from(
+        (data["physicalTraits"] ?? [])
+            .map((t) => CharacterTrait.fromJson2(t))
+            .toList(),
+      ),
+      clothingTraits: List<CharacterTrait>.from(
+        (data["clothingTraits"] ?? [])
+            .map((t) => CharacterTrait.fromJson2(t))
+            .toList(),
+      ),
       maxSpouse: int.parse(data["maxSpouse"]),
       relationships: List<Relationship>.from(
         (data["relationships"] ?? [])

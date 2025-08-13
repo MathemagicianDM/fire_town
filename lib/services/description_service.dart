@@ -2,6 +2,7 @@ import 'dart:math';
 import '../models/description_template_model.dart';
 import '../models/description_constants.dart';
 import '../models/person_model.dart';
+import '../models/character_trait_model.dart';
 import '../models/town_extension/town_locations.dart';
 import '../enums_and_maps.dart';
 
@@ -26,11 +27,8 @@ class DescriptionService {
     
     if (applicableTemplates.isEmpty) return null;
     
-    // Get already used tags from existing description to prevent conflicts
-    final existingTags = _extractTagsFromPersonDescription(
-      person.physicalDescription,
-      templates,
-    );
+    // Get already used tags from existing traits to prevent conflicts
+    final existingTags = person.physicalTraits.map((trait) => trait.tag).toSet();
     
     // Combine existing tags with manually excluded tags
     final allExcludedTags = <String>[...(excludeTags ?? []), ...existingTags];
@@ -67,11 +65,8 @@ class DescriptionService {
     
     if (applicableTemplates.isEmpty) return null;
     
-    // Get already used tags from existing description to prevent conflicts
-    final existingTags = _extractTagsFromClothingDescription(
-      person.clothingDescription,
-      templates,
-    );
+    // Get already used tags from existing traits to prevent conflicts
+    final existingTags = person.clothingTraits.map((trait) => trait.tag).toSet();
     
     // Combine existing tags with manually excluded tags
     final allExcludedTags = <String>[...(excludeTags ?? []), ...existingTags];
@@ -139,6 +134,118 @@ class DescriptionService {
       person: person,
       variables: selectedTemplate.variables,
     );
+  }
+  
+  /// Generate a list of individual physical traits using available templates
+  List<CharacterTrait> generatePhysicalTraits({
+    required Person person,
+    required List<PhysicalTemplate> templates,
+    required List<String> allAncestries,
+    int maxTraits = 3,
+  }) {
+    final List<CharacterTrait> traits = [];
+    final Set<String> usedTags = {};
+    
+    // Filter templates that match the person's ancestry and roles
+    final applicableTemplates = _filterPhysicalTemplates(
+      templates: templates,
+      ancestry: person.ancestry,
+      roles: person.myRoles.map((lr) => lr.myRole).toList(),
+      allAncestries: allAncestries,
+    );
+    
+    // Group templates by tag to ensure variety
+    final Map<String, List<PhysicalTemplate>> templatesByTag = {};
+    for (final template in applicableTemplates) {
+      if (!templatesByTag.containsKey(template.tag)) {
+        templatesByTag[template.tag] = [];
+      }
+      templatesByTag[template.tag]!.add(template);
+    }
+    
+    // Generate traits, ensuring no duplicate tags
+    final availableTags = templatesByTag.keys.toList()..shuffle(_random);
+    
+    for (final tag in availableTags) {
+      if (traits.length >= maxTraits) break;
+      if (usedTags.contains(tag)) continue;
+      
+      final tagTemplates = templatesByTag[tag]!;
+      final selectedTemplate = tagTemplates[_random.nextInt(tagTemplates.length)];
+      
+      final description = _processTemplateString(
+        template: selectedTemplate.templates.first,
+        person: person,
+        variables: selectedTemplate.variables,
+      );
+      
+      if (description != null) {
+        traits.add(CharacterTrait.generate(
+          tag: tag,
+          description: description,
+          type: 'physical',
+        ));
+        usedTags.add(tag);
+      }
+    }
+    
+    return traits;
+  }
+  
+  /// Generate a list of individual clothing traits using available templates
+  List<CharacterTrait> generateClothingTraits({
+    required Person person,
+    required List<ClothingTemplate> templates,
+    required List<String> allAncestries,
+    int maxTraits = 2,
+  }) {
+    final List<CharacterTrait> traits = [];
+    final Set<String> usedTags = {};
+    
+    // Filter templates that match the person's ancestry and roles
+    final applicableTemplates = _filterClothingTemplates(
+      templates: templates,
+      ancestry: person.ancestry,
+      roles: person.myRoles.map((lr) => lr.myRole).toList(),
+      allAncestries: allAncestries,
+    );
+    
+    // Group templates by tag to ensure variety
+    final Map<String, List<ClothingTemplate>> templatesByTag = {};
+    for (final template in applicableTemplates) {
+      if (!templatesByTag.containsKey(template.tag)) {
+        templatesByTag[template.tag] = [];
+      }
+      templatesByTag[template.tag]!.add(template);
+    }
+    
+    // Generate traits, ensuring no duplicate tags
+    final availableTags = templatesByTag.keys.toList()..shuffle(_random);
+    
+    for (final tag in availableTags) {
+      if (traits.length >= maxTraits) break;
+      if (usedTags.contains(tag)) continue;
+      
+      final tagTemplates = templatesByTag[tag]!;
+      final selectedTemplate = tagTemplates[_random.nextInt(tagTemplates.length)];
+      
+      final description = _processTemplateString(
+        template: selectedTemplate.templates.first,
+        person: person,
+        variables: selectedTemplate.variables,
+      );
+      
+      if (description != null) {
+        traits.add(CharacterTrait.generate(
+          tag: tag,
+          description: description,
+          type: 'clothing',
+        ));
+        usedTags.add(tag);
+      }
+    }
+    
+    return traits;
   }
   
   /// Filter physical templates based on ancestry and role constraints
@@ -316,71 +423,6 @@ class DescriptionService {
     }
   }
 
-  /// Extract tags from a person's physical description
-  List<String> _extractTagsFromPersonDescription(String? description, List<PhysicalTemplate> templates) {
-    if (description == null || description.isEmpty) return [];
-    
-    final usedTags = <String>[];
-    final traits = _parseDescriptionTraits(description);
-    
-    // For each trait, try to match it against template patterns
-    for (final trait in traits) {
-      for (final template in templates) {
-        // Simple keyword matching - could be made more sophisticated
-        final templateWords = template.templates.first.toLowerCase().split(RegExp(r'[{} ]+'));
-        final traitWords = trait.toLowerCase().split(' ');
-        
-        // If we find significant word overlap, assume this template was used
-        int matches = 0;
-        for (final word in templateWords) {
-          if (word.isNotEmpty && traitWords.any((tw) => tw.contains(word) || word.contains(tw))) {
-            matches++;
-          }
-        }
-        
-        // If we have enough matches, consider this tag used
-        if (matches >= 2) {
-          usedTags.add(template.tag);
-          break;
-        }
-      }
-    }
-    
-    return usedTags.toSet().toList();
-  }
-  
-  /// Extract tags from a person's clothing description
-  List<String> _extractTagsFromClothingDescription(String? description, List<ClothingTemplate> templates) {
-    if (description == null || description.isEmpty) return [];
-    
-    final usedTags = <String>[];
-    final traits = _parseDescriptionTraits(description);
-    
-    // For each trait, try to match it against template patterns
-    for (final trait in traits) {
-      for (final template in templates) {
-        // Simple keyword matching - could be made more sophisticated
-        final templateWords = template.templates.first.toLowerCase().split(RegExp(r'[{} ]+'));
-        final traitWords = trait.toLowerCase().split(' ');
-        
-        // If we find significant word overlap, assume this template was used
-        int matches = 0;
-        for (final word in templateWords) {
-          if (word.isNotEmpty && traitWords.any((tw) => tw.contains(word) || word.contains(tw))) {
-            matches++;
-          }
-        }
-        
-        // If we have enough matches, consider this tag used
-        if (matches >= 2) {
-          usedTags.add(template.tag);
-          break;
-        }
-      }
-    }
-    
-    return usedTags.toSet().toList();
-  }
   
   /// Parse description into individual traits
   List<String> _parseDescriptionTraits(String? description) {

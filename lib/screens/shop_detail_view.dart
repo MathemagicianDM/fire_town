@@ -295,60 +295,63 @@ class ShopDetailTabbed extends HookConsumerWidget {
         ),
         body: Column(
           children: [
-            // Top pane (fixed)
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              color: Colors.grey[200],
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text.rich(
+            // Top pane (collapsible)
+            ExpansionTile(
+              initiallyExpanded: true,
+              title: Text.rich(
+                TextSpan(
+                  style: const TextStyle(fontSize: 16), // Base style
+                  children: [
                     TextSpan(
-                      style: const TextStyle(fontSize: 16), // Base style
-                      children: [
-                        TextSpan(
-                            text: shop.pro1,
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: " & "),
-                        TextSpan(
-                            text: shop.pro2,
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: " but "),
-                        TextSpan(
-                            text: shop.con,
-                            style: const TextStyle(color: Colors.red)),
-                      ],
-                    ),
-                    softWrap: true, // Allow wrapping to the next line if needed
-                  ),
-                  const SizedBox(height: 8),
-                  // Owner and encounters side-by-side
-                  IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Owner section (left side)
-                        Expanded(
-                          flex: 1,
-                          child: showOwners(context, ref, shop),
-                        ),
-                        const SizedBox(width: 16),
-                        // Encounters section (right side)
-                        Expanded(
-                          flex: 1,
-                          child: LocationEncountersWidget(
-                            locationType: LocationType.shop, 
-                            locationId: shop.id,
-                            shopType: shop.type,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                        text: shop.pro1,
+                        style:
+                            const TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: " & "),
+                    TextSpan(
+                        text: shop.pro2,
+                        style:
+                            const TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: " but "),
+                    TextSpan(
+                        text: shop.con,
+                        style: const TextStyle(color: Colors.red)),
+                  ],
+                ),
               ),
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  color: Colors.grey[200],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Owner and encounters side-by-side
+                      IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Owner section (left side)
+                            Expanded(
+                              flex: 1,
+                              child: _buildOwnersSection(context, ref, shop),
+                            ),
+                            const SizedBox(width: 16),
+                            // Encounters section (right side)
+                            Expanded(
+                              flex: 1,
+                              child: LocationEncountersWidget(
+                                locationType: LocationType.shop, 
+                                locationId: shop.id,
+                                shopType: shop.type,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             // Bottom pane with tabs
             Expanded(
@@ -410,14 +413,62 @@ Widget showOwners(BuildContext context, WidgetRef ref, Shop shop) {
       roleMeta.getString(thisRole, plural: thePeopleInTheRoleHere.length > 1);
 
   myRoleWidgets = thePeopleInTheRoleHere
-      .map((p) => p.printPersonSummaryTappable(context))
+      .map((p) => p.printFlippableCard())
       .toList();
 
   return ExpansionTile(
     title: Text(headerString),
+    initiallyExpanded: true,
     expandedAlignment: Alignment.topLeft,
     expandedCrossAxisAlignment: CrossAxisAlignment.start,
     children: myRoleWidgets,
+  );
+}
+
+Widget _buildOwnersSection(BuildContext context, WidgetRef ref, Shop shop) {
+
+  ref.read(townProvider);
+  final allRoles = ref.watch(locationRolesProvider);
+  final people = ref.watch(peopleProvider);
+  final roleMeta = ref.watch(roleMetaProvider.notifier);
+
+  Role thisRole = Role.owner;
+  if(shop.type == ShopType.temple){thisRole = Role.hierophant;}
+  
+  
+  String headerString = "";
+  List<Person> thePeopleInTheRoleHere;
+  List<Widget> myRoleWidgets;
+
+  Set<String> roleIDs = allRoles
+      .where((lr) => lr.locationID == shop.id && lr.myRole == thisRole)
+      .map((lr) => lr.myID)
+      .toSet();
+
+  thePeopleInTheRoleHere =
+      people.where((p) => roleIDs.contains(p.id)).toSet().toList();
+
+  // headerString=enum2String(myEnum: thisRole, plural: thePeopleInTheRoleHere.length>1);
+  headerString =
+      roleMeta.getString(thisRole, plural: thePeopleInTheRoleHere.length > 1);
+
+  myRoleWidgets = thePeopleInTheRoleHere
+      .map((p) => p.printFlippableCard())
+      .toList();
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        headerString,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
+      ),
+      const SizedBox(height: 8),
+      ...myRoleWidgets,
+    ],
   );
 }
 
@@ -494,9 +545,9 @@ Widget peopleView(BuildContext context, WidgetRef ref, Shop shop) {
 
             addString.add(thisString);
           }
-          myRoleWidgets.add(p.printPersonSummaryTappable(context,additionalInfo: addString.toList()));
+          myRoleWidgets.add(p.printFlippableCard(additionalInfo: addString.toList()));
         }else{
-        myRoleWidgets.add(p.printPersonSummaryTappable(context));
+        myRoleWidgets.add(p.printFlippableCard());
         }
       }
       if(myRoleWidgets.isNotEmpty)

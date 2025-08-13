@@ -643,7 +643,7 @@ class Shop extends Location {
     Role thisRole;
     String headerString = "";
     List<Person> thePeopleInTheRoleHere;
-    List<Container> myRoleWidgets;
+    List<Widget> myRoleWidgets;
     for (int i = 0; i < rolesInOrder.length; i++) {
       thisRole = rolesInOrder.elementAt(i);
       Set<String> roleIDs = allRoles
@@ -693,9 +693,9 @@ class Shop extends Location {
             addString.add(thisString);
           }
           myRoleWidgets
-              .add(p.printPersonSummary(additionalInfo: addString.toList()));
+              .add(p.printFlippableCard(additionalInfo: addString.toList()));
         } else {
-          myRoleWidgets.add(p.printPersonSummary());
+          myRoleWidgets.add(p.printFlippableCard());
         }
       }
       if (myRoleWidgets.isNotEmpty) {
@@ -842,7 +842,7 @@ class Informational extends Location {
           plural: thePeopleInTheRoleHere.length > 1);
       headerString = "$headerString ($howMany)";
 
-      List<Container> myRoleWidgets = [];
+      List<Widget> myRoleWidgets = [];
       for (int j = 0; j < thePeopleInTheRoleHere.length; j++) {
         List<String> shopString = [];
 
@@ -865,7 +865,7 @@ class Informational extends Location {
         }
 
         myRoleWidgets.add(thePeopleInTheRoleHere[j]
-            .printPersonSummary(additionalInfo: shopString));
+            .printFlippableCard(additionalInfo: shopString));
       }
 
       if (myRoleWidgets.isNotEmpty) {
@@ -975,7 +975,7 @@ class Informational extends Location {
         }
 
         myRoleWidgets.add(thePeopleInTheRoleHere[j]
-            .printPersonSummaryTappable(context, additionalInfo: shopString));
+            .printFlippableCard(additionalInfo: shopString));
       }
 
       if (myRoleWidgets.isNotEmpty) {
