@@ -1,6 +1,6 @@
 import "package:firetown/providers/barrel_of_providers.dart";
-import '../providers/shop_template_provider.dart';
 import '../services/description_service.dart';
+import '../services/pdf_export_service.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,7 +8,6 @@ import 'package:firetown/screens/navrail.dart';
 import "package:firetown/screens/service_edit.dart";
 import "../enums_and_maps.dart";
 import '../models/shop_trait_model.dart';
-import 'dart:math';
 
 // import 'bottombar.dart';
 import "../globals.dart";
@@ -110,6 +109,9 @@ class ShopDetailItem extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ...shop.printDetail(ref),
+            // Add export buttons section
+            const SizedBox(height: 16),
+            _buildExportSection(context, ref, shop),
             // Add description section
             const SizedBox(height: 16),
             _buildShopDescriptionSection(context, ref, shop),
@@ -119,6 +121,52 @@ class ShopDetailItem extends HookConsumerWidget {
         // )
       ),
     ));
+  }
+
+  Widget _buildExportSection(BuildContext context, WidgetRef ref, Shop shop) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Export Options',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () => _exportShopToPDF(context, ref, shop),
+                    icon: const Icon(Icons.picture_as_pdf),
+                    label: const Text('Export Shop to PDF'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade600,
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () => _exportAllLocationsToPDF(context, ref),
+                    icon: const Icon(Icons.location_city),
+                    label: const Text('Export All Locations to PDF'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green.shade600,
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildShopDescriptionSection(BuildContext context, WidgetRef ref, Shop shop) {
@@ -450,6 +498,152 @@ class ShopDetailItem extends HookConsumerWidget {
       );
     }
   }
+
+  Future<void> _exportShopToPDF(BuildContext context, WidgetRef ref, Shop shop) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating PDF...'),
+              ],
+            ),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+
+      final success = await PDFExportService.exportShopToPDF(
+        shop: shop,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('PDF exported successfully for ${shop.name}!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _exportAllLocationsToPDF(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating all locations PDF... This may take a moment.'),
+              ],
+            ),
+            duration: Duration(seconds: 7),
+          ),
+        );
+      }
+
+      final allLocations = ref.read(locationsProvider);
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+
+      // Filter to get shops, government, and market
+      final exportableLocations = allLocations.where((location) => 
+        location.locType == LocationType.shop ||
+        location.locType == LocationType.government ||
+        location.locType == LocationType.market
+      ).toList();
+
+      if (exportableLocations.isEmpty) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No exportable locations found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportAllLocationsToPDF(
+        locations: exportableLocations,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('All locations PDF exported successfully! (${exportableLocations.length} locations)'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting all locations PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
 }
 
 class ShopDetailTabbed extends HookConsumerWidget {
@@ -494,6 +688,53 @@ class ShopDetailTabbed extends HookConsumerWidget {
               Navigator.of(context).pop();
             },
           ),
+          actions: [
+            PopupMenuButton<String>(
+              icon: const Icon(Icons.picture_as_pdf),
+              tooltip: 'Export to PDF',
+              onSelected: (value) {
+                if (value == 'single') {
+                  _exportSingleShopFromTabbed(context, ref, shop);
+                } else if (value == 'town') {
+                  _exportTownFromTabbed(context, ref);
+                } else if (value == 'all_locations') {
+                  _exportAllLocationsFromTabbed(context, ref, shop);
+                }
+              },
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: 'single',
+                  child: Row(
+                    children: [
+                      Icon(Icons.store, size: 20),
+                      SizedBox(width: 8),
+                      Text('Export This Shop'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem(
+                  value: 'town',
+                  child: Row(
+                    children: [
+                      Icon(Icons.store, size: 20),
+                      SizedBox(width: 8),
+                      Text('Export All Shops'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem(
+                  value: 'all_locations',
+                  child: Row(
+                    children: [
+                      Icon(Icons.location_city, size: 20),
+                      SizedBox(width: 8),
+                      Text('Export All Locations'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         body: Column(
           children: [
@@ -584,6 +825,234 @@ class ShopDetailTabbed extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _exportSingleShopFromTabbed(BuildContext context, WidgetRef ref, Shop shop) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating PDF...'),
+              ],
+            ),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+
+      final success = await PDFExportService.exportShopToPDF(
+        shop: shop,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('PDF exported successfully for ${shop.name}!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _exportTownFromTabbed(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating all locations PDF... This may take a moment.'),
+              ],
+            ),
+            duration: Duration(seconds: 5),
+          ),
+        );
+      }
+
+      final allLocations = ref.read(locationsProvider);
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+
+      // Filter to get shops, government, and market
+      final exportableLocations = allLocations.where((location) => 
+        location.locType == LocationType.shop ||
+        location.locType == LocationType.government ||
+        location.locType == LocationType.market
+      ).toList();
+
+      if (exportableLocations.isEmpty) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No exportable locations found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportAllLocationsToPDF(
+        locations: exportableLocations,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('All locations PDF exported successfully! (${exportableLocations.length} locations)'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting all locations PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _exportAllLocationsFromTabbed(BuildContext context, WidgetRef ref, Shop shop) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating all locations PDF... This may take a moment.'),
+              ],
+            ),
+            duration: Duration(seconds: 7),
+          ),
+        );
+      }
+
+      final allLocations = ref.read(locationsProvider);
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+
+      // Filter to get shops, government, and market
+      final exportableLocations = allLocations.where((location) => 
+        location.locType == LocationType.shop ||
+        location.locType == LocationType.government ||
+        location.locType == LocationType.market
+      ).toList();
+
+      if (exportableLocations.isEmpty) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No exportable locations found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportAllLocationsToPDF(
+        locations: exportableLocations,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('All locations PDF exported successfully! (${exportableLocations.length} locations)'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting all locations PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }
 
@@ -1211,3 +1680,4 @@ Set<ServiceType> _determineShopSpecialties(Shop shop) {
 
   return mySpecialties;
 }
+

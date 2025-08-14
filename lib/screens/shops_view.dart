@@ -6,6 +6,8 @@ import 'bottombar.dart';
 import "../globals.dart";
 import "shop_detail_view.dart";
 import "../providers/barrel_of_providers.dart";
+import '../services/pdf_export_service.dart';
+import '../enums_and_maps.dart';
 
 class FilterNotifier extends StateNotifier<Set<String>> {
   FilterNotifier() : super({});
@@ -89,6 +91,7 @@ class ShopsView extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 42),
+            _buildExportSection(context, ref, displayMe),
             if (displayMe.isNotEmpty) const Divider(height: 0),
             for (var i = 0; i < displayMe.length; i++) ...[
 
@@ -141,6 +144,134 @@ class ShopsView extends HookConsumerWidget {
         
         bottomNavigationBar: const Menu(),
       );
+  }
+
+  Widget _buildExportSection(BuildContext context, WidgetRef ref, List<Shop> shops) {
+    if (shops.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.picture_as_pdf, color: Colors.blue.shade600),
+                const SizedBox(width: 8),
+                Text(
+                  'Export Options',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () => _exportAllLocationsToPDF(context, ref),
+                icon: const Icon(Icons.location_city),
+                label: const Text('Export All Locations to PDF'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green.shade600,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+  Future<void> _exportAllLocationsToPDF(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating all locations PDF... This may take a moment.'),
+              ],
+            ),
+            duration: Duration(seconds: 7),
+          ),
+        );
+      }
+
+      final allLocations = ref.read(locationsProvider);
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+
+      // Filter to get shops, government, and market
+      final exportableLocations = allLocations.where((location) => 
+        location.locType == LocationType.shop ||
+        location.locType == LocationType.government ||
+        location.locType == LocationType.market
+      ).toList();
+
+      if (exportableLocations.isEmpty) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No exportable locations found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportAllLocationsToPDF(
+        locations: exportableLocations,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('All locations PDF exported successfully! (${exportableLocations.length} locations)'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting all locations PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }
 

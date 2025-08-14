@@ -13,6 +13,8 @@ import 'package:firetown/models/town_extension/town_locations.dart';
 // import "town.dart";
 import "../enums_and_maps.dart";
 import "package:collection/collection.dart";
+import '../services/pdf_export_service.dart';
+import '../providers/barrel_of_providers.dart';
 
 // Providers for the selected government type and city size
 final selectedGovernmentTypeProvider = StateProvider<String>((ref) => 'nobility');
@@ -36,9 +38,14 @@ class GovernmentView extends HookConsumerWidget {
     
     return Scaffold(
     appBar: AppBar(
-      title: Text(
-                "List of government officials",
-                ),
+      title: const Text("List of government officials"),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.picture_as_pdf),
+          tooltip: 'Export Government to PDF',
+          onPressed: () => _exportGovernmentToPDF(context, ref),
+        ),
+      ],
     ),
       body: Scaffold(
         body: Row(
@@ -60,6 +67,87 @@ class GovernmentView extends HookConsumerWidget {
       ),
     )
     ])));
+  }
+
+  Future<void> _exportGovernmentToPDF(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating Government PDF...'),
+              ],
+            ),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+      final allLocations = ref.read(locationsProvider);
+
+      // Find the government location
+      final government = allLocations
+          .whereType<Informational>()
+          .firstWhereOrNull((loc) => loc.locType == LocationType.government);
+
+      if (government == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Government location not found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportLocationToPDF(
+        location: government,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Government PDF exported successfully!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting Government PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }
 

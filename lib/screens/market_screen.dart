@@ -12,6 +12,8 @@ import 'package:firetown/models/town_extension/town_locations.dart';
 // import "personDetailView.dart";
 // import "town.dart";
 import "../enums_and_maps.dart";
+import '../services/pdf_export_service.dart';
+import 'package:collection/collection.dart';
 
 class MarketView extends HookConsumerWidget {
   const MarketView({super.key,ar});
@@ -27,9 +29,14 @@ class MarketView extends HookConsumerWidget {
     
     return Scaffold(
     appBar: AppBar(
-      title: Text(
-                "On market days, the following are available",
-                ),
+      title: const Text("On market days, the following are available"),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.picture_as_pdf),
+          tooltip: 'Export Market to PDF',
+          onPressed: () => _exportMarketToPDF(context, ref),
+        ),
+      ],
     ),
       body: Scaffold(
         body: Row(
@@ -51,6 +58,87 @@ class MarketView extends HookConsumerWidget {
       ),
     )
     ])));
+  }
+
+  Future<void> _exportMarketToPDF(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating Market PDF...'),
+              ],
+            ),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+      final allLocations = ref.read(locationsProvider);
+
+      // Find the market location
+      final market = allLocations
+          .whereType<Informational>()
+          .firstWhereOrNull((loc) => loc.locType == LocationType.market);
+
+      if (market == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Market location not found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportLocationToPDF(
+        location: market,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Market PDF exported successfully!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting Market PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }
 
@@ -108,5 +196,86 @@ class MarketDetailItem extends HookConsumerWidget {
 
     )
   );
+  }
+
+  Future<void> _exportMarketToPDF(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading indicator
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 16),
+                Text('Generating Market PDF...'),
+              ],
+            ),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+
+      final allPeople = ref.read(peopleProvider);
+      final allRoles = ref.read(locationRolesProvider);
+      final allLocations = ref.read(locationsProvider);
+
+      // Find the market location
+      final market = allLocations
+          .whereType<Informational>()
+          .firstWhereOrNull((loc) => loc.locType == LocationType.market);
+
+      if (market == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Market location not found'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+        return;
+      }
+
+      final success = await PDFExportService.exportLocationToPDF(
+        location: market,
+        allPeople: allPeople,
+        allRoles: allRoles,
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Market PDF exported successfully!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Export cancelled'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error exporting Market PDF: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }
