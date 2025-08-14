@@ -1,4 +1,5 @@
 
+import 'package:firetown/screens/town_dashboard_view.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,6 +17,7 @@ import 'template_manager_page.dart';
 import "../globals.dart";
 import "../models/town_model.dart";
 import '../providers/barrel_of_providers.dart';
+import '../providers/buffered_provider.dart';
 
 // import "editHelpers.dart";
 // import "personDetailView.dart";
@@ -128,7 +130,7 @@ class _TownPageState extends ConsumerState<Home> {
                     );
                   }else{
                   await loadTownFS(_currentID!,ref);
-                  navigatorKey.currentState?.pushNamed(ShopsView.routeName);
+                  navigatorKey.currentState?.pushNamed(TownDashboardView.routeName);
                   }
                 },
               child: const Text("Load Town"),

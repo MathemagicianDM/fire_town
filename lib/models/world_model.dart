@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:firetown/providers/barrel_of_providers.dart';
+import '../providers/buffered_provider.dart';
 // import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 // import 'package:firetown/person.dart';

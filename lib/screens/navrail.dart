@@ -16,11 +16,13 @@ import "sages_view.dart";
 import "market_screen.dart";
 import "search_page.dart";
 import "encounter_builder_page.dart";
+import "town_dashboard_view.dart";
 
 final navRailKey = UniqueKey();
 
 enum NavigationDestination {
-saveLoad,
+  dashboard,
+  saveLoad,
   // tavernsView,
   shopsView,
   peopleView,
@@ -34,6 +36,10 @@ saveLoad,
 }
 
 final Map<NavigationDestination, NavigationRailDestination> destinationMap = {
+  NavigationDestination.dashboard: const NavigationRailDestination(
+    icon: Icon(Icons.dashboard),
+    label: Text('Overview'),
+  ),
   NavigationDestination.saveLoad: const NavigationRailDestination(
     icon: Icon(Icons.save),
     label: Text('Save/Load'),
@@ -84,6 +90,7 @@ class Navrail extends HookConsumerWidget {
       onDestinationSelected: (value) {
         final destination = NavigationDestination.values[value];
         switch(destination){
+          case NavigationDestination.dashboard: navigatorKey.currentState?.pushNamed(TownDashboardView.routeName);break;
           case NavigationDestination.saveLoad: navigatorKey.currentState?.pushNamed(Home.routeName);break;
           case NavigationDestination.peopleView: navigatorKey.currentState?.pushNamed(PeopleView.routeName);break;
           // case NavigationDestination.demographicsView: navigatorKey.currentState?.pushNamed(DemographicsView.routeName);break;

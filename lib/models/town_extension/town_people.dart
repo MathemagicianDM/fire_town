@@ -2685,12 +2685,12 @@ extension TownOnFirePeople on TownOnFire {
       int maxIter = 1;
       if (p.poly == PolyType.poly) {
         maxIter = maxIter + random.nextInt(p.maxSpouse) + 1;
-        print('🔍 POLY DEBUG (FS): ${p.firstName} ${p.surname} - maxSpouse: ${p.maxSpouse}, maxIter: $maxIter, canMarry: $canMarry');
+        // print('🔍 POLY DEBUG (FS): ${p.firstName} ${p.surname} - maxSpouse: ${p.maxSpouse}, maxIter: $maxIter, canMarry: $canMarry');
       }
       if (canMarry) {
         for (int i = 0; i < maxIter; i++) {
           if (p.poly == PolyType.poly) {
-            print('🔍 POLY DEBUG (FS): ${p.firstName} - Starting iteration $i of $maxIter, current partners: ${relationshipsPN.countPartners(p.id)}');
+            // print('🔍 POLY DEBUG (FS): ${p.firstName} - Starting iteration $i of $maxIter, current partners: ${relationshipsPN.countPartners(p.id)}');
           }
           while (doItAgain) {
             if (relationshipsPN.countPartners(p.id) < p.maxSpouse) {
@@ -2749,10 +2749,10 @@ extension TownOnFirePeople on TownOnFire {
                 } else {
                   // No existing candidates found
                   if (p.poly == PolyType.poly) {
-                    print('🔍 POLY DEBUG (FS): ${p.firstName} - No existing candidates, creating multiple poly partners');
+                    // print('🔍 POLY DEBUG (FS): ${p.firstName} - No existing candidates, creating multiple poly partners');
                     // For poly people: create multiple partners to fill remaining capacity
                     List<Person> newPartners = createMultiplePolyPartners(ref, p, myPreferredAncestry);
-                    print('🔍 POLY DEBUG (FS): ${p.firstName} - Created ${newPartners.length} new partners');
+                    // print('🔍 POLY DEBUG (FS): ${p.firstName} - Created ${newPartners.length} new partners');
                     if (newPartners.isNotEmpty) {
                       doItAgain = false; // Successfully created multiple partners, exit retry loop
                       continue; // Skip to next iteration of main loop
@@ -3820,12 +3820,12 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       int maxIter = 1;
       if (p.poly == PolyType.poly) {
         maxIter = maxIter + random.nextInt(p.maxSpouse) + 1;
-        print('🔍 POLY DEBUG (LAZY): ${p.firstName} ${p.surname} - maxSpouse: ${p.maxSpouse}, maxIter: $maxIter, canMarry: $canMarry');
+        // print('🔍 POLY DEBUG (LAZY): ${p.firstName} ${p.surname} - maxSpouse: ${p.maxSpouse}, maxIter: $maxIter, canMarry: $canMarry');
       }
       if (canMarry) {
         for (int i = 0; i < maxIter; i++) {
           if (p.poly == PolyType.poly) {
-            print('🔍 POLY DEBUG (LAZY): ${p.firstName} - Starting iteration $i of $maxIter, current partners: ${relationshipsPN.countPartners(p.id)}');
+            // print('🔍 POLY DEBUG (LAZY): ${p.firstName} - Starting iteration $i of $maxIter, current partners: ${relationshipsPN.countPartners(p.id)}');
           }
           int retryCount = 0;
           const int maxRetries = 10; // Prevent infinite loops
@@ -3834,7 +3834,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
             if (relationshipsPN.countPartners(p.id) < p.maxSpouse) {
               PartnerType myPartnerType = randomPartnerType(ref, p.ancestry);
               if (p.poly == PolyType.poly) {
-                print('🔍 POLY DEBUG (LAZY): ${p.firstName} - Retry $retryCount, got partnerType: $myPartnerType');
+                // print('🔍 POLY DEBUG (LAZY): ${p.firstName} - Retry $retryCount, got partnerType: $myPartnerType');
               }
               Set<String> myPreferredAncestry;
               switch (myPartnerType) {
@@ -3881,14 +3881,14 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
                         .toList();
 
                 if (p.poly == PolyType.poly) {
-                  print('🔍 POLY DEBUG: ${p.firstName} - Found ${candidates.length} candidates in town population');
+                  // print('🔍 POLY DEBUG: ${p.firstName} - Found ${candidates.length} candidates in town population');
                 }
 
                 Person? partner;
                 if (candidates.isNotEmpty) {
                   partner = candidates[random.nextInt(candidates.length)];
                   if (p.poly == PolyType.poly) {
-                    print('🔍 POLY DEBUG: ${p.firstName} - Selected existing partner: ${partner?.firstName}');
+                    // print('🔍 POLY DEBUG: ${p.firstName} - Selected existing partner: ${partner?.firstName}');
                   }
                   // Handle single partner from existing population
                   if (partner != null) {
@@ -3908,10 +3908,10 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
                 } else {
                   // No existing candidates found - create new partners
                   if (p.poly == PolyType.poly) {
-                    print('🔍 POLY DEBUG: ${p.firstName} - No existing candidates, creating multiple poly partners');
+                    // print('🔍 POLY DEBUG: ${p.firstName} - No existing candidates, creating multiple poly partners');
                     // For poly people: create multiple partners to fill remaining capacity
                     List<Person> newPartners = createMultiplePolyPartners(ref, p, myPreferredAncestry);
-                    print('🔍 POLY DEBUG: ${p.firstName} - Created ${newPartners.length} new partners');
+                    // print('🔍 POLY DEBUG: ${p.firstName} - Created ${newPartners.length} new partners');
                     if (newPartners.isNotEmpty) {
                       doItAgain = false; // Successfully created multiple partners, exit retry loop
                     } else {
@@ -3954,7 +3954,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       }
       
       if (p.poly == PolyType.poly) {
-        print('🔍 POLY DEBUG: FINAL - ${p.firstName} ended with ${relationshipsPN.countPartners(p.id)} partners');
+        // print('🔍 POLY DEBUG: FINAL - ${p.firstName} ended with ${relationshipsPN.countPartners(p.id)} partners');
       }
     }
     // updateBuffer.add(() async => );
@@ -3996,16 +3996,16 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
     int currentPartners = relationshipsPN.countPartners(originalPerson.id);
     int remainingCapacity = originalPerson.maxSpouse - currentPartners;
     
-    print('🔍 POLY DEBUG: createMultiplePolyPartners for ${originalPerson.firstName} - current: $currentPartners, maxSpouse: ${originalPerson.maxSpouse}, remaining: $remainingCapacity');
+    // print('🔍 POLY DEBUG: createMultiplePolyPartners for ${originalPerson.firstName} - current: $currentPartners, maxSpouse: ${originalPerson.maxSpouse}, remaining: $remainingCapacity');
     
     if (remainingCapacity <= 0) return partners;
     
     // Create 2-4 partners or up to remaining capacity, whichever is smaller
     int partnersToCreate = min(remainingCapacity, random.nextInt(3) + 2); // 2-4 partners
-    print('🔍 POLY DEBUG: Will attempt to create $partnersToCreate partners');
+    // print('🔍 POLY DEBUG: Will attempt to create $partnersToCreate partners');
     
     for (int i = 0; i < partnersToCreate; i++) {
-      print('🔍 POLY DEBUG: Creating partner ${i + 1} of $partnersToCreate');
+      // print('🔍 POLY DEBUG: Creating partner ${i + 1} of $partnersToCreate');
       String newID = _uuid.v4();
 
       Person partner = createRandomPerson(ref,
@@ -4022,7 +4022,7 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       );
       
       partners.add(partner);
-      print('🔍 POLY DEBUG: Successfully created partner: ${partner.firstName}');
+      // print('🔍 POLY DEBUG: Successfully created partner: ${partner.firstName}');
       
       // Add this partner to the system
       peoplePN.add(partner);
@@ -4031,10 +4031,10 @@ Future<void> makeChildren(List<Person> whichPeople, WidgetRef ref) async {
       // Create relationship
       if (randomBreakUp(ref, originalPerson.ancestry)) {
         relationshipsPN.addSymmetricRelationship(partner.id, originalPerson.id, RelationshipType.ex);
-        print('🔍 POLY DEBUG: Made ${partner.firstName} an EX of ${originalPerson.firstName}');
+        // print('🔍 POLY DEBUG: Made ${partner.firstName} an EX of ${originalPerson.firstName}');
       } else {
         relationshipsPN.addSymmetricRelationship(partner.id, originalPerson.id, RelationshipType.partner);
-        print('🔍 POLY DEBUG: Made ${partner.firstName} a PARTNER of ${originalPerson.firstName}');
+        // print('🔍 POLY DEBUG: Made ${partner.firstName} a PARTNER of ${originalPerson.firstName}');
       }
     }
     

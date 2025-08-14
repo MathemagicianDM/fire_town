@@ -36,6 +36,8 @@ import 'screens/ancestry_management_page.dart';
 import 'screens/encounter_builder_page.dart';
 import 'screens/admin_panel.dart';
 import 'screens/template_manager_page.dart';
+import 'screens/town_dashboard_view.dart';
+import 'screens/rumor_management_page.dart';
 
 
 
@@ -181,6 +183,8 @@ class App extends StatelessWidget {
                                 case EncounterBuilderPage.routeName: return EncounterBuilderPage();
                                 case AdminPanel.routeName: return AdminPanel();
                                 case TemplateManagerPage.routeName: return TemplateManagerPage();
+                                case TownDashboardView.routeName: return const TownDashboardView();
+                                case RumorManagementPage.routeName: return const RumorManagementPage();
                                 // case DemographicsView.routeName: return const DemographicsView();
                                 // case DemographicsEditView.routeName: return const DemographicsEditView();
                                 // default: return const Home();

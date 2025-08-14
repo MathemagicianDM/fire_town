@@ -10,6 +10,8 @@ import '../providers/clothing_template_provider.dart';
 import '../providers/shop_template_provider.dart';
 import '../providers/location_template_provider.dart';
 import '../providers/anecestries_provider.dart';
+import '../providers/rumor_provider.dart';
+import '../models/rumor_template_model.dart';
 import '../enums_and_maps.dart';
 
 class TemplateManagerPage extends ConsumerStatefulWidget {
@@ -28,6 +30,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
   final _clothingYamlController = TextEditingController();
   final _shopYamlController = TextEditingController();
   final _locationYamlController = TextEditingController();
+  final _rumorYamlController = TextEditingController();
 
   @override
   void initState() {
@@ -42,6 +45,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
     _clothingYamlController.dispose();
     _shopYamlController.dispose();
     _locationYamlController.dispose();
+    _rumorYamlController.dispose();
     super.dispose();
   }
 
@@ -200,6 +204,24 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
                   onPressed: _pickLocationYamlFile,
                   icon: const Icon(Icons.upload_file),
                   label: const Text('Upload Location Templates'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          
+          // Rumor Template Upload Row
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton.icon(
+                  onPressed: _pickRumorYamlFile,
+                  icon: const Icon(Icons.chat_bubble_outline),
+                  label: const Text('Upload Rumor Templates'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    foregroundColor: Colors.white,
+                  ),
                 ),
               ),
             ],
@@ -687,6 +709,21 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
         }
       }
       
+      // Import rumor templates (from file upload)
+      if (_rumorYamlController.text.isNotEmpty) {
+        final rumorTemplates = await _parseRumorTemplates(_rumorYamlController.text);
+        if (rumorTemplates.isNotEmpty) {
+          print('DEBUG: Adding ${rumorTemplates.length} rumor templates');
+          for (final template in rumorTemplates) {
+            ref.read(rumorTemplatesProvider.notifier).add(template);
+          }
+          print('DEBUG: Committing rumor templates changes');
+          await ref.read(rumorTemplatesProvider.notifier).commitChanges();
+          print('DEBUG: Rumor templates committed successfully');
+          totalImported += rumorTemplates.length;
+        }
+      }
+      
       print('DEBUG: Total imported: $totalImported templates');
       
       if (totalImported > 0) {
@@ -702,6 +739,7 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
         _clothingYamlController.clear();
         _shopYamlController.clear();
         _locationYamlController.clear();
+        _rumorYamlController.clear();
         
         // Debug: Check provider states after import
         print('DEBUG: Physical templates in provider: ${ref.read(physicalTemplatesProvider).length}');
@@ -1841,6 +1879,95 @@ class _TemplateManagerPageState extends ConsumerState<TemplateManagerPage>
           SnackBar(content: Text('Location file picker error: $e')),
         );
       }
+    }
+  }
+
+  Future<void> _pickRumorYamlFile() async {
+    print('DEBUG: Rumor template file picker started');
+    
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['yaml', 'yml'],
+        allowMultiple: false,
+        withData: true,
+      );
+
+      if (result != null && result.files.isNotEmpty) {
+        final file = result.files.first;
+        print('DEBUG: Rumor template file selected: ${file.name}');
+        
+        if (file.bytes != null) {
+          try {
+            final yamlContent = String.fromCharCodes(file.bytes!);
+            _rumorYamlController.text = yamlContent;
+            
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Rumor templates YAML loaded from ${file.name}'),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            }
+          } catch (e) {
+            print('DEBUG: Error processing rumor template file: $e');
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error reading rumor template file: $e')),
+              );
+            }
+          }
+        } else {
+          print('DEBUG: No rumor template file bytes available');
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Rumor template file content not available.'),
+                backgroundColor: Colors.orange,
+              ),
+            );
+          }
+        }
+      }
+    } catch (e) {
+      print('DEBUG: Rumor template file picker error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Rumor template file picker error: $e')),
+        );
+      }
+    }
+  }
+
+  Future<List<RumorTemplate>> _parseRumorTemplates(String yamlContent) async {
+    try {
+      final dynamic yamlData = loadYaml(yamlContent);
+      final List<RumorTemplate> templates = [];
+
+      if (yamlData is List) {
+        for (final item in yamlData) {
+          if (item is Map) {
+            templates.add(RumorTemplate(
+              id: item['id'] ?? '',
+              template: item['template'] ?? '',
+              tags: List<String>.from(item['tags'] ?? []),
+              variables: Map<String, List<String>>.from(
+                (item['variables'] as Map?)?.map(
+                  (key, value) => MapEntry(key.toString(), List<String>.from(value)),
+                ) ?? {},
+              ),
+              requiredRoles: List<String>.from(item['required_roles'] ?? []),
+              requiredLocations: List<String>.from(item['required_locations'] ?? []),
+            ));
+          }
+        }
+      }
+
+      return templates;
+    } catch (e) {
+      print('Error parsing rumor templates: $e');
+      return [];
     }
   }
 }

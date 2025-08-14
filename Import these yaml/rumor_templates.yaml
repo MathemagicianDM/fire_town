@@ -1,0 +1,140 @@
+role_templates:
+  - id: "tax_increase"
+    template: "{warminister/mintminister/infrastructureminister/townleader} wants to raise taxes to fund {townProject}."
+    tags: ["politics", "economy"]
+    variables:
+      townProject: ["repairs to the town walls", "new guard barracks", "road improvements", "bridge construction", "temple renovations", "market upgrades"]
+    required_roles: ["warminister", "mintminister", "infrastructureminister", "townleader"]
+    
+  - id: "smith_rivalry" 
+    template: "{weaponsmith} and {armorsmith} are feuding over who makes the finest {metalwork}."
+    tags: ["conflict", "trade"]
+    variables:
+      metalwork: ["steel", "weapons", "armor", "tools", "horseshoes", "nails"]
+    required_roles: ["weaponsmith", "armorsmith"]
+    
+  - id: "merchant_gossip"
+    template: "{merchant/trader} claims they saw {strangeEvent} while traveling from {nearbyTown}."
+    tags: ["mystery", "travel"]
+    variables:
+      strangeEvent: ["strange lights", "hooded figures", "abandoned caravans", "odd creatures", "burned villages", "suspicious nobles"]
+      nearbyTown: ["the capital", "the northern settlements", "the eastern trading post", "across the border", "the mountain pass", "the coastal cities"]
+    required_roles: ["merchant", "trader"]
+    
+  - id: "tavern_drama"
+    template: "Patrons at {tavernlocation} whisper that {tavernkeeper/owner} is hiding {secret} in the cellar."
+    tags: ["mystery", "tavern"]
+    variables:
+      secret: ["stolen goods", "old treasures", "smuggled items", "ancient artifacts", "forbidden books", "wanted criminals"]
+    required_roles: ["tavernkeeper", "owner"]
+    required_locations: ["tavernlocation"]
+    
+  - id: "guard_concern"
+    template: "{guardcaptain/townguard} has been asking questions about {suspiciousActivity} near {location}."
+    tags: ["law", "mystery"]
+    variables:
+      suspiciousActivity: ["strange noises", "unusual visitors", "missing items", "broken locks", "midnight meetings", "unmarked graves"]
+      location: ["the old warehouse", "the cemetery", "the abandoned mill", "the town gates", "the market square", "the docks"]
+    required_roles: ["guardcaptain", "townguard"]
+    
+  - id: "healer_warning"
+    template: "{herbalist/healer} warns that {ailment} is spreading and recommends avoiding {location}."
+    tags: ["health", "warning"]
+    variables:
+      ailment: ["a strange sickness", "bad humors", "cursed dreams", "weakness of limbs", "fever dreams", "the sweating death"]
+      location: ["the swamp", "old ruins", "certain wells", "the lower district", "abandoned houses", "the old cemetery"]
+    required_roles: ["herbalist", "healer"]
+    
+  - id: "religious_concern"
+    template: "{priest/hierophant} has declared that {omen} foretells {prediction}."
+    tags: ["religion", "prophecy"]
+    variables:
+      omen: ["birds flying backwards", "flowers blooming out of season", "strange dreams", "cracked temple stones", "weeping statues", "blood-red sunsets"]
+      prediction: ["good fortune", "hard times ahead", "a visitor of importance", "change in leadership", "divine judgment", "great prosperity"]
+    required_roles: ["priest", "hierophant"]
+    
+  - id: "craft_guild_news"
+    template: "The guild has announced {guildNews} affecting local {tradeGood} prices."
+    tags: ["economy", "guild"]
+    variables:
+      guildNews: ["new regulations", "a price increase", "quality standards", "apprentice examinations", "import restrictions", "export bonuses"]
+      tradeGood: ["tools", "furniture", "cloth", "pottery", "leather goods", "metalwork"]
+    required_roles: ["owner", "journeyman"]
+    
+  - id: "mysterious_stranger"
+    template: "A {strangerType} visited {shopkeeper/merchant} asking strange questions about {mysteryTopic}."
+    tags: ["mystery", "strangers"]
+    variables:
+      strangerType: ["hooded figure", "well-dressed noble", "foreign merchant", "weathered traveler", "cloaked woman", "scarred warrior"]
+      mysteryTopic: ["the old bloodlines", "ancient artifacts", "missing persons", "forgotten histories", "buried treasures", "lost maps"]
+    required_roles: ["shopkeeper", "merchant", "owner"]
+    
+  - id: "seasonal_concern"
+    template: "{farmer/gatherer} reports that {seasonalProblem} might affect this year's {harvest}."
+    tags: ["agriculture", "economy"]
+    variables:
+      seasonalProblem: ["strange weather", "pest infestations", "soil problems", "water shortages", "early frost", "too much rain"]
+      harvest: ["grain harvest", "fruit crop", "vegetable yield", "herb gathering", "timber cutting", "livestock breeding"]
+    required_roles: ["farmer", "gatherer"]
+
+  - id: "courier_news"
+    template: "{courier} brings word that {distantNews} has occurred in {farPlace}."
+    tags: ["news", "communication"]
+    variables:
+      distantNews: ["a royal decree", "bandit attacks", "a great discovery", "political upheaval", "natural disasters", "monster sightings"]
+      farPlace: ["the royal court", "neighboring kingdoms", "distant provinces", "trading ports", "mountain strongholds", "forest settlements"]
+    required_roles: ["courier"]
+
+  - id: "scribe_gossip"
+    template: "{scribe} has been copying {documentType} that mention {intriguingDetail}."
+    tags: ["knowledge", "secrets"]
+    variables:
+      documentType: ["ancient records", "land deeds", "marriage contracts", "trade agreements", "royal proclamations", "genealogical charts"]
+      intriguingDetail: ["hidden bloodlines", "forgotten debts", "lost territories", "secret alliances", "buried scandals", "ancient curses"]
+    required_roles: ["scribe"]
+
+  - id: "mercenary_tales"
+    template: "{mercenary} speaks of {combatEvent} during their last {jobType}."
+    tags: ["adventure", "combat"]
+    variables:
+      combatEvent: ["fierce battles", "cunning ambushes", "narrow escapes", "unexpected allies", "terrible monsters", "haunted battlefields"]
+      jobType: ["caravan guard duty", "dungeon expedition", "bandit hunting", "noble escort", "treasure recovery", "monster elimination"]
+    required_roles: ["mercenary"]
+
+# Fallback rumors (no role requirements - always available)
+fallback_templates:
+  - id: "weather_talk"
+    template: "Folks say the weather has been {weatherType} lately, {weatherEffect}."
+    tags: ["weather", "general"]
+    variables:
+      weatherType: ["unusually mild", "strangely cold", "surprisingly wet", "oddly dry", "perfectly pleasant", "worryingly unpredictable"]
+      weatherEffect: ["making travel easier", "causing problems for farmers", "keeping people indoors", "bringing good omens", "ruining the roads", "helping the harvest"]
+      
+  - id: "road_conditions"
+    template: "Travelers report that the {roadType} is {roadCondition}, {travelAdvice}."
+    tags: ["travel", "roads"]
+    variables:
+      roadType: ["northern road", "eastern path", "main trade route", "mountain pass", "forest trail", "river crossing"]
+      roadCondition: ["in good repair", "badly damaged", "blocked by fallen trees", "muddy from recent rains", "crowded with merchants", "unusually quiet"]
+      travelAdvice: ["making for easy travel", "requiring caution", "best avoided for now", "passable with care", "recommended for trade", "perfect for pilgrims"]
+      
+  - id: "merchant_tales"
+    template: "A traveling merchant brought news that {distantEvent} in {farPlace}."
+    tags: ["news", "travel"]
+    variables:
+      distantEvent: ["a great fire broke out", "bandits are active", "a new mine was discovered", "strange creatures were sighted", "a festival is planned", "taxes have increased"]
+      farPlace: ["the eastern kingdoms", "beyond the mountains", "the coastal cities", "the border towns", "the royal capital", "distant trading posts"]
+
+  - id: "seasonal_changes"
+    template: "People notice that {seasonalSign} suggests {seasonalPrediction}."
+    tags: ["seasons", "omens"]
+    variables:
+      seasonalSign: ["leaves are changing early", "birds are migrating late", "flowers are blooming twice", "frost came unexpectedly", "the days feel longer", "nights are unusually warm"]
+      seasonalPrediction: ["a harsh winter ahead", "an early spring", "good hunting season", "poor growing conditions", "favorable weather", "time for new beginnings"]
+
+  - id: "general_mystery"
+    template: "Strange {mysteriousEvent} have been reported near {mysteriousLocation}."
+    tags: ["mystery", "supernatural"]
+    variables:
+      mysteriousEvent: ["lights", "sounds", "disappearances", "apparitions", "animal behavior", "ground tremors"]
+      mysteriousLocation: ["the old ruins", "the abandoned tower", "the dark forest", "the ancient bridge", "the hidden cave", "the sacred grove"]

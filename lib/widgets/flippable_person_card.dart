@@ -12,11 +12,13 @@ import '../screens/person_detail_view.dart';
 class FlippablePersonCard extends ConsumerStatefulWidget {
   final Person person;
   final List<String>? additionalInfo;
+  final bool startFlipped;
 
   const FlippablePersonCard({
     super.key,
     required this.person,
     this.additionalInfo,
+    this.startFlipped = false,
   });
 
   @override
@@ -25,7 +27,7 @@ class FlippablePersonCard extends ConsumerStatefulWidget {
 
 class _FlippablePersonCardState extends ConsumerState<FlippablePersonCard>
     with TickerProviderStateMixin {
-  bool isFlipped = false; // false = description view, true = stats view
+  late bool isFlipped; // false = description view, true = stats view
   bool isExpanded = false; // only applies to description view
   late AnimationController _flipController;
   late AnimationController _expandController;
@@ -35,6 +37,7 @@ class _FlippablePersonCardState extends ConsumerState<FlippablePersonCard>
   @override
   void initState() {
     super.initState();
+    isFlipped = widget.startFlipped;
     _flipController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -49,6 +52,11 @@ class _FlippablePersonCardState extends ConsumerState<FlippablePersonCard>
     _expandAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _expandController, curve: Curves.easeInOut),
     );
+    
+    // Set initial flip state
+    if (widget.startFlipped) {
+      _flipController.value = 1.0;
+    }
     
     // Generate traits if they don't exist
     WidgetsBinding.instance.addPostFrameCallback((_) {

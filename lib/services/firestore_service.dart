@@ -30,6 +30,7 @@ enum ListType {
   clothingTemplate,
   shopTemplate,
   locationTemplate,
+  rumorTemplate,
 }
 
 class FirestoreService {
@@ -101,6 +102,8 @@ class FirestoreService {
         return _shopTemplatePath();
         case ListType.locationTemplate:
         return _locationTemplatePath();
+        case ListType.rumorTemplate:
+        return _rumorTemplatePath();
       // ignore: unreachable_switch_default
       default:
         return null;
@@ -249,6 +252,14 @@ class FirestoreService {
       throw ("Please log in");
     }
     return _firestore.collection('default_settings').doc('locationTemplates');
+  }
+
+  DocumentReference<Map<String, dynamic>> _rumorTemplatePath() {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw ("Please log in");
+    }
+    return _firestore.collection('default_settings').doc('rumorTemplates');
   }
 
   DocumentReference<Map<String, dynamic>> govPositionPath() {

@@ -18,6 +18,6 @@ export "clothing_template_provider.dart" show clothingTemplatesProvider;
 export "shop_template_provider.dart" show shopTemplateProvider;
 export "location_template_provider.dart" show locationTemplatesProvider;
 export "../search_models_providers_listeners/search_memory.dart" show peopleSearchProvider,locationsSearchProvider;
-export 'firestore_service_provider.dart';
-export 'shop_filter_provider.dart';
+export 'shop_filter_provider.dart' show townProvider, shopListFilter, filteredShops, ShopListFilter;
 export 'todo_provider.dart' show authServiceProvider;
+export 'rumor_provider.dart' show rumorTemplatesProvider, generatedRumorsProvider, customRumorsProvider, allRumorsProvider;

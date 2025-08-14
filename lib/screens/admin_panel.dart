@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
+import 'package:yaml/yaml.dart';
 import '../globals.dart';
 import 'ancestry_management_page.dart';
 import 'template_manager_page.dart';
+import '../models/rumor_template_model.dart';
+import '../providers/barrel_of_providers.dart';
+import '../providers/rumor_provider.dart';
 
 class AdminPanel extends ConsumerWidget {
   static const routeName = '/admin-panel';
@@ -129,6 +135,14 @@ class AdminPanel extends ConsumerWidget {
                       TemplateManagerPage.routeName,
                     ),
                   ),
+                  _buildAdminCard(
+                    context,
+                    title: 'Rumor Templates',
+                    description: 'Upload and manage town rumor templates',
+                    icon: Icons.chat_bubble_outline,
+                    color: Colors.orange,
+                    onTap: () => _showRumorTemplateUpload(context),
+                  ),
                 ],
               ),
             ),
@@ -184,5 +198,127 @@ class AdminPanel extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _showRumorTemplateUpload(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Upload Rumor Templates'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Choose a YAML file containing rumor templates to upload to Firebase.'),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () => _pickAndUploadRumorTemplates(context),
+              icon: const Icon(Icons.upload_file),
+              label: const Text('Select YAML File'),
+            ),
+            const SizedBox(height: 16),
+            TextButton.icon(
+              onPressed: () => _loadFromInitFiles(context),
+              icon: const Icon(Icons.folder),
+              label: const Text('Load from init files'),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _pickAndUploadRumorTemplates(BuildContext context) async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['yaml', 'yml'],
+      );
+
+      if (result != null && result.files.single.bytes != null) {
+        final bytes = result.files.single.bytes!;
+        final content = String.fromCharCodes(bytes);
+        await _processRumorTemplateYaml(context, content);
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error picking file: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _loadFromInitFiles(BuildContext context) async {
+    try {
+      final String content = await rootBundle.loadString('lib/initialization_files/rumor_templates.yaml');
+      await _processRumorTemplateYaml(context, content);
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading from init files: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _processRumorTemplateYaml(BuildContext context, String yamlContent) async {
+    try {
+      final dynamic yamlData = loadYaml(yamlContent);
+      final List<RumorTemplate> templates = [];
+
+      if (yamlData is List) {
+        for (final item in yamlData) {
+          if (item is Map) {
+            templates.add(RumorTemplate(
+              id: item['id'] ?? '',
+              template: item['template'] ?? '',
+              tags: List<String>.from(item['tags'] ?? []),
+              variables: Map<String, List<String>>.from(
+                (item['variables'] as Map?)?.map(
+                  (key, value) => MapEntry(key.toString(), List<String>.from(value)),
+                ) ?? {},
+              ),
+              requiredRoles: List<String>.from(item['required_roles'] ?? []),
+              requiredLocations: List<String>.from(item['required_locations'] ?? []),
+            ));
+          }
+        }
+      }
+
+      if (templates.isNotEmpty && context.mounted) {
+        // For now, just load into the provider - TODO: Upload to Firestore later
+        final container = ProviderScope.containerOf(context);
+        container.read(rumorTemplatesProvider.notifier).state = templates;
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Successfully loaded ${templates.length} rumor templates'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error processing YAML: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }

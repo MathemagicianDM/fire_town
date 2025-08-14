@@ -1,0 +1,77 @@
+- id: "tax_increase"
+  template: "{warminister/mintminister/infrastructureminister/townleader} wants to raise taxes to fund {townProject}."
+  variables:
+    townProject: ["repairs to the town walls", "new guard barracks", "road improvements", "festival preparations", "dock maintenance"]
+  required_roles: ["warminister", "mintminister", "infrastructureminister", "townleader"]
+  tags: ["politics", "economy"]
+
+- id: "merchant_complaint"
+  template: "{weaponsmith/armorsmith/alchemist/tailor} complains that {merchantProblem}."
+  variables:
+    merchantProblem: ["the roads are too dangerous for trade", "taxes are hurting business", "competitors are undercutting prices", "supplies are running low", "customers are scarce"]
+  required_roles: ["weaponsmith", "armorsmith", "alchemist", "tailor"]
+  tags: ["trade", "economy"]
+
+- id: "guard_concern"
+  template: "The guard captain {guardcaptain} is worried about {securityIssue}."
+  variables:
+    securityIssue: ["increased bandit activity", "suspicious strangers in town", "reports of strange noises at night", "missing livestock", "vandalism near the gates"]
+  required_roles: ["guardcaptain"]
+  tags: ["security", "safety"]
+
+- id: "tavern_gossip"
+  template: "Patrons at {tavern} whisper about {gossipTopic}."
+  variables:
+    gossipTopic: ["a hidden treasure somewhere in town", "a secret romance between two prominent citizens", "mysterious lights seen in the forest", "an old curse on the town", "strange dreams shared by many residents"]
+  required_locations: ["tavern"]
+  tags: ["gossip", "mystery"]
+
+- id: "weather_concern"
+  template: "Local farmers worry that {weatherIssue} will affect the harvest."
+  variables:
+    weatherIssue: ["the unusual drought", "too much rain this season", "an early frost", "strange storms", "the unseasonably warm weather"]
+  tags: ["weather", "agriculture"]
+
+- id: "festival_preparation"
+  template: "{townleader/eldergovernment} announced preparations for {festival} are underway."
+  variables:
+    festival: ["the harvest festival", "the midsummer celebration", "the founding day ceremony", "the spring equinox gathering", "the winter solstice feast"]
+  required_roles: ["townleader", "eldergovernment"]
+  tags: ["celebration", "community"]
+
+- id: "stranger_arrival"
+  template: "A {strangerType} arrived in town yesterday and has been asking about {strangerInterest}."
+  variables:
+    strangerType: ["well-dressed merchant", "mysterious cloaked figure", "traveling scholar", "wandering minstrel", "foreign diplomat"]
+    strangerInterest: ["the local history", "certain residents", "old ruins nearby", "trade opportunities", "hiring guides"]
+  tags: ["visitors", "mystery"]
+
+- id: "shop_news"
+  template: "{shopkeeper} at {shop} recently acquired {newItem}."
+  variables:
+    newItem: ["exotic goods from distant lands", "a rare and valuable item", "supplies everyone has been waiting for", "something unusual and intriguing", "materials for a special project"]
+  required_roles: ["owner", "journeyman"]
+  tags: ["commerce", "items"]
+
+- id: "construction_project"
+  template: "Work has begun on {constructionProject} near {location}."
+  variables:
+    constructionProject: ["a new building", "road repairs", "bridge construction", "wall reinforcements", "expansion of the market"]
+    location: ["the town square", "the main road", "the outskirts", "the docks", "the merchant quarter"]
+  tags: ["construction", "development"]
+
+- id: "missing_person"
+  template: "{concernedPerson} hasn't been seen since {timeFrame}, and people are starting to worry."
+  variables:
+    concernedPerson: ["Old Henrik", "Young Sarah", "the village blacksmith's apprentice", "Martha the baker", "Tom the stable boy"]
+    timeFrame: ["yesterday morning", "three days ago", "last week", "the new moon", "the market day"]
+  tags: ["mystery", "concern"]
+
+- id: "simple_test"
+  template: "Everyone is talking about the upcoming market day."
+  tags: ["general"]
+
+- id: "basic_owner_rumor"
+  template: "{owner} has been working late hours recently."
+  required_roles: ["owner"]
+  tags: ["general"]
