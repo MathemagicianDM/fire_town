@@ -241,6 +241,10 @@ class TownOnFire implements JsonSerializable {
     // final locs = ref.read(locationsProvider);
     await commitShops(ref);
 
+    // NEW: Assign regulars and customers to all venues after shop creation
+    onMessageUpdate("Assigning tavern regulars and customers...");
+    await assignRegularsAndCustomersToAllVenues(ref);
+
     // print(roles);
 
     onMessageUpdate("All done!  Taking you there.");
